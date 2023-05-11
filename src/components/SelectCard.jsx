@@ -16,7 +16,7 @@ const SelectCard = ({ title, description }) => {
 
             <p className="mt-4 text-sm sm:text-base">{description}</p>
 
-            <p className="mt-8 font-bold">Read more</p>
+            <p className="mt-8 font-bold">Find Tickets</p>
           </div>
         </div>
       </a>

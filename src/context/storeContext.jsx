@@ -18,6 +18,7 @@ function reducer(state, action) {
         available: action.payload.available,
       };
     case "ADD_TICKET":
+      console.log(state, action);
       return { ...state, basket: state.basket.concat(action.payload) };
   }
 }

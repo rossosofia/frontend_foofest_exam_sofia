@@ -1,4 +1,5 @@
 import FlowLayout from "@/components/FlowLayout";
+import TicketCard from "@/components/TicketCard";
 
 export default function Tickets() {
   return (
@@ -8,6 +9,7 @@ export default function Tickets() {
         A variety of ticket options are available, including Regular and VIP
         passes, which grant access to the entire seven-day festival.{" "}
       </p>
+      <TicketCard />
     </FlowLayout>
   );
 }

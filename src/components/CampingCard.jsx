@@ -17,9 +17,9 @@ const SelectCard = (props) => {
         available: props.available,
       },
     });
-    // router.push({
-    //   pathname: "/tickets",
-    // });
+    router.push({
+      pathname: "/tickets",
+    });
   }
 
   return (

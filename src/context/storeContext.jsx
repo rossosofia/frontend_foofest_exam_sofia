@@ -1,5 +1,4 @@
 import { createContext, useReducer } from "react";
-
 export const StoreContext = createContext();
 export const DispatchContext = createContext();
 
@@ -37,6 +36,19 @@ function reducer(state, action) {
         newItem.amount = 1;
         return { ...state, basket: state.basket.concat(action.payload) };
       }
+    case "REMOVE_TICKET":
+      console.log(state, action);
+      const nextBasket = state.basket.map((item) => {
+        if (item.name === action.payload.name) {
+          const copy = { ...item };
+          copy.amount--;
+          return copy;
+        } else {
+          return item;
+        }
+      });
+      const finalBasket = nextBasket.filter((item) => item.amount > 0);
+      return { ...state, basket: finalBasket };
   }
 }
 

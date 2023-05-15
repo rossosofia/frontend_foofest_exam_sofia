@@ -5,16 +5,12 @@ import { useRouter } from "next/router";
 
 const TicketsCard = (props) => {
   const dispatch = useContext(DispatchContext);
-  const router = useRouter();
+  // const router = useRouter();
 
   function addTooBasket() {
     dispatch({
       action: "ADD_TICKET",
-      payload: {
-        name: "VIP",
-        amount: 1,
-        price: 799,
-      },
+      payload: {},
     });
   }
 

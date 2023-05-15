@@ -8,7 +8,7 @@ const SelectCard = (props) => {
   const dispatch = useContext(DispatchContext);
   const router = useRouter();
 
-  function choseArea() {
+  function chooseArea() {
     dispatch({
       action: "CHOOSE_AREA",
       payload: {
@@ -17,9 +17,9 @@ const SelectCard = (props) => {
         available: props.available,
       },
     });
-    router.push({
-      pathname: "/tickets",
-    });
+    // router.push({
+    //   pathname: "/tickets",
+    // });
   }
 
   return (
@@ -43,7 +43,7 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button onClick={choseArea} variant="contained">
+            <Button onClick={chooseArea} variant="contained">
               Find Tickets
             </Button>
           </div>

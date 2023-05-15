@@ -9,7 +9,11 @@ function Basket() {
       <h2>Basket </h2>
       <ul>
         {state.basket.map((item) => {
-          return <li key={item.}>{item.price}</li>;
+          return (
+            <li key={item.id}>
+              {item.price} x {item.amount}
+            </li>
+          );
         })}
       </ul>
     </>

@@ -5,16 +5,20 @@ export const DispatchContext = createContext();
 
 const initialState = {
   basket: [],
-  products: [],
 };
 
 function reducer(state, action) {
   switch (action.action) {
-    case "LOGIN":
-      return { ...state, name: action.payload };
-
-    case "LOGOUT":
-      return { ...state, name: "" };
+    case "CHOOSE_AREA":
+      console.log(state, action);
+      return {
+        ...state,
+        area: action.payload.area,
+        spots: action.payload.spots,
+        available: action.payload.available,
+      };
+    case "ADD_TICKET":
+      return { ...state, basket: state.basket.concat(action.payload) };
   }
 }
 

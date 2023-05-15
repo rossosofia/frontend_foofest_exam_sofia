@@ -1,7 +1,27 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useContext } from "react";
+import { DispatchContext } from "@/context/storeContext";
+import { useRouter } from "next/router";
 
 const SelectCard = (props) => {
+  const dispatch = useContext(DispatchContext);
+  const router = useRouter();
+
+  function choseArea() {
+    dispatch({
+      action: "CHOOSE_AREA",
+      payload: {
+        area: props.area,
+        spots: props.spots,
+        available: props.available,
+      },
+    });
+    router.push({
+      pathname: "/tickets",
+    });
+  }
+
   return (
     <>
       <div className="group relative block h-screen max-h-[80vh]">
@@ -23,7 +43,7 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button href="/tickets" variant="contained">
+            <Button onClick={choseArea} variant="contained">
               Find Tickets
             </Button>
           </div>

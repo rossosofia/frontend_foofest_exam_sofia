@@ -1,4 +1,4 @@
-import SelectCard from "@/components/SelectCard";
+import SelectCard from "@/components/CampingCard";
 
 export default function Campingsite({ data }) {
   return (

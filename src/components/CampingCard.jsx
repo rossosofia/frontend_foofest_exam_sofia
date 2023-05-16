@@ -22,6 +22,8 @@ const SelectCard = (props) => {
     });
   }
 
+  const isAvailable = props.available > 0;
+
   return (
     <>
       <div className="group relative block h-screen max-h-[80vh]">
@@ -43,7 +45,7 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button onClick={chooseArea} variant="outlined">
+            <Button onClick={chooseArea} variant="outlined" disabled={!isAvailable}>
               Find Tickets
             </Button>
           </div>

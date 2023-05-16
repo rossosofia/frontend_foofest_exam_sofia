@@ -62,15 +62,7 @@ export default function Accomodations() {
         />
       </RadioGroup>
 
-      <Button variant="outlined" onClick={handleNext}>
-        Go to guest
-      </Button>
-      <Anchor
-        href="/guests/"
-        className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
-      >
-        GO TO GUESTS
-      </Anchor>
+      <Anchor href="/guests/">GO TO GUESTS</Anchor>
     </FlowLayout>
   );
 }

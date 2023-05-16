@@ -7,7 +7,7 @@ import { StoreContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
 import Anchor from "./Anchor";
 
-const TicketCard = (props) => {
+const TicketCard = () => {
   const router = useRouter();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
@@ -98,6 +98,13 @@ const TicketCard = (props) => {
     (vipTicket && vipTicket.amount > 0) ||
     (regularTicket && regularTicket.amount > 0);
 
+  function getTotalBasketTickets() {
+    return state.basket.reduce((total, ticket) => total + ticket.amount, 0);
+  }
+
+  const totalBasketTickets = getTotalBasketTickets();
+  const canAddMoreTickets = totalBasketTickets < state.available;
+
   return (
     <>
       <h2>VIP</h2>
@@ -126,7 +133,12 @@ const TicketCard = (props) => {
           <button
             type="button"
             onClick={addVIPTicket}
-            className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
+            disabled={!canAddMoreTickets}
+            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
+              canAddMoreTickets
+                ? "text-gray-600"
+                : "text-gray-300 cursor-not-allowed"
+            }`}
           >
             +
           </button>
@@ -159,18 +171,18 @@ const TicketCard = (props) => {
           <button
             type="button"
             onClick={addRegularTicket}
-            className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
+            disabled={!canAddMoreTickets}
+            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
+              canAddMoreTickets
+                ? "text-gray-600"
+                : "text-gray-300 cursor-not-allowed"
+            }`}
           >
             +
           </button>
         </div>
       </div>
-      <Anchor
-        href="/tickets/"
-        onClick={sendPutRequest}
-        className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
-        disabled={!isAvailable}
-      >
+      <Anchor href="/tickets/" onClick={sendPutRequest} disabled={!isAvailable}>
         START RESERVATION
       </Anchor>
     </>

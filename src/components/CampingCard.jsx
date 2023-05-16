@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import Anchor from "./Anchor";
 import { useContext } from "react";
 import { DispatchContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
@@ -45,9 +45,14 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button onClick={chooseArea} variant="outlined" disabled={!isAvailable}>
-              Find Tickets
-            </Button>
+            <Anchor
+               href="/tickets/"
+               onClick={chooseArea}
+               className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+               disabled={!isAvailable}>
+               Find Tickets
+              </Anchor>
+
           </div>
         </div>
       </div>

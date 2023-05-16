@@ -42,7 +42,7 @@ export default function Accomodations() {
                 : ""
             } ${selectedValue === "set-up-tent" ? "bg-slate-200" : ""}`}
           >
-            {/* we need to create a style to use istead of the "bg-slate-500", so that everything looks "deactivated" */}
+            {/* we need to create a style to use istead of the "bg-pink-100", so that everything looks "deactivated" */}
             <FormControlLabel
               value="set-up-tent"
               control={<Radio />}

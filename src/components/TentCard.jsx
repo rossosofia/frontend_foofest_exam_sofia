@@ -59,6 +59,7 @@ export default function TentCard() {
           <QuantityInput></QuantityInput>
         </div>
       </article>
+
       <article
         className="relative flex items-start justify-between border-2 border-black bg-white p-4 shadow-xl sm:p-6 lg:p-8"
         href="#"

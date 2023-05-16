@@ -1,19 +1,17 @@
 import FlowLayout from "@/components/FlowLayout";
-import { useRouter } from "next/router";
-import { Button } from "@mui/material";
+import Anchor from "@/components/Anchor";
 
 export default function Guests() {
-  const router = useRouter();
-  function handleNext() {
-    router.push("/payment");
-  }
   return (
     <FlowLayout>
       <h1>Step 3</h1>
       <p>This is the content for Step 3.</p>
-      <Button variant="outlined" onClick={handleNext}>
-        Go to payment
-      </Button>
+      <Anchor
+        href="/payment/"
+        className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+      >
+        GO TO PAYMENT
+      </Anchor>
     </FlowLayout>
   );
 }

@@ -46,13 +46,12 @@ const SelectCard = (props) => {
             </p>
 
             <Anchor
-               href="/tickets/"
-               onClick={chooseArea}
-               className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
-               disabled={!isAvailable}>
-               Find Tickets
-              </Anchor>
-
+              href="/tickets/"
+              onClick={chooseArea}
+              disabled={!isAvailable}
+            >
+              Find Tickets
+            </Anchor>
           </div>
         </div>
       </div>

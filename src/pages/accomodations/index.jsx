@@ -4,6 +4,7 @@ import { Button, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import TentCard from "@/components/TentCard";
 import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
+import Anchor from "@/components/Anchor";
 
 export default function Accomodations() {
   const [selectedValue, setSelectedValue] = useState("");
@@ -64,6 +65,12 @@ export default function Accomodations() {
       <Button variant="outlined" onClick={handleNext}>
         Go to guest
       </Button>
+      <Anchor
+        href="/guests/"
+        className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+      >
+        GO TO GUESTS
+      </Anchor>
     </FlowLayout>
   );
 }

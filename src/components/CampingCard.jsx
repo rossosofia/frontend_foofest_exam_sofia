@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import Anchor from "./Anchor";
 import { useContext } from "react";
 import { DispatchContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
@@ -22,6 +22,8 @@ const SelectCard = (props) => {
     });
   }
 
+  const isAvailable = props.available > 0;
+
   return (
     <>
       <div className="group relative block h-screen max-h-[80vh]">
@@ -43,9 +45,13 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button onClick={chooseArea} variant="outlined">
+            <Anchor
+              href="/tickets/"
+              onClick={chooseArea}
+              disabled={!isAvailable}
+            >
               Find Tickets
-            </Button>
+            </Anchor>
           </div>
         </div>
       </div>

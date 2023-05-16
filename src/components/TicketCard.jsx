@@ -5,8 +5,9 @@ import { DispatchContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
 import { StoreContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
+import Anchor from "./Anchor";
 
-const TicketCard = () => {
+const TicketCard = (props) => {
   const router = useRouter();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
@@ -93,6 +94,10 @@ const TicketCard = () => {
     router.push("/accomodations");
   }
 
+  const isAvailable =
+    (vipTicket && vipTicket.amount > 0) ||
+    (regularTicket && regularTicket.amount > 0);
+
   return (
     <>
       <h2>VIP</h2>
@@ -160,9 +165,14 @@ const TicketCard = () => {
           </button>
         </div>
       </div>
-      <Button variant="outlined" onClick={sendPutRequest}>
-        Send PUT
-      </Button>
+      <Anchor
+        href="/tickets/"
+        onClick={sendPutRequest}
+        className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+        disabled={!isAvailable}
+      >
+        START RESERVATION
+      </Anchor>
     </>
   );
 };

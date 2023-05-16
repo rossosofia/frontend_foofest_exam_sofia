@@ -43,7 +43,7 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
-            <Button onClick={chooseArea} variant="contained">
+            <Button onClick={chooseArea} variant="outlined">
               Find Tickets
             </Button>
           </div>

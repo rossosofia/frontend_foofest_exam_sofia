@@ -4,6 +4,7 @@ export const DispatchContext = createContext();
 
 const initialState = {
   basket: [],
+  timeLeft: 300000,
 };
 
 function reducer(state, action) {
@@ -36,6 +37,7 @@ function reducer(state, action) {
         newItem.amount = 1;
         return { ...state, basket: state.basket.concat(action.payload) };
       }
+
     case "REMOVE_TICKET":
       console.log(state, action);
       const nextBasket = state.basket.map((item) => {
@@ -49,6 +51,12 @@ function reducer(state, action) {
       });
       const finalBasket = nextBasket.filter((item) => item.amount > 0);
       return { ...state, basket: finalBasket };
+
+    case "SET_TIMEOUT":
+      return {
+        ...state,
+        timeout: action.payload.timeout,
+      };
   }
 }
 

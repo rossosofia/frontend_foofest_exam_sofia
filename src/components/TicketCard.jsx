@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { useContext } from "react";
 import { DispatchContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +6,6 @@ import { StoreContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
 import Anchor from "./Anchor";
 import QuantityInput from "./QuantityInput";
-import QuantityInputButton from "./QuantityInputButton";
 
 const TicketCard = () => {
   const router = useRouter();

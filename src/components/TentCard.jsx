@@ -1,8 +1,69 @@
 import React, { useState } from "react";
 import QuantityInput from "./QuantityInput";
+import { useContext } from "react";
+import { StoreContext } from "@/context/storeContext";
+import { DispatchContext } from "@/context/storeContext";
+import { v4 as uuidv4 } from "uuid";
 
 export default function TentCard() {
   const [isSelected, setIsSelected] = useState(false);
+  const dispatch = useContext(DispatchContext);
+  const state = useContext(StoreContext);
+  const twoTent = state.basket.find((tent) => tent.tentName === "2PERSON");
+  const threeTent = state.basket.find((tent) => tent.tentName === "3PERSON");
+
+  function addTwoPersonTent() {
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "2PERSON",
+        tentID: uuidv4(),
+        tentAmount: 1,
+        price: 299,
+      },
+    });
+  }
+
+  function addThreePersonTent() {
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "3PERSON",
+        tentID: uuidv4(),
+        tentAmount: 1,
+        price: 399,
+      },
+    });
+  }
+
+  function removeOneTwoPersonTent() {
+    dispatch({
+      action: "REMOVE_TICKET",
+      payload: {
+        name: "2PERSON",
+      },
+    });
+  }
+
+  function removeOneThreePersonTent() {
+    dispatch({
+      action: "REMOVE_TICKET",
+      payload: {
+        name: "3PERSON",
+      },
+    });
+  }
+
+  const isAvailable =
+    (twoTent && twoTent.tentAmount > 0) ||
+    (threeTent && threeTent.tentAmount > 0);
+
+  function getTotalBasketTents() {
+    return state.basket.reduce((total, tent) => total + tent.tentAmount, 0);
+  }
+
+  const totalBasketTents = getTotalBasketTents();
+  const canAddMoreTents = totalBasketTents < state.available;
 
   const handleSelection = (event) => {
     setIsSelected(event.target.checked);
@@ -56,7 +117,12 @@ export default function TentCard() {
 
           <p className="mt-2 hidden text-sm sm:block">299-</p>
 
-          <QuantityInput></QuantityInput>
+          <QuantityInput
+            value={twoTent ? twoTent.tentAmount : 0}
+            onClickAdd={addTwoPersonTent}
+            onClickRemove={removeOneTwoPersonTent}
+            canAddMoreTickets={canAddMoreTents}
+          />
         </div>
       </article>
 
@@ -113,7 +179,13 @@ export default function TentCard() {
           </h3>
 
           <p className="mt-2 hidden text-sm sm:block">399,-</p>
-          <QuantityInput></QuantityInput>
+
+          <QuantityInput
+            value={threeTent ? threeTent.tentAmount : 0}
+            onClickAdd={addThreePersonTent}
+            onClickRemove={removeOneTwoPersonTent}
+            canAddMoreTickets={canAddMoreTents}
+          />
         </div>
       </article>
     </section>

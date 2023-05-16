@@ -52,6 +52,42 @@ function reducer(state, action) {
       const finalBasket = nextBasket.filter((item) => item.amount > 0);
       return { ...state, basket: finalBasket };
 
+    case "ADD_TENT":
+      console.log(state, action);
+      const existTent = state.basket.find(
+        (item) => item.name === action.payload.name
+      );
+      if (exist) {
+        const nextBasket = state.basket.map((item) => {
+          if (item.name === action.payload.name) {
+            const copy = { ...item };
+            copy.amount++;
+            return copy;
+          } else {
+            return item;
+          }
+        });
+        return { ...state, basket: nextBasket };
+      } else {
+        const newItem = action.payload;
+        newItem.amount = 1;
+        return { ...state, basket: state.basket.concat(action.payload) };
+      }
+
+    case "REMOVE_TENT":
+      console.log(state, action);
+      const nextBasketTent = state.basket.map((item) => {
+        if (item.name === action.payload.name) {
+          const copy = { ...item };
+          copy.amount--;
+          return copy;
+        } else {
+          return item;
+        }
+      });
+      const finalBasketTent = nextBasket.filter((item) => item.amount > 0);
+      return { ...state, basket: finalBasket };
+
     case "SET_TIMEOUT":
       return {
         ...state,

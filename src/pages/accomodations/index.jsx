@@ -1,5 +1,4 @@
 import FlowLayout from "@/components/FlowLayout";
-import { useRouter } from "next/router";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import TentCard from "@/components/TentCard";
 import React, { useState } from "react";
@@ -20,10 +19,6 @@ export default function Accomodations() {
     console.log(event.target.checked);
   };
 
-  const router = useRouter();
-  function handleNext() {
-    router.push("/guests");
-  }
 
   return (
     <FlowLayout>

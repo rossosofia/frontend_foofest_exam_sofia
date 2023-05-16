@@ -19,6 +19,7 @@ export default function TentCard() {
         tentName: "2PERSON",
         tentID: uuidv4(),
         tentAmount: 1,
+        tentAmountPeople: 2,
         price: 299,
       },
     });
@@ -31,6 +32,7 @@ export default function TentCard() {
         tentName: "3PERSON",
         tentID: uuidv4(),
         tentAmount: 1,
+        tentAmountPeople: 3,
         price: 399,
       },
     });
@@ -38,23 +40,23 @@ export default function TentCard() {
 
   function removeOneTwoPersonTent() {
     dispatch({
-      action: "REMOVE_TICKET",
+      action: "REMOVE_TENT",
       payload: {
-        name: "2PERSON",
+        tentName: "2PERSON",
       },
     });
   }
 
   function removeOneThreePersonTent() {
     dispatch({
-      action: "REMOVE_TICKET",
+      action: "REMOVE_TENT",
       payload: {
-        name: "3PERSON",
+        tentName: "3PERSON",
       },
     });
   }
 
-  const isAvailable =
+  const isAvailable = true;
     (twoTent && twoTent.tentAmount > 0) ||
     (threeTent && threeTent.tentAmount > 0);
 
@@ -63,11 +65,11 @@ export default function TentCard() {
   }
 
   const totalBasketTents = getTotalBasketTents();
-  const canAddMoreTents = totalBasketTents < state.available;
+  // const canAddMoreTents = totalBasketTents < state.available;
+  const canAddMoreTents = true;
 
-  const handleSelection = (event) => {
-    setIsSelected(event.target.checked);
-  };
+
+
 
   return (
     <section
@@ -118,11 +120,11 @@ export default function TentCard() {
           <p className="mt-2 hidden text-sm sm:block">299-</p>
 
           <QuantityInput
-            value={twoTent ? twoTent.tentAmount : 0}
-            onClickAdd={addTwoPersonTent}
-            onClickRemove={removeOneTwoPersonTent}
-            canAddMoreTickets={canAddMoreTents}
-          />
+             value={twoTent ? twoTent.tentAmount : 0}
+             onClickAdd={addTwoPersonTent}
+             onClickRemove={removeOneTwoPersonTent}
+             canAddMoreTickets={canAddMoreTents}
+           />
         </div>
       </article>
 
@@ -183,7 +185,7 @@ export default function TentCard() {
           <QuantityInput
             value={threeTent ? threeTent.tentAmount : 0}
             onClickAdd={addThreePersonTent}
-            onClickRemove={removeOneTwoPersonTent}
+            onClickRemove={removeOneThreePersonTent}
             canAddMoreTickets={canAddMoreTents}
           />
         </div>

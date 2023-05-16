@@ -51,17 +51,17 @@ function reducer(state, action) {
       });
       const finalBasket = nextBasket.filter((item) => item.amount > 0);
       return { ...state, basket: finalBasket };
-
+//---------------------TENT--------------------------------------
     case "ADD_TENT":
       console.log(state, action);
       const existTent = state.basket.find(
-        (item) => item.name === action.payload.name
+        (item) => item.tentName === action.payload.tentName
       );
-      if (exist) {
+      if (existTent) {
         const nextBasket = state.basket.map((item) => {
-          if (item.name === action.payload.name) {
+          if (item.tentName === action.payload.tentName) {
             const copy = { ...item };
-            copy.amount++;
+            copy.tentAmount++;
             return copy;
           } else {
             return item;
@@ -70,23 +70,23 @@ function reducer(state, action) {
         return { ...state, basket: nextBasket };
       } else {
         const newItem = action.payload;
-        newItem.amount = 1;
+        newItem.tentAmount = 1;
         return { ...state, basket: state.basket.concat(action.payload) };
       }
 
     case "REMOVE_TENT":
       console.log(state, action);
       const nextBasketTent = state.basket.map((item) => {
-        if (item.name === action.payload.name) {
+        if (item.tentName === action.payload.tentName) {
           const copy = { ...item };
-          copy.amount--;
+          copy.tentAmount--;
           return copy;
         } else {
           return item;
         }
       });
-      const finalBasketTent = nextBasket.filter((item) => item.amount > 0);
-      return { ...state, basket: finalBasket };
+      const finalBasketTent = nextBasketTent.filter((item) => item.tentAmount > 0);
+      return { ...state, basket: finalBasketTent };
 
     case "SET_TIMEOUT":
       return {

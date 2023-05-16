@@ -4,12 +4,13 @@ export default function Anchor({ children, href, disabled, onClick }) {
   const router = useRouter();
 
   function handleClick(e) {
-    if (disabled) return;
-
     e.preventDefault();
-    router.push(href);
-    if (onClick) {
-      onClick(e);
+
+    if (!disabled) {
+      router.push(href);
+      if (onClick) {
+        onClick(e);
+      }
     }
   }
 

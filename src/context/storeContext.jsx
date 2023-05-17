@@ -3,7 +3,12 @@ export const StoreContext = createContext();
 export const DispatchContext = createContext();
 
 const initialState = {
+  area: [],
   basket: [],
+  tentBasket:[],
+  guestInfo:[],
+  paymentInfo:[],
+  greenFee: false,
   timeLeft: 300000,
 };
 

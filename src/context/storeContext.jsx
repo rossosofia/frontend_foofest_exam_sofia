@@ -5,9 +5,6 @@ export const DispatchContext = createContext();
 const initialState = {
   basket: [],
   timeLeft: 300000,
-  hasGreen: false
-
- 
 };
 
 function reducer(state, action) {
@@ -77,19 +74,23 @@ function reducer(state, action) {
         return { ...state, basket: state.basket.concat(action.payload) };
       }
 
-    case "REMOVE_TENT":
-      // console.log(state, action);
-      const tentBasket = state.basket.map((item) => {
-        if (item.tentName === action.payload.tentName) {
-          const copy = { ...item };
-          copy.tentAmount--;
-          return copy;
-        } else {
+      case "REMOVE_TENT":
+        const tentNameToRemove = action.payload.tentName;
+  
+        const updatedBasket = state.basket.map((item) => {
+          if (item.tentName === tentNameToRemove) {
+            const updatedItem = { ...item };
+            updatedItem.tentAmount--;
+            return updatedItem;
+          }
           return item;
-        }
-      });
-      const finalBasketTent = tentBasket.filter((item) => item.tentAmount > 0);
-      return { ...state, basket: finalBasketTent };
+        });
+  
+        const finalTentBasket = updatedBasket.filter((item) => {
+          return item.tentAmount > 0 || !item.hasOwnProperty("tentName");
+        });
+  
+        return { ...state, basket: finalTentBasket };
 
     case "SET_TIMEOUT":
       return {
@@ -118,14 +119,28 @@ function reducer(state, action) {
           };
         }
       
-      case "GREEN_OPTION":
-        const isGreen = action.payload.hasGreen;
-
-        const greenBasket = [...state.basket];
-        greenBasket[isGreen] = { hasGreen: isGreen };
-        return{...state , basket: greenBasket}
-      };
-     
+        case "GREEN_OPTION":
+          const isGreen = action.payload.hasGreen;
+          const price = action.payload.price;
+    
+          const existingItemIndex = state.basket.findIndex((item) =>
+            item.hasOwnProperty("hasGreen")
+          );
+    
+          if (existingItemIndex !== -1) {
+            const greenBasket = state.basket.map((item, index) => {
+              if (index === existingItemIndex) {
+                return { hasGreen: isGreen, price: price };
+              }
+              return item;
+            });
+    
+            return { ...state, basket: greenBasket };
+          }
+    
+          const newGreenItem = { hasGreen: isGreen, price: price };
+          return { ...state, basket: [...state.basket, newGreenItem] };
+      }
       
     
 }

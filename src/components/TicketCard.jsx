@@ -11,8 +11,8 @@ const TicketCard = () => {
   const router = useRouter();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
-  const vipTicket = state.basket.find((ticket) => ticket.name === "VIP");
-  const regularTicket = state.basket.find(
+  const vipTicket = state.ticketBasket.find((ticket) => ticket.name === "VIP");
+  const regularTicket = state.ticketBasket.find(
     (ticket) => ticket.name === "Regular"
   );
 
@@ -59,7 +59,7 @@ const TicketCard = () => {
   }
 
   async function sendPutRequest() {
-    const totalAmount = state.basket.reduce(
+    const totalAmount = state.ticketBasket.reduce(
       (acc, ticket) => acc + ticket.amount,
       0
     );
@@ -99,7 +99,7 @@ const TicketCard = () => {
     (regularTicket && regularTicket.amount > 0);
 
   function getTotalBasketTickets() {
-    return state.basket.reduce((total, ticket) => total + ticket.amount, 0);
+    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
   }
 
   const totalBasketTickets = getTotalBasketTickets();

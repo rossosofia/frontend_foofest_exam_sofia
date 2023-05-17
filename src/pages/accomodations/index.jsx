@@ -18,7 +18,7 @@ export default function Accomodations() {
       action: "GREEN_OPTION",
       payload: {
         hasGreen: checked,
-        price: 249,
+        price: checked ? 249 : 0,
       },
     });
   }

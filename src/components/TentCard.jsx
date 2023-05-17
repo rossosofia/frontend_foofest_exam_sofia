@@ -9,9 +9,9 @@ export default function TentCard({}) {
   //  const [isSelected, setIsSelected] = useState(false);
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
-  const twoTent = state.basket.find((tent) => tent.tentName === "2PERSON");
-  const threeTent = state.basket.find((tent) => tent.tentName === "3PERSON");
-  const hasTent = state.basket.find((tent) => tent.hasTent === true);
+  const twoTent = state.tentBasket.find((tent) => tent.tentName === "2PERSON");
+  const threeTent = state.tentBasket.find((tent) => tent.tentName === "3PERSON");
+  const hasTent = state.tentBasket.find((tent) => tent.hasTent === true);
 
   
 
@@ -64,7 +64,7 @@ export default function TentCard({}) {
     (threeTent && threeTent.tentAmount > 0);
 
   function getTotalBasketTents() {
-    return state.basket.reduce((total, tent) => total + tent.tentAmount, 0);
+    return state.tentBasket.reduce((total, tent) => total + tent.tentAmount, 0);
   }
 
   const totalBasketTents = getTotalBasketTents();

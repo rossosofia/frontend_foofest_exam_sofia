@@ -9,26 +9,27 @@ import { StoreContext } from "@/context/storeContext";
 import { DispatchContext } from "@/context/storeContext";
 
 export default function Accomodations() {
-  // const [selectedValue, setSelectedValue] = useState("");
-  const [checked, setChecked] = useState(false);
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
-  // const handleChange = (event) => {
-  //   setSelectedValue(event.target.value);
-  //   console.log(event.target.value);
-  // };
 
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
-    console.log(event.target.checked);
-  };
+  
+  function selectGreenOption(event) {
+    const {checked} = event.target;
+    dispatch({
+      action: "GREEN_OPTION",
+      payload: {
+        hasGreen: checked,
+        price: 249,
+      },
+    });
+  }
 
   function chooseTentOption() {
     dispatch({
       action: "TENT_OPTION",
       payload: {
-        isChosentent: true
+        isChosentent:true
       },
     });
   }
@@ -46,7 +47,7 @@ export default function Accomodations() {
       <h1>Step 2</h1>
       <p>This is the content for Step 2.</p>
       <FormControlLabel
-        control={<Checkbox checked={checked} onChange={handleCheckboxChange} />}
+        control={<Checkbox checked={state.checked} onChange={selectGreenOption} />}
         label="Green Option / 249-"
       />
 

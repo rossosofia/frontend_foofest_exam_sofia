@@ -5,6 +5,9 @@ export const DispatchContext = createContext();
 const initialState = {
   basket: [],
   timeLeft: 300000,
+  hasGreen: false
+
+ 
 };
 
 function reducer(state, action) {
@@ -114,9 +117,17 @@ function reducer(state, action) {
             basket: state.basket.concat({ hasTent }),
           };
         }
-      }
       
+      case "GREEN_OPTION":
+        const isGreen = action.payload.hasGreen;
+
+        const greenBasket = [...state.basket];
+        greenBasket[isGreen] = { hasGreen: isGreen };
+        return{...state , basket: greenBasket}
+      };
+     
       
+    
 }
 
 export const StoreProvider = ({ children }) => {

@@ -5,6 +5,7 @@ export const DispatchContext = createContext();
 const initialState = {
   basket: [],
   timeLeft: 300000,
+  hasGreen: false,
 };
 
 function reducer(state, action) {
@@ -17,7 +18,7 @@ function reducer(state, action) {
         available: action.payload.available,
       };
     case "ADD_TICKET":
-      console.log(state, action);
+      // console.log(state, action);
       const exist = state.basket.find(
         (item) => item.name === action.payload.name
       );
@@ -39,7 +40,7 @@ function reducer(state, action) {
       }
 
     case "REMOVE_TICKET":
-      console.log(state, action);
+      // console.log(state, action);
       const nextBasket = state.basket.map((item) => {
         if (item.name === action.payload.name) {
           const copy = { ...item };
@@ -53,12 +54,12 @@ function reducer(state, action) {
       return { ...state, basket: finalBasket };
     //---------------------TENT--------------------------------------
     case "ADD_TENT":
-      console.log(state, action);
+      // console.log(state, action);
       const existTent = state.basket.find(
         (item) => item.tentName === action.payload.tentName
       );
       if (existTent) {
-        const nextBasket = state.basket.map((item) => {
+        const tentBasket = state.basket.map((item) => {
           if (item.tentName === action.payload.tentName) {
             const copy = { ...item };
             copy.tentAmount++;
@@ -67,7 +68,7 @@ function reducer(state, action) {
             return item;
           }
         });
-        return { ...state, basket: nextBasket };
+        return { ...state, basket: tentBasket };
       } else {
         const newItem = action.payload;
         newItem.tentAmount = 1;
@@ -75,8 +76,8 @@ function reducer(state, action) {
       }
 
     case "REMOVE_TENT":
-      console.log(state, action);
-      const nextBasketTent = state.basket.map((item) => {
+      // console.log(state, action);
+      const tentBasket = state.basket.map((item) => {
         if (item.tentName === action.payload.tentName) {
           const copy = { ...item };
           copy.tentAmount--;
@@ -95,6 +96,36 @@ function reducer(state, action) {
         ...state,
         timeout: action.payload.timeout,
       };
+
+    case "TENT_OPTION":
+      const hasTent = action.payload.isChosentent;
+      const existingIndex = state.basket.findIndex(
+        (item) => typeof item === "object" && item.hasOwnProperty("hasTent")
+      );
+
+      if (existingIndex !== -1) {
+        // If an object with "hasTent" property exists, replace it with the new value
+        const updatedBasket = [...state.basket];
+        updatedBasket[existingIndex] = { hasTent };
+
+        return {
+          ...state,
+          basket: updatedBasket,
+        };
+      } else {
+        // If an object with "hasTent" property doesn't exist, append it to the basket
+        return {
+          ...state,
+          basket: state.basket.concat({ hasTent }),
+        };
+      }
+
+    case "GREEN_OPTION":
+      const isGreen = action.payload.hasGreen;
+
+      const greenBasket = [...state.basket];
+      greenBasket[isGreen] = { hasGreen: isGreen };
+      return { ...state, basket: greenBasket };
   }
 }
 

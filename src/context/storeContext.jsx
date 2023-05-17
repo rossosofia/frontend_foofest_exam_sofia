@@ -4,11 +4,11 @@ export const DispatchContext = createContext();
 
 const initialState = {
   area: [],
-  basket: [],
+  ticketBasket: [],
   tentBasket:[],
   guestInfo:[],
   paymentInfo:[],
-  greenFee: false,
+  greenFee: [],
   timeLeft: 300000,
 };
 
@@ -23,11 +23,11 @@ function reducer(state, action) {
       };
     case "ADD_TICKET":
       // console.log(state, action);
-      const exist = state.basket.find(
+      const exist = state.ticketBasket.find(
         (item) => item.name === action.payload.name
       );
       if (exist) {
-        const nextBasket = state.basket.map((item) => {
+        const nextBasket = state.ticketBasket.map((item) => {
           if (item.name === action.payload.name) {
             const copy = { ...item };
             copy.amount++;
@@ -36,16 +36,16 @@ function reducer(state, action) {
             return item;
           }
         });
-        return { ...state, basket: nextBasket };
+        return { ...state, ticketBasket: nextBasket };
       } else {
         const newItem = action.payload;
         newItem.amount = 1;
-        return { ...state, basket: state.basket.concat(action.payload) };
+        return { ...state, ticketBasket: state.ticketBasket.concat(action.payload) };
       }
 
     case "REMOVE_TICKET":
       // console.log(state, action);
-      const nextBasket = state.basket.map((item) => {
+      const nextBasket = state.ticketBasket.map((item) => {
         if (item.name === action.payload.name) {
           const copy = { ...item };
           copy.amount--;
@@ -55,15 +55,15 @@ function reducer(state, action) {
         }
       });
       const finalBasket = nextBasket.filter((item) => item.amount > 0);
-      return { ...state, basket: finalBasket };
+      return { ...state, ticketBasket: finalBasket };
 //---------------------TENT--------------------------------------
     case "ADD_TENT":
       // console.log(state, action);
-      const existTent = state.basket.find(
+      const existTent = state.tentBasket.find(
         (item) => item.tentName === action.payload.tentName
       );
       if (existTent) {
-        const tentBasket = state.basket.map((item) => {
+        const tentBasket = state.tentBasket.map((item) => {
           if (item.tentName === action.payload.tentName) {
             const copy = { ...item };
             copy.tentAmount++;
@@ -72,17 +72,17 @@ function reducer(state, action) {
             return item;
           }
         });
-        return { ...state, basket: tentBasket };
+        return { ...state, tentBasket: tentBasket };
       } else {
         const newItem = action.payload;
         newItem.tentAmount = 1;
-        return { ...state, basket: state.basket.concat(action.payload) };
+        return { ...state, tentBasket: state.tentBasket.concat(action.payload) };
       }
 
       case "REMOVE_TENT":
         const tentNameToRemove = action.payload.tentName;
   
-        const updatedBasket = state.basket.map((item) => {
+        const updatedBasket = state.tentBasket.map((item) => {
           if (item.tentName === tentNameToRemove) {
             const updatedItem = { ...item };
             updatedItem.tentAmount--;
@@ -95,7 +95,7 @@ function reducer(state, action) {
           return item.tentAmount > 0 || !item.hasOwnProperty("tentName");
         });
   
-        return { ...state, basket: finalTentBasket };
+        return { ...state, tentBasket: finalTentBasket };
 
     case "SET_TIMEOUT":
       return {
@@ -105,22 +105,22 @@ function reducer(state, action) {
   
       case "TENT_OPTION":
         const hasTent = action.payload.isChosentent;
-        const existingIndex = state.basket.findIndex(item => typeof item === "object" && item.hasOwnProperty("hasTent"));
+        const existingIndex = state.tentBasket.findIndex(item => typeof item === "object" && item.hasOwnProperty("hasTent"));
         
         if (existingIndex !== -1) {
           // If an object with "hasTent" property exists, replace it with the new value
-          const updatedBasket = [...state.basket];
+          const updatedBasket = [...state.tentBasket];
           updatedBasket[existingIndex] = { hasTent };
           
           return {
             ...state,
-            basket: updatedBasket,
+            tentBasket: updatedBasket,
           };
         } else {
           // If an object with "hasTent" property doesn't exist, append it to the basket
           return {
             ...state,
-            basket: state.basket.concat({ hasTent }),
+            tentBasket: state.tentBasket.concat({ hasTent }),
           };
         }
       
@@ -128,23 +128,23 @@ function reducer(state, action) {
           const isGreen = action.payload.hasGreen;
           const price = action.payload.price;
     
-          const existingItemIndex = state.basket.findIndex((item) =>
+          const existingItemIndex = state.greenFee.findIndex((item) =>
             item.hasOwnProperty("hasGreen")
           );
     
           if (existingItemIndex !== -1) {
-            const greenBasket = state.basket.map((item, index) => {
+            const greenBasket = state.greenFee.map((item, index) => {
               if (index === existingItemIndex) {
                 return { hasGreen: isGreen, price: price };
               }
               return item;
             });
     
-            return { ...state, basket: greenBasket };
+            return { ...state, greenFee: greenBasket };
           }
     
           const newGreenItem = { hasGreen: isGreen, price: price };
-          return { ...state, basket: [...state.basket, newGreenItem] };
+          return { ...state, greenFee: [...state.greenFee, newGreenItem] };
       }
       
     

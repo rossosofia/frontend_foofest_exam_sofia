@@ -5,8 +5,8 @@ import { StoreContext } from "@/context/storeContext";
 import { DispatchContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
 
-export default function TentCard() {
-  const [isSelected, setIsSelected] = useState(false);
+export default function TentCard({}) {
+  //  const [isSelected, setIsSelected] = useState(false);
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
   const twoTent = state.basket.find((tent) => tent.tentName === "2PERSON");
@@ -55,7 +55,7 @@ export default function TentCard() {
       },
     });
   }
-
+  
   const isAvailable = true;
     (twoTent && twoTent.tentAmount > 0) ||
     (threeTent && threeTent.tentAmount > 0);
@@ -66,14 +66,17 @@ export default function TentCard() {
 
   const totalBasketTents = getTotalBasketTents();
   // const canAddMoreTents = totalBasketTents < state.available;
-  const canAddMoreTents = true;
+   
+  
+    const canAddMoreTents = true;
+  
 
 
 
 
   return (
     <section
-      className={`flex gap-4 flex-wrap ${isSelected ? "bg-lightblue" : ""}`}
+      className={`flex gap-4 flex-wrap `}
     >
       <article
         className="relative flex items-start justify-between border-2 border-black bg-white p-4 shadow-xl sm:p-6 lg:p-8"

@@ -63,7 +63,7 @@ const TicketCard = () => {
       (acc, ticket) => acc + ticket.amount,
       0
     );
-    console.log(`Area: ${state.area}, Amount: ${totalAmount}`);
+    // console.log(`Area: ${state.area}, Amount: ${totalAmount}`);
 
     // Send PUT request
     const response = await fetch(
@@ -89,7 +89,7 @@ const TicketCard = () => {
     // If successful, get the response data
     const data = await response.json();
 
-    console.log(data); // Or handle the data as needed
+    // console.log(data); // Or handle the data as needed
     dispatch({ action: "SET_TIMEOUT", payload: { timeout: data.timeout } });
     router.push("/accomodations");
   }

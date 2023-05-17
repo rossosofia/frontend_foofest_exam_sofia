@@ -11,6 +11,9 @@ export default function TentCard({}) {
   const state = useContext(StoreContext);
   const twoTent = state.basket.find((tent) => tent.tentName === "2PERSON");
   const threeTent = state.basket.find((tent) => tent.tentName === "3PERSON");
+  const hasTent = state.basket.find((tent) => tent.hasTent === true);
+
+  
 
   function addTwoPersonTent() {
     dispatch({
@@ -66,10 +69,11 @@ export default function TentCard({}) {
 
   const totalBasketTents = getTotalBasketTents();
   // const canAddMoreTents = totalBasketTents < state.available;
-   
-  
-    const canAddMoreTents = true;
-  
+  let canAddMoreTents = false; 
+
+   if(hasTent){
+     canAddMoreTents = true;
+}
 
 
 

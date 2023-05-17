@@ -124,6 +124,11 @@ function reducer(state, action) {
           };
         }
       
+        case "EMPTY_TENT_BASKET":
+          return {
+            ...state,
+            tentBasket: [{ hasTent: false }],
+          };  
         case "GREEN_OPTION":
           const isGreen = action.payload.hasGreen;
           const price = action.payload.price;

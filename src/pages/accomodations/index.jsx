@@ -40,6 +40,10 @@ export default function Accomodations() {
       },
     });
   }
+
+  function emptyTentBasket() {
+    dispatch({ action: "EMPTY_TENT_BASKET" });
+  }
   return (
     <FlowLayout>
       <h1>Step 2</h1>
@@ -70,7 +74,10 @@ export default function Accomodations() {
           value="own-tent"
           control={<Radio />}
           label="No, I'm bringing my own tent"
-          onClick={notChooseTentOption}
+          onClick={() => {
+            notChooseTentOption();
+            emptyTentBasket();
+          }}
         />
       </RadioGroup>
 

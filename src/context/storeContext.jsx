@@ -51,7 +51,7 @@ function reducer(state, action) {
       });
       const finalBasket = nextBasket.filter((item) => item.amount > 0);
       return { ...state, basket: finalBasket };
-//---------------------TENT--------------------------------------
+    //---------------------TENT--------------------------------------
     case "ADD_TENT":
       console.log(state, action);
       const existTent = state.basket.find(
@@ -85,7 +85,9 @@ function reducer(state, action) {
           return item;
         }
       });
-      const finalBasketTent = nextBasketTent.filter((item) => item.tentAmount > 0);
+      const finalBasketTent = nextBasketTent.filter(
+        (item) => item.tentAmount > 0
+      );
       return { ...state, basket: finalBasketTent };
 
     case "SET_TIMEOUT":

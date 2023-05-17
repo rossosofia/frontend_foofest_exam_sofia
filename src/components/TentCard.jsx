@@ -57,7 +57,7 @@ export default function TentCard() {
   }
 
   const isAvailable = true;
-    (twoTent && twoTent.tentAmount > 0) ||
+  (twoTent && twoTent.tentAmount > 0) ||
     (threeTent && threeTent.tentAmount > 0);
 
   function getTotalBasketTents() {
@@ -67,9 +67,6 @@ export default function TentCard() {
   const totalBasketTents = getTotalBasketTents();
   // const canAddMoreTents = totalBasketTents < state.available;
   const canAddMoreTents = true;
-
-
-
 
   return (
     <section
@@ -120,11 +117,11 @@ export default function TentCard() {
           <p className="mt-2 hidden text-sm sm:block">299-</p>
 
           <QuantityInput
-             value={twoTent ? twoTent.tentAmount : 0}
-             onClickAdd={addTwoPersonTent}
-             onClickRemove={removeOneTwoPersonTent}
-             canAddMoreTickets={canAddMoreTents}
-           />
+            value={twoTent ? twoTent.tentAmount : 0}
+            onClickAdd={addTwoPersonTent}
+            onClickRemove={removeOneTwoPersonTent}
+            canAddMoreTickets={canAddMoreTents}
+          />
         </div>
       </article>
 

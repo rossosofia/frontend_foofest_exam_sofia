@@ -19,7 +19,6 @@ export default function Accomodations() {
     console.log(event.target.checked);
   };
 
-
   return (
     <FlowLayout>
       <h1>Step 2</h1>

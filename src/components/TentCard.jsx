@@ -103,6 +103,13 @@ export default function TentCard({}) {
 
   const totalBasketTents = getTotalBasketTents();
 
+  
+  
+
+
+
+
+
   return (
     <section className={`flex gap-4 flex-wrap `}>
       <article

@@ -3,7 +3,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-export default function GuestAccordion() {
+export default function GuestAccordion({ index }) {
   return (
     <>
       <Accordion>
@@ -12,7 +12,7 @@ export default function GuestAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p>Accordion 1</p>
+          <p>Guest {index + 1}</p>
         </AccordionSummary>
         <AccordionDetails>
           <p>

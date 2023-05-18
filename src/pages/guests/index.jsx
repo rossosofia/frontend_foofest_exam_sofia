@@ -21,7 +21,7 @@ export default function Guests() {
       <h1>Step 3</h1>
       <p>This is the content for Step 3.</p>
       {[...Array(totalTickets)].map((_, i) => (
-        <GuestAccordion key={i} />
+        <GuestAccordion key={i} index={i} />
       ))}
       <Anchor href="/payment/">GO TO PAYMENT</Anchor>
     </FlowLayout>

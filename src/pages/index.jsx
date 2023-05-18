@@ -23,7 +23,7 @@ export default function Home() {
   }
 
   // Example usage
-  const totalPeople = 10;
+  const totalPeople = 7;
   const tents = calculateTents(totalPeople);
   if (tents) {
     const { num3PersonTents, num2PersonTents } = tents;

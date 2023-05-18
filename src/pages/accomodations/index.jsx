@@ -18,7 +18,7 @@ export default function Accomodations() {
       action: "GREEN_OPTION",
       payload: {
         hasGreen: checked,
-        price: 249,
+        price: checked ? 249 : 0,
       },
     });
   }
@@ -39,6 +39,10 @@ export default function Accomodations() {
         isChosentent: false,
       },
     });
+  }
+
+  function emptyTentBasket() {
+    dispatch({ action: "EMPTY_TENT_BASKET" });
   }
   return (
     <FlowLayout>
@@ -70,7 +74,10 @@ export default function Accomodations() {
           value="own-tent"
           control={<Radio />}
           label="No, I'm bringing my own tent"
-          onClick={notChooseTentOption}
+          onClick={() => {
+            notChooseTentOption();
+            emptyTentBasket();
+          }}
         />
       </RadioGroup>
 

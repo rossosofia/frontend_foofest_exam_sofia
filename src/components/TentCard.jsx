@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import QuantityInput from "./QuantityInput";
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
@@ -12,67 +11,38 @@ export default function TentCard({}) {
   const threeTent = state.tentBasket.find(
     (tent) => tent.tentName === "3PERSON"
   );
-  const hasTent = state.tentBasket.find((tent) =>
-    tent.hasOwnProperty("hasTent")
-  );
-
-  const [canAddMoreTents, setCanAddMoreTents] = useState(false);
-
-  useEffect(() => {
-    if (hasTent && hasTent.hasTent) {
-      function getTotalPeopleInTents() {
-        return state.tentBasket.reduce(
-          (total, tent) =>
-            total + (tent.tentAmount || 0) * (tent.tentAmountPeople || 0),
-          0
-        );
-      }
-
-      const totalPeopleInTents = getTotalPeopleInTents();
-
-      function getTotalTickets() {
-        return state.ticketBasket.reduce(
-          (total, ticket) => total + ticket.amount,
-          0
-        );
-      }
-
-      const totalTickets = getTotalTickets();
-
-      setCanAddMoreTents(totalPeopleInTents < totalTickets);
-    } else {
-      setCanAddMoreTents(false);
-    }
-  }, [state.tentBasket, state.ticketBasket, hasTent]);
+  // const hasTent = state.tentBasket.find((tent) =>
+  //   tent.hasOwnProperty("hasTent")
+  // );
+  const hasTent = state.tentBasket.find((tent) => tent.hasTent === true);
 
   function addTwoPersonTent() {
-    if (canAddMoreTents) {
-      dispatch({
-        action: "ADD_TENT",
-        payload: {
-          tentName: "2PERSON",
-          tentID: uuidv4(),
-          tentAmount: 1,
-          tentAmountPeople: 2,
-          price: 299,
-        },
-      });
-    }
+    // if (canAddMoreTents) {
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "2PERSON",
+        tentID: uuidv4(),
+        tentAmount: 1,
+        tentAmountPeople: 2,
+        price: 299,
+      },
+    });
   }
 
   function addThreePersonTent() {
-    if (canAddMoreTents) {
-      dispatch({
-        action: "ADD_TENT",
-        payload: {
-          tentName: "3PERSON",
-          tentID: uuidv4(),
-          tentAmount: 1,
-          tentAmountPeople: 3,
-          price: 399,
-        },
-      });
-    }
+    // if (canAddMoreTents) {
+
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "3PERSON",
+        tentID: uuidv4(),
+        tentAmount: 1,
+        tentAmountPeople: 3,
+        price: 399,
+      },
+    });
   }
 
   function removeOneTwoPersonTent() {
@@ -102,13 +72,12 @@ export default function TentCard({}) {
   }
 
   const totalBasketTents = getTotalBasketTents();
+  // const canAddMoreTents = totalBasketTents < state.available;
+  let canAddMoreTents = false;
 
-  
-  
-
-
-
-
+  if (hasTent) {
+    canAddMoreTents = true;
+  }
 
   return (
     <section className={`flex gap-4 flex-wrap `}>

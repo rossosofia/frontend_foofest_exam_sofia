@@ -20,6 +20,7 @@ export default function Guests() {
     <FlowLayout>
       <h1>Step 3</h1>
       <p>This is the content for Step 3.</p>
+
       {[...Array(totalTickets)].map((_, i) => (
         <GuestAccordion key={i} index={i} />
       ))}

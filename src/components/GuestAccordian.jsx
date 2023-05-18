@@ -2,6 +2,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import InputField from "./InputField";
 
 export default function GuestAccordion({ index }) {
   return (
@@ -15,10 +16,29 @@ export default function GuestAccordion({ index }) {
           <p>Guest {index + 1}</p>
         </AccordionSummary>
         <AccordionDetails>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </p>
+          <InputField
+            label="First Name"
+            helperText="Please enter your first name."
+            type="text"
+            autocomplete="given-name"
+            required
+          />
+
+          <InputField
+            label="Last Name"
+            helperText="Please enter your last name."
+            type="text"
+            autocomplete="family-name"
+            required
+          />
+
+          <InputField
+            label="Email"
+            helperText="Please enter your email."
+            type="email"
+            autocomplete="email"
+            required
+          />
         </AccordionDetails>
       </Accordion>
     </>

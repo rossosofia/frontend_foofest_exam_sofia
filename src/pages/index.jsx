@@ -37,6 +37,7 @@ export default function Home() {
         FooFest Extravaganza
       </h1>
       <Anchor href="/campingsite/">CAMPING SITE</Anchor>
+      <Anchor href="/schedule/">SCHEDULE</Anchor>
     </>
   );
 }

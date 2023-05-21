@@ -179,17 +179,8 @@ function reducer(state, action) {
       const guestInfo = [...state.guestInfo];
       guestInfo[index] = updatedGuest;
       return { ...state, guestInfo };
-    // case "UPDATE_GUEST_INFO":
-    // const { index, firstName, lastName, email } = action.payload;
-    // const updatedGuestInfo = [...state.guestInfo];
-    // const updatedGuest = {
-    //   ...updatedGuestInfo[index],
-    //   firstName,
-    //   lastName,
-    //   email,
-    // };
-    // updatedGuestInfo[index] = updatedGuest;
-    // return { ...state, guestInfo: updatedGuestInfo };
+    default:
+      return state;
   }
 }
 

@@ -7,7 +7,7 @@ export default function Payments() {
     <FlowLayout>
       <h1>Step 4</h1>
       <p>This is the content for Step 4.</p>
-      <Anchor href="/thanks/">GO TO GUESTS</Anchor>
+      <Anchor href="/thanks/">PAY</Anchor>
     </FlowLayout>
   );
 }

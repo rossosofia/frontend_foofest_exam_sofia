@@ -24,9 +24,7 @@ export default function Guests() {
       {[...Array(totalTickets)].map((_, i) => (
         <GuestAccordion key={i} index={i} />
       ))}
-      <Anchor onClick={submitted} href="/payment/">
-        GO TO PAYMENT
-      </Anchor>
+      <Anchor href="/payment/">GO TO PAYMENT</Anchor>
     </FlowLayout>
   );
 }

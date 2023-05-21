@@ -7,11 +7,11 @@ import TextField from "@mui/material/TextField";
 import { useContext, useRef } from "react";
 import { DispatchContext } from "@/context/storeContext";
 
-export default function GuestAccordion({ index, onSubmit }) {
+export default function GuestAccordion({ index }) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
 
-  function submitted(e) {
+  function submitted() {
     e.preventDefault();
     const formData = new FormData(formEl.current);
     const firstName = formData.get("firstName");
@@ -41,7 +41,7 @@ export default function GuestAccordion({ index, onSubmit }) {
           <p>Guest {index + 1}</p>
         </AccordionSummary>
         <AccordionDetails>
-          <form ref={formEl}>
+          <form ref={formEl} onSubmit={submitted}>
             <TextField
               label="First Name"
               variant="outlined"

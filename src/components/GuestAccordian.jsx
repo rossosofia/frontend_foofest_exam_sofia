@@ -7,16 +7,17 @@ import TextField from "@mui/material/TextField";
 import { useContext, useRef } from "react";
 import { DispatchContext } from "@/context/storeContext";
 
-export default function GuestAccordion({ index }) {
+export default function GuestAccordion({ index, onUpdateGuestInfo }) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
 
-  function submitted() {
+  function submitted(e) {
     e.preventDefault();
     const formData = new FormData(formEl.current);
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const email = formData.get("email");
+
     dispatch({
       action: "UPDATE_GUEST_INFO",
       payload: {
@@ -27,7 +28,16 @@ export default function GuestAccordion({ index }) {
       },
     });
 
-    onSubmit();
+    onUpdateGuestInfo({ index, firstName, lastName, email });
+    // Call the function passed as prop to update guest information
+    // onUpdateGuestInfo({
+    //   index,
+    //   firstName,
+    //   lastName,
+    //   email,
+    // });
+
+    // onSubmit();
   }
 
   return (

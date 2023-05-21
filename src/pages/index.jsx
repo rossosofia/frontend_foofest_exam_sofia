@@ -7,7 +7,7 @@ export default function Home() {
       <Anchor href="/campingsite/" className="fixed bottom-5 right-5 text-2xl">
         BUY TICKETS <span className="ml-2">→</span>
       </Anchor>
-      <section className=" mx-auto h-[80vh] flex flex-col justify-center items-center">
+      <section className=" mx-auto h-[70vh] flex flex-col justify-center items-center">
         <h1 className="text-4xl font-bold text-center text-black-500 py-4">
           FOOFEST EXTRAVAGANZA
         </h1>

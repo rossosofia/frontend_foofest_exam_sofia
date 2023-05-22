@@ -7,14 +7,19 @@ import Button from "@mui/material/Button";
 import { useContext, useRef, useState } from "react";
 import { DispatchContext, StoreContext } from "@/context/storeContext";
 
-export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
+export default function GuestAccordion({
+  index,
+  onNextAccordion,
+  expandedIndex,
+  setExpandedIndex,
+}) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
   const state = useContext(StoreContext);
 
-  const [expanded, setExpanded] = useState(isExpanded);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormChanged, setIsFormChanged] = useState(false);
+  const isExpanded = index === expandedIndex;
 
   // const submittedFirstName = state.guestInfo[index];
   // console.log("submitted", submittedFirstName);
@@ -39,18 +44,17 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
     onNextAccordion();
     setIsFormChanged(false);
     setIsSubmitted(true);
-    setExpanded(false);
-    // setExpanded((currentAccordion) => currentAccordion, +1);
-    // console.log("currentaccordion", currentAccordion + 1);
+    setExpandedIndex(index + 1);
   }
 
   function toggleAccordion() {
-    setExpanded((prevExpanded) => !prevExpanded);
+    const newExpandedIndex = expandedIndex === index ? null : index;
+    setExpandedIndex(newExpandedIndex);
   }
 
   return (
     <>
-      <Accordion expanded={expanded} onChange={toggleAccordion}>
+      <Accordion expanded={isExpanded} onChange={toggleAccordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`panel${index + 1}-content`}
@@ -92,7 +96,7 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
               type="submit"
               disabled={isSubmitted && !isFormChanged}
             >
-              {isSubmitted ? "SAVED" : "SAVED"}
+              {isSubmitted ? "SAVE" : "SAVED"}
             </Button>
           </form>
         </AccordionDetails>

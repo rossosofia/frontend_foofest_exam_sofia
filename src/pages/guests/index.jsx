@@ -7,6 +7,7 @@ import { StoreContext } from "@/context/storeContext";
 export default function Guests() {
   const state = useContext(StoreContext);
   const [currentAccordion, setCurrentAccordion] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   function getTotalTickets() {
     return state.ticketBasket.reduce(
@@ -19,6 +20,7 @@ export default function Guests() {
 
   function handleNextAccordion(index) {
     setCurrentAccordion((currentAccordion) => currentAccordion + 1);
+    setExpandedIndex(index + 1);
   }
 
   return (
@@ -32,6 +34,8 @@ export default function Guests() {
           totalAccordions={totalTickets}
           isExpanded={i === currentAccordion}
           onNextAccordion={handleNextAccordion}
+          expandedIndex={expandedIndex}
+          setExpandedIndex={setExpandedIndex}
         />
       ))}
       <Anchor href="/payment/">GO TO PAYMENT</Anchor>

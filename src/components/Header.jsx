@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
-import Basket from "./Basket";
 import Link from "next/link";
 
-export default function Layout({ children }) {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { isMenuOpen } = useContext(StoreContext);
 
@@ -18,12 +17,22 @@ export default function Layout({ children }) {
           <Link className="text-xl font-bold" href={"/"}>
             FOOEXTRA
           </Link>
-          <p
-            className="text-xl font-bold cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? "X" : "MENU"}
-          </p>
+          {isOpen || isMenuOpen ? (
+            <p
+              className="text-xl font-bold cursor-pointer z-50"
+              onClick={closeMenu}
+              href="/"
+            >
+              CLOSE
+            </p>
+          ) : (
+            <p
+              className="text-xl font-bold cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              MENU
+            </p>
+          )}
         </nav>
       </header>
 
@@ -51,19 +60,10 @@ export default function Layout({ children }) {
                   CONTACT US
                 </Link>
               </li>
-              <li>
-                <Link href="/" onClick={closeMenu}>
-                  CLOSE
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
       )}
-
-      <main>{children}</main>
-      <Basket />
-      <footer> Footer</footer>
     </>
   );
 }

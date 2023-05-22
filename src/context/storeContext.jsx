@@ -172,6 +172,16 @@ function reducer(state, action) {
 
       const newGreenItem = { hasGreen: isGreen, price: price };
       return { ...state, greenFee: [...state.greenFee, newGreenItem] };
+
+    case "UPDATE_GUEST_INFO":
+      const { index, firstName, lastName, email } = action.payload;
+      const updatedGuest = { firstName, lastName, email };
+      const guestInfo = [...state.guestInfo];
+      guestInfo[index] = updatedGuest;
+      return { ...state, guestInfo };
+
+    default:
+      return state;
   }
 }
 

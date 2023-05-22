@@ -7,7 +7,7 @@ import { StoreContext } from "@/context/storeContext";
 export default function Guests() {
   const state = useContext(StoreContext);
   const [expandedIndex, setExpandedIndex] = useState(0);
-  // EpandedIndex is used to control the expansion of the accordions based on user interactions. It represents the index of the accordion that should be expanded. When an accordion is expanded, its index is stored in expandedIndex, and when it should be closed, expandedIndex is set to null.
+  // EpandedIndex is used to control the expansion of the accordions based on user interactions. It represents the index of the accordion that should be expanded. When an accordion is expanded, its index is stored in expandedIndex, and when it should be closed, expandedIndex is set to null. The first value is 0, so that the first accordion is always open when you load the page.
 
   function getTotalTickets() {
     return state.ticketBasket.reduce(

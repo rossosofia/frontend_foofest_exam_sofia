@@ -5,11 +5,15 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useContext, useRef } from "react";
-import { DispatchContext } from "@/context/storeContext";
+import { DispatchContext, StoreContext } from "@/context/storeContext";
 
-export default function GuestAccordion({ index, onUpdateGuestInfo }) {
+export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
+  const state = useContext(StoreContext);
+
+  const submittedFirstName = state.guestInfo[index];
+  console.log("submitted", submittedFirstName);
 
   function submitted(e) {
     e.preventDefault();
@@ -27,15 +31,17 @@ export default function GuestAccordion({ index, onUpdateGuestInfo }) {
         email,
       },
     });
+
+    onNextAccordion();
   }
 
   return (
     <>
-      <Accordion>
+      <Accordion expanded={isExpanded}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls={`panel${index + 1}-content`}
+          id={`panel${index + 1}-header`}
         >
           <p>Guest {index + 1}</p>
         </AccordionSummary>
@@ -46,6 +52,7 @@ export default function GuestAccordion({ index, onUpdateGuestInfo }) {
               variant="outlined"
               helperText="Please enter the guest's first name"
               name="firstName"
+              value={submittedFirstName}
               required
             />
             <TextField
@@ -60,6 +67,7 @@ export default function GuestAccordion({ index, onUpdateGuestInfo }) {
               variant="outlined"
               helperText="Please enter the guest's email name"
               name="email"
+              type="email"
               required
             />
             <Button color="secondary" type="submit">

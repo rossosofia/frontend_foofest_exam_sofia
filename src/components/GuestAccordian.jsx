@@ -3,7 +3,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import { useContext, useRef } from "react";
 import { DispatchContext } from "@/context/storeContext";
 
@@ -27,17 +27,6 @@ export default function GuestAccordion({ index, onUpdateGuestInfo }) {
         email,
       },
     });
-
-    onUpdateGuestInfo({ index, firstName, lastName, email });
-    // Call the function passed as prop to update guest information
-    // onUpdateGuestInfo({
-    //   index,
-    //   firstName,
-    //   lastName,
-    //   email,
-    // });
-
-    // onSubmit();
   }
 
   return (
@@ -73,9 +62,9 @@ export default function GuestAccordion({ index, onUpdateGuestInfo }) {
               name="email"
               required
             />
-            {/* <Button color="secondary" type="submit">
+            <Button color="secondary" type="submit">
               Confirm
-            </Button> */}
+            </Button>
           </form>
         </AccordionDetails>
       </Accordion>

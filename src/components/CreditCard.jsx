@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Container from "@mui/material/Container";
+import { Container, TextField } from "@mui/material";
 import Anchor from "./Anchor";
 
 export default function CreditCardForm() {
@@ -53,45 +53,47 @@ export default function CreditCardForm() {
       <h2 className="text-2xl mb-6 text-center font-bold">
         Credit Card Information
       </h2>
-      <input
-        className="border-2 border-gray-200 rounded-md p-2 mb-4"
-        type="text"
-        name="name"
-        placeholder="Cardholder Name"
+      <TextField
+        className="mb-4"
+        variant="outlined"
+        label="Cardholder Name"
         value={cardName}
         onChange={(e) => setCardName(e.target.value)}
         autoComplete="name"
       />
-      <input
-        className="border-2 border-gray-200 rounded-md p-2 mb-4"
-        type="text"
-        name="cardNumber"
-        placeholder="Card Number"
+      <TextField
+        className="mb-4"
+        variant="outlined"
+        label="Card Number"
         value={cardNumber}
         onChange={handleCardNumberChange}
-        maxLength="19"
-        autoComplete="cc-number"
+        inputProps={{
+          maxLength: 19,
+          autoComplete: "cc-number",
+        }}
       />
       <div className="flex space-x-2 mb-4">
-        <input
-          className="border-2 border-gray-200 rounded-md p-2 flex-1"
-          type="text"
-          name="expiry"
-          placeholder="MM/YY"
+        <TextField
+          className="flex-1"
+          variant="outlined"
+          label="MM/YY"
           value={expiryDate}
           onChange={handleExpiryChange}
-          maxLength="5"
-          autoComplete="cc-exp"
+          inputProps={{
+            maxLength: 5,
+            autoComplete: "cc-exp",
+          }}
         />
-        <input
-          className="border-2 border-gray-200 rounded-md p-2 flex-1"
-          type="text"
-          name="cvc"
-          placeholder="CVC"
+        <TextField
+          className="flex-1"
+          variant="outlined"
+          label="CVC"
           value={cvc}
           onChange={(e) => setCvc(e.target.value.replace(/\D/g, ""))}
-          maxLength="3"
-          autoComplete="cc-csc"
+          inputProps={{
+            maxLength: 3,
+            autoComplete: "cc-csc",
+          }}
         />
       </div>
 

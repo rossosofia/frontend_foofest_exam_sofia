@@ -1,5 +1,4 @@
 import Anchor from "@/components/Anchor";
-import zIndex from "@mui/material/styles/zIndex";
 import Image from "next/image";
 
 export default function Home() {

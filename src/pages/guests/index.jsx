@@ -29,6 +29,7 @@ export default function Guests() {
         <GuestAccordion
           key={i}
           index={i}
+          totalAccordions={totalTickets}
           isExpanded={i === currentAccordion}
           onNextAccordion={handleNextAccordion}
         />

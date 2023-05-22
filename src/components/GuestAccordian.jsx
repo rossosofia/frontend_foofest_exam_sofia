@@ -4,7 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { DispatchContext, StoreContext } from "@/context/storeContext";
 
 export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
@@ -12,8 +12,10 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
   const formEl = useRef(null);
   const state = useContext(StoreContext);
 
-  const submittedFirstName = state.guestInfo[index];
-  console.log("submitted", submittedFirstName);
+  const [expanded, setExpanded] = useState(isExpanded);
+
+  // const submittedFirstName = state.guestInfo[index];
+  // console.log("submitted", submittedFirstName);
 
   function submitted(e) {
     e.preventDefault();
@@ -35,9 +37,13 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
     onNextAccordion();
   }
 
+  const toggleAccordion = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
   return (
     <>
-      <Accordion expanded={isExpanded}>
+      <Accordion expanded={isExpanded} onChange={toggleAccordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`panel${index + 1}-content`}
@@ -52,7 +58,7 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
               variant="outlined"
               helperText="Please enter the guest's first name"
               name="firstName"
-              value={submittedFirstName}
+              // value={submittedFirstName}
               required
             />
             <TextField

@@ -13,6 +13,8 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
   const state = useContext(StoreContext);
 
   const [expanded, setExpanded] = useState(isExpanded);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFormChanged, setIsFormChanged] = useState(false);
 
   // const submittedFirstName = state.guestInfo[index];
   // console.log("submitted", submittedFirstName);
@@ -35,15 +37,20 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
     });
 
     onNextAccordion();
+    setIsFormChanged(false);
+    setIsSubmitted(true);
+    setExpanded(false);
+    // setExpanded((currentAccordion) => currentAccordion, +1);
+    // console.log("currentaccordion", currentAccordion + 1);
   }
 
-  const toggleAccordion = () => {
+  function toggleAccordion() {
     setExpanded((prevExpanded) => !prevExpanded);
-  };
+  }
 
   return (
     <>
-      <Accordion expanded={isExpanded} onChange={toggleAccordion}>
+      <Accordion expanded={expanded} onChange={toggleAccordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`panel${index + 1}-content`}
@@ -58,6 +65,7 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
               variant="outlined"
               helperText="Please enter the guest's first name"
               name="firstName"
+              onChange={() => setIsFormChanged(true)}
               // value={submittedFirstName}
               required
             />
@@ -66,6 +74,7 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
               variant="outlined"
               helperText="Please enter the guest's last name"
               name="lastName"
+              onChange={() => setIsFormChanged(true)}
               required
             />
             <TextField
@@ -74,10 +83,16 @@ export default function GuestAccordion({ index, isExpanded, onNextAccordion }) {
               helperText="Please enter the guest's email name"
               name="email"
               type="email"
+              onChange={() => setIsFormChanged(true)}
               required
             />
-            <Button color="secondary" type="submit">
-              Confirm
+            <Button
+              variant="contained"
+              color="success"
+              type="submit"
+              disabled={isSubmitted && !isFormChanged}
+            >
+              {isSubmitted ? "SAVED" : "SAVED"}
             </Button>
           </form>
         </AccordionDetails>

@@ -17,8 +17,8 @@ export default function Guests() {
 
   const totalTickets = getTotalTickets();
 
-  function handleNextAccordion() {
-    setCurrentAccordion((prevAccordion) => prevAccordion + 1);
+  function handleNextAccordion(index) {
+    setCurrentAccordion((currentAccordion) => currentAccordion + 1);
   }
 
   return (

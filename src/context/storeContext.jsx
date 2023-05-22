@@ -179,6 +179,7 @@ function reducer(state, action) {
       const guestInfo = [...state.guestInfo];
       guestInfo[index] = updatedGuest;
       return { ...state, guestInfo };
+
     default:
       return state;
   }

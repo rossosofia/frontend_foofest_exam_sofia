@@ -96,7 +96,7 @@ export default function GuestAccordion({
               type="submit"
               disabled={isSubmitted && !isFormChanged}
             >
-              {isSubmitted ? "SAVE" : "SAVED"}
+              {isSubmitted ? "SAVED" : "SAVE"}
             </Button>
           </form>
         </AccordionDetails>

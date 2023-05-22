@@ -11,7 +11,10 @@ export default function Home() {
       >
         BUY TICKETS <span className="ml-2">→</span>
       </Anchor>
-      <section className=" mx-auto h-[70vh] flex flex-col justify-center items-center">
+      <section
+        className="mx-auto h-[70vh] flex flex-col justify-center items-center 
+    bg-gradient-to-r from-custom-purple via-custom-beige to-custom-red"
+      >
         <h1 className="text-4xl font-bold text-center text-black-500 py-4">
           FOOFEST EXTRAVAGANZA
         </h1>

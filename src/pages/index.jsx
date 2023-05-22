@@ -1,9 +1,10 @@
 import Anchor from "@/components/Anchor";
 import Image from "next/image";
+import Layout from "@/components/Layout";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Anchor
         href="/campingsite/"
         className="fixed bottom-5 right-5 text-2xl z-50"
@@ -51,6 +52,6 @@ export default function Home() {
           />
         </div>
       </section>
-    </>
+    </Layout>
   );
 }

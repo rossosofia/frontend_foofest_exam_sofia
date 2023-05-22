@@ -1,4 +1,3 @@
-import Basket from "./Basket";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -7,7 +6,6 @@ export default function Layout({ children }) {
     <>
       <Header />
       <main>{children}</main>
-      <Basket />
       <Footer />
     </>
   );

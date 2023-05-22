@@ -1,21 +1,19 @@
-import SelectCard from "@/components/CampingCard";
+import CampingCard from "@/components/CampingCard";
+import Layout from "@/components/Layout";
 
 export default function Campingsite({ data }) {
   return (
-    <>
-      <h1 className="text-4xl font-bold text-center text-blue-500 py-4">
-        Choose your camping site
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
+    <Layout>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 p-4">
         {data.map((areas) => (
-          <SelectCard key={data.area} {...areas} />
+          <CampingCard key={data.area} {...areas} />
         ))}
       </div>
 
-      <div>
+      {/* <div>
         <pre>{JSON.stringify(data, null, 2)}</pre>
-      </div>
-    </>
+      </div> */}
+    </Layout>
   );
 }
 

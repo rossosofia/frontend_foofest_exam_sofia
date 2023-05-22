@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Layout from "@/components/Layout";
 
 const baseUrl = "https://brazen-fortune-fight.glitch.me";
 
@@ -43,27 +44,29 @@ export default function BandPage() {
   }
 
   return (
-    <div className="mx-auto container p-4">
-      <h1 className="text-4xl mb-2">{band.name}</h1>
-      <Image
-        src={band.logo}
-        alt={band.name}
-        className="object-cover rounded mb-4"
-        width={500}
-        height={300}
-      />
-      <h2 className="text-2xl mb-2">Members</h2>
-      <ul className="list-disc list-inside mb-4">
-        {band.members.map((member, index) => (
-          <li key={index} className="mb-1">
-            {member}
-          </li>
-        ))}
-      </ul>
-      <h2 className="text-2xl mb-2">Genre</h2>
-      <p className="mb-4">{band.genre}</p>
-      <h2 className="text-2xl mb-2">Bio</h2>
-      <p>{band.bio}</p>
-    </div>
+    <Layout>
+      <div className="mx-auto container p-4">
+        <h1 className="text-4xl mb-2">{band.name}</h1>
+        <Image
+          src={band.logo}
+          alt={band.name}
+          className="object-cover rounded mb-4"
+          width={500}
+          height={300}
+        />
+        <h2 className="text-2xl mb-2">Members</h2>
+        <ul className="list-disc list-inside mb-4">
+          {band.members.map((member, index) => (
+            <li key={index} className="mb-1">
+              {member}
+            </li>
+          ))}
+        </ul>
+        <h2 className="text-2xl mb-2">Genre</h2>
+        <p className="mb-4">{band.genre}</p>
+        <h2 className="text-2xl mb-2">Bio</h2>
+        <p>{band.bio}</p>
+      </div>
+    </Layout>
   );
 }

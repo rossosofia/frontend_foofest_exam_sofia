@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { DispatchContext } from "@/context/storeContext";
 import { useRouter } from "next/router";
 
-const SelectCard = (props) => {
+const CampingCard = (props) => {
   const dispatch = useContext(DispatchContext);
   const router = useRouter();
 
@@ -13,6 +13,7 @@ const SelectCard = (props) => {
       action: "CHOOSE_AREA",
       payload: {
         area: props.area,
+        description: props.description,
         spots: props.spots,
         available: props.available,
       },
@@ -45,6 +46,11 @@ const SelectCard = (props) => {
               {props.available} / {props.spots}
             </p>
 
+            <p className="mt-4 mb-4 text-sm sm:text-base">
+              A Nordic-themed camping area, transporting guests to the days of
+              the Vikings with longhouses and rune-carved totems.
+            </p>
+
             <Anchor
               href="/tickets/"
               onClick={chooseArea}
@@ -59,4 +65,4 @@ const SelectCard = (props) => {
   );
 };
 
-export default SelectCard;
+export default CampingCard;

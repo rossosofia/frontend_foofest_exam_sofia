@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import Anchor from "./Anchor";
 
 export default function CreditCardForm() {
@@ -49,7 +49,7 @@ export default function CreditCardForm() {
   };
 
   return (
-    <Container maxWidth="sm" className="flex flex-col mt-10">
+    <>
       <h2 className="text-2xl mb-6 text-center font-bold">
         Credit Card Information
       </h2>
@@ -72,34 +72,33 @@ export default function CreditCardForm() {
           autoComplete: "cc-number",
         }}
       />
-      <div className="flex space-x-2 mb-4">
-        <TextField
-          className="flex-1"
-          variant="outlined"
-          label="MM/YY"
-          value={expiryDate}
-          onChange={handleExpiryChange}
-          inputProps={{
-            maxLength: 5,
-            autoComplete: "cc-exp",
-          }}
-        />
-        <TextField
-          className="flex-1"
-          variant="outlined"
-          label="CVC"
-          value={cvc}
-          onChange={(e) => setCvc(e.target.value.replace(/\D/g, ""))}
-          inputProps={{
-            maxLength: 3,
-            autoComplete: "cc-csc",
-          }}
-        />
-      </div>
+
+      <TextField
+        className="flex-1"
+        variant="outlined"
+        label="MM/YY"
+        value={expiryDate}
+        onChange={handleExpiryChange}
+        inputProps={{
+          maxLength: 5,
+          autoComplete: "cc-exp",
+        }}
+      />
+      <TextField
+        className="flex-1"
+        variant="outlined"
+        label="CVC"
+        value={cvc}
+        onChange={(e) => setCvc(e.target.value.replace(/\D/g, ""))}
+        inputProps={{
+          maxLength: 3,
+          autoComplete: "cc-csc",
+        }}
+      />
 
       <Anchor href="/thanks" disabled={isFormInvalid} onClick={submitForm}>
         Submit
       </Anchor>
-    </Container>
+    </>
   );
 }

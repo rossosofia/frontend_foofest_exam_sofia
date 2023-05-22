@@ -1,5 +1,6 @@
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { useRouter } from "next/router";
+import Basket from "./Basket";
 
 export default function FlowLayout({ children }) {
   const router = useRouter();
@@ -8,7 +9,6 @@ export default function FlowLayout({ children }) {
     { label: "Accomodations", path: "/accomodations" },
     { label: "Guests Info", path: "/guests" },
     { label: "Payment", path: "/payment" },
-    { label: "Thanks", path: "/thanks" },
   ];
 
   // Find the current step based on the current route
@@ -28,6 +28,7 @@ export default function FlowLayout({ children }) {
         ))}
       </Stepper>
       {children}
+      <Basket />
     </>
   );
 }

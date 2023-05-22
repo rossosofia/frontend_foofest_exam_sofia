@@ -1,10 +1,14 @@
 import Anchor from "@/components/Anchor";
+import zIndex from "@mui/material/styles/zIndex";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <Anchor href="/campingsite/" className="fixed bottom-5 right-5 text-2xl">
+      <Anchor
+        href="/campingsite/"
+        className="fixed bottom-5 right-5 text-2xl z-50"
+      >
         BUY TICKETS <span className="ml-2">→</span>
       </Anchor>
       <section className=" mx-auto h-[70vh] flex flex-col justify-center items-center">
@@ -31,20 +35,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex items-center my-4 pl-5 pr-5">
-        <div className="flex-1">
+      <section className="flex flex-col md:flex-row items-center justify-center my-4 p-5">
+        <div className="mb-4 md:mb-0 md:mr-4 md:flex-1">
           <h2 className="text-2xl font-bold">Join the Community</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
             odio. Praesent libero. Sed cursus ante dapibus diam.
           </p>
         </div>
-        <div className="flex-1 relative">
+        <div className="md:flex-1 ">
           <Image
-            src="https://images.unsplash.com/photo-1684495498026-3419b55bdbac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=988&q=80"
+            src="https://images.unsplash.com/photo-1684346819553-11174cbc8f05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80"
             alt="Random Unsplash Image"
-            width={200}
-            height={600}
+            width={400}
+            height={400}
           />
         </div>
       </section>

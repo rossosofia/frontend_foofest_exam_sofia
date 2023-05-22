@@ -1,7 +1,14 @@
-import Link from "next/link";
 import Basket from "./Basket";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Layout({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <header className="m-5">
@@ -9,9 +16,49 @@ export default function Layout({ children }) {
           <Link className="text-xl font-bold" href={"/"}>
             FOOEXTRA
           </Link>
-          <p className="text-xl font-bold">MENU</p>
+          <p
+            className="text-xl font-bold cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? "X" : "MENU"}
+          </p>
         </nav>
       </header>
+
+      {isOpen && (
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex  items-center backdrop-blur-md">
+          <div className="text-black text-5xl ">
+            <ul className="space-y-4 ">
+              <li>
+                <Link href="/schedule" onClick={closeMenu}>
+                  LINE UP 2023
+                </Link>
+              </li>
+              <li>
+                <Link href="/campingsite" onClick={closeMenu}>
+                  HOW TO REACH US
+                </Link>
+              </li>
+              <li>
+                <Link href="/campingsite" onClick={closeMenu}>
+                  CAMPING SITE
+                </Link>
+              </li>
+              <li>
+                <Link href="/campingsite" onClick={closeMenu}>
+                  CONTACT US
+                </Link>
+              </li>
+              <li>
+                <Link href="/campingsite" onClick={closeMenu}>
+                  CLOSE
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+
       <main>{children}</main>
       <Basket />
       <footer> Footer</footer>

@@ -19,7 +19,7 @@ export default function Home() {
         <p className="text-center text-2xl">Fantasy Island</p>
       </section>
 
-      <section className="pl-5 pr-5">
+      <section className="pl-5 pr-5 border-t-2 border-black ">
         <div className="flex justify-between items-center my-4">
           <h2 className="text-2xl font-bold">Featured Artists</h2>
           <Anchor href="/schedule/">
@@ -35,7 +35,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row items-center justify-center my-4 p-5">
+      <section className="mx-auto h-[70vh] flex flex-col md:flex-row items-center justify-center my-4 p-5 border-t-2 border-black">
         <div className="mb-4 md:mb-0 md:mr-4 md:flex-1">
           <h2 className="text-2xl font-bold">Join the Community</h2>
           <p>

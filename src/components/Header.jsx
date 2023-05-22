@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="m-5">
+      <header className="p-5 border-b-2 border-black">
         <nav className="flex justify-between items-center">
           <Link className="text-xl font-bold" href={"/"}>
             FOOEXTRA

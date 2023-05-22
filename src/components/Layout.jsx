@@ -26,8 +26,8 @@ export default function Layout({ children }) {
       </header>
 
       {isOpen && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex  items-center backdrop-blur-md">
-          <div className="text-black text-5xl ">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center backdrop-blur-md z-10">
+          <div className="text-black text-5xl z-20">
             <ul className="space-y-4 ">
               <li>
                 <Link href="/schedule" onClick={closeMenu}>
@@ -50,7 +50,7 @@ export default function Layout({ children }) {
                 </Link>
               </li>
               <li>
-                <Link href="/campingsite" onClick={closeMenu}>
+                <Link href="/" onClick={closeMenu}>
                   CLOSE
                 </Link>
               </li>

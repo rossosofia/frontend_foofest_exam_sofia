@@ -110,11 +110,6 @@ function reducer(state, action) {
         timeout: action.payload.timeout,
       };
 
-      case "SET_REMAINING_TIME":
-      return {
-        ...state,
-        remainingTime: action.payload,
-      };
 
 
     case "TENT_OPTION":

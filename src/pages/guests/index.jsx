@@ -3,6 +3,8 @@ import Anchor from "@/components/Anchor";
 import GuestAccordion from "@/components/GuestAccordian";
 import { useContext, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
+import Timer from "@/components/Timer";
+
 
 
 export default function Guests() {
@@ -39,6 +41,7 @@ export default function Guests() {
         />
       ))}
       <Anchor href="/payment/">GO TO PAYMENT</Anchor>
+      <Timer />
     </FlowLayout>
   );
 }

@@ -17,10 +17,7 @@ export default function FlowLayout({ children }) {
 
   return (
     <>
-      <div>
-        <p>Arrow</p>
-        <p>Timer</p>
-      </div>
+     
       <Stepper activeStep={currentStep} alternativeLabel>
         {steps.map((step) => (
           <Step key={step.label}>
@@ -28,7 +25,9 @@ export default function FlowLayout({ children }) {
           </Step>
         ))}
       </Stepper>
-      {/* <Timer /> */}
+      <p>Arrow</p>
+      
+      
       {children}
       <Basket />
     </>

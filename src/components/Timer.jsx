@@ -1,27 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import { StoreContext } from "@/context/storeContext";
+import React, { useContext, useEffect, useState } from "react";
+import { TimerContext } from "@/context/TimerContext";
+
 
 function Timer() {
-  const state = useContext(StoreContext);
-  const timeout = state.timeout;
-  const [timeRemaining, setTimeRemaining] = useState(timeout);
-
-  useEffect(() => {
-    setTimeRemaining(timeout); // Update timeRemaining when timeout changes
-  }, [timeout]);
+  const { timeRemaining, setTimeRemaining } = useContext(TimerContext);
 
   useEffect(() => {
     if (timeRemaining > 0) {
       const interval = setInterval(() => {
-        setTimeRemaining((prevTime) => prevTime - 1);
-      }, 1); // Update every millisecond
+        setTimeRemaining((prevTime) => prevTime - 1000); // Decrease by 1 second (1000 milliseconds)
+      }, 1000); // Update every second (1000 milliseconds)
 
       return () => {
         clearInterval(interval);
       };
     }
-  }, [timeRemaining]);
-  
+  }, [timeRemaining, setTimeRemaining]);
 
   const isLessThanMinute = timeRemaining < 60000; // Check if timeRemaining is less than a minute
 
@@ -38,7 +32,44 @@ function Timer() {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  return <div className={timeClass}>{formatTime(timeRemaining)}</div>;
+  return (
+   
+  <div className={timeClass}>{formatTime(timeRemaining)}</div>
+
+  )
 }
 
 export default Timer;
+
+
+
+
+
+
+// function Timer() {
+//   const state = useContext(StoreContext);
+//   const timeout = state.timeout;
+//   const [timeRemaining, setTimeRemaining] = useState(timeout);
+//   const dispatch = useContext(DispatchContext);
+
+//   useEffect(() => {
+//     setTimeRemaining(timeout); // Update timeRemaining when timeout changes
+//   }, [timeout]);
+
+//   useEffect(() => {
+//     if (timeRemaining > 0) {
+//       const interval = setInterval(() => {
+//         setTimeRemaining((prevTime) => {
+//           const updatedTime = prevTime - 1;
+//           dispatch({ action: "UPDATE_TIME_REMAINING", payload: updatedTime });
+//           return updatedTime;
+//         });
+//       }, 1); // Update every millisecond
+  
+//       return () => {
+//         clearInterval(interval);
+//       };
+//     }
+//   }, [timeRemaining, dispatch]);
+  
+

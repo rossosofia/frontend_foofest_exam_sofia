@@ -7,7 +7,7 @@ import { StoreContext } from "@/context/storeContext";
 export default function Guests() {
   const state = useContext(StoreContext);
   const [expandedIndex, setExpandedIndex] = useState(0);
-  // EpandedIndex is used to control the expansion of the accordions based on user interactions. It represents the index of the accordion that should be expanded. When an accordion is expanded, its index is stored in expandedIndex, and when it should be closed, expandedIndex is set to null. The first value is 0, so that the first accordion is always open when you load the page.
+  // ExpandedIndex represents the index of the accordion that should be expanded. When an accordion is expanded, its index is stored in expandedIndex. The first value is 0, so that the first accordion is always open at the beginning.
 
   function getTotalTickets() {
     return state.ticketBasket.reduce(
@@ -18,9 +18,28 @@ export default function Guests() {
 
   const totalTickets = getTotalTickets();
 
-  function handleNextAccordion(index) {
-    setExpandedIndex(index + 1);
+  // Initialize formSubmissionStatus array with false values for each form
+  const [formSubmissionStatus, setFormSubmissionStatus] = useState(
+    Array(totalTickets).fill(false)
+  );
+
+  // handleFormSubmitted updates the submission status of a form when it is submitted. setFormSubmissionStatus is called with a callback function as its argument. The element at the specified index in newStatus is updated with the new status value. The new value for formSubmissionStatus is returned.
+  function handleFormSubmitted(index, status) {
+    setFormSubmissionStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      // console.log(`Form at index ${index} submitted with status ${status}`);
+      // console.log(newStatus);
+      return newStatus;
+    });
   }
+
+  const allFormsSubmitted = formSubmissionStatus.every((status) => status);
+  // (status) => status is a callback function that returns the value of each status element in the formSubmissionStatus array.
+  // The every method evaluates if all elements in the array satisfy the condition
+  // If all forms have been submitted (i.e. are true), then allFormsSubmitted will be true.
+  // if allFormsSubmitted is true, that the anchor button is active.
+  // console.log("all form submitted", allFormsSubmitted);
 
   return (
     <FlowLayout>
@@ -32,12 +51,14 @@ export default function Guests() {
           index={i}
           totalAccordions={totalTickets}
           isExpanded={i === expandedIndex}
-          onNextAccordion={handleNextAccordion}
           expandedIndex={expandedIndex}
           setExpandedIndex={setExpandedIndex}
+          onFormSubmitted={handleFormSubmitted}
         />
       ))}
-      <Anchor href="/payment/">GO TO PAYMENT</Anchor>
+      <Anchor href="/payment/" disabled={!allFormsSubmitted}>
+        GO TO PAYMENT
+      </Anchor>
     </FlowLayout>
   );
 }

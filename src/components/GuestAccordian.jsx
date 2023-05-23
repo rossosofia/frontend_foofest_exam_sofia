@@ -9,9 +9,9 @@ import { DispatchContext, StoreContext } from "@/context/storeContext";
 
 export default function GuestAccordion({
   index,
-  onNextAccordion,
   expandedIndex,
   setExpandedIndex,
+  onFormSubmitted,
 }) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
@@ -21,8 +21,9 @@ export default function GuestAccordion({
   const [isFormChanged, setIsFormChanged] = useState(false);
   const isExpanded = index === expandedIndex;
 
-  // const submittedFirstName = state.guestInfo[index];
-  // console.log("submitted", submittedFirstName);
+  const submittedFirstName = state.guestInfo[index]?.firstName;
+  const submittedLastName = state.guestInfo[index]?.lastName;
+  const submittedEmail = state.guestInfo[index]?.email;
 
   function submitted(e) {
     e.preventDefault();
@@ -41,15 +42,24 @@ export default function GuestAccordion({
       },
     });
 
-    onNextAccordion();
-    setIsFormChanged(false);
-    setIsSubmitted(true);
-    setExpandedIndex(index + 1);
+    setIsSubmitted(true); // State setter. Sets form submission status to true (locally)
+    setIsFormChanged(false); // The form has been submitted and no changes have been made.
+    onFormSubmitted(index, true); // Callback function thet notify the parent component that the form at a specific index has been submitted successfully. It is used to update the formSubmissionStatus state in the Guests, calling the function handleFormSubmitted in Guests page.
+    setExpandedIndex(index + 1); // Expand the next accordion
   }
 
   function toggleAccordion() {
+    // Toggles the expansion state of the accordion
+    // If the accordion is currently expanded, collapse it; otherwise, expand it
+    // This function is INDIPENDENT from submitted status, is triggered but user's click
     const newExpandedIndex = expandedIndex === index ? null : index;
-    setExpandedIndex(newExpandedIndex);
+    setExpandedIndex(newExpandedIndex); // Update the expandedIndex state with the new value
+  }
+
+  function formHasChanged() {
+    setIsFormChanged(true); // Notify that changes have been made
+    setIsSubmitted(false); // Resets the form submission status to false
+    onFormSubmitted(index, false); // Notifies the parent component that the form has changed but not yet submitted.
   }
 
   return (
@@ -60,7 +70,9 @@ export default function GuestAccordion({
           aria-controls={`panel${index + 1}-content`}
           id={`panel${index + 1}-header`}
         >
-          <p>Guest {index + 1}</p>
+          <p style={{ color: isSubmitted ? "green" : "black" }}>
+            Guest {index + 1}
+          </p>
         </AccordionSummary>
         <AccordionDetails>
           <form ref={formEl} onSubmit={submitted}>
@@ -69,8 +81,8 @@ export default function GuestAccordion({
               variant="outlined"
               helperText="Please enter the guest's first name"
               name="firstName"
-              onChange={() => setIsFormChanged(true)}
-              // value={submittedFirstName}
+              onChange={formHasChanged}
+              defaultValue={submittedFirstName ? submittedFirstName : ""}
               required
             />
             <TextField
@@ -78,7 +90,8 @@ export default function GuestAccordion({
               variant="outlined"
               helperText="Please enter the guest's last name"
               name="lastName"
-              onChange={() => setIsFormChanged(true)}
+              onChange={formHasChanged}
+              defaultValue={submittedLastName ? submittedLastName : ""}
               required
             />
             <TextField
@@ -87,12 +100,13 @@ export default function GuestAccordion({
               helperText="Please enter the guest's email name"
               name="email"
               type="email"
-              onChange={() => setIsFormChanged(true)}
+              onChange={formHasChanged}
+              defaultValue={submittedEmail ? submittedEmail : ""}
               required
             />
             <Button
               variant="contained"
-              color="success"
+              color={isSubmitted ? "secondary" : "primary"}
               type="submit"
               disabled={isSubmitted && !isFormChanged}
             >

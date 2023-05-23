@@ -11,7 +11,7 @@ export default function TestTentCard() {
   const threeTent = state.tentBasket.find((tent) => tent.tentName === "3PERSON");
   const hasTent = state.tentBasket.some((tent) => tent.hasTent);
 
-  //im getting all the amount of tickets from the basket
+  
   function getTotalBasketTickets() {
     return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
   }

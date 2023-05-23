@@ -1,28 +1,30 @@
 import { useContext } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
-import calculateTents from "./CalculateTents"
+import CalculateTents from "./calculateTents";
 
 export default function TestTentCard() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
   const twoTent = state.tentBasket.find((tent) => tent.tentName === "2PERSON");
-  const threeTent = state.tentBasket.find((tent) => tent.tentName === "3PERSON");
+  const threeTent = state.tentBasket.find(
+    (tent) => tent.tentName === "3PERSON"
+  );
   const hasTent = state.tentBasket.some((tent) => tent.hasTent);
 
-  
   function getTotalBasketTickets() {
-    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
+    return state.ticketBasket.reduce(
+      (total, ticket) => total + ticket.amount,
+      0
+    );
   }
 
   const totalBasketTickets = getTotalBasketTickets();
 
-
-  //this function prioritize the 3tent people. so it first divide the tickets with 
+  //this function prioritize the 3tent people. so it first divide the tickets with
   //3tents and after the remaining with two
-  
-  
+
   function addTwoPersonTent() {
     if (canAddMoreTents && num2PersonTents < tents.num2PersonTents) {
       dispatch({
@@ -37,7 +39,7 @@ export default function TestTentCard() {
       });
     }
   }
-  
+
   function addThreePersonTent() {
     if (canAddMoreTents && num3PersonTents < tents.num3PersonTents) {
       dispatch({
@@ -52,7 +54,6 @@ export default function TestTentCard() {
       });
     }
   }
-  
 
   function removeOneTwoPersonTent() {
     if (twoTent && twoTent.tentAmount > 0) {
@@ -81,7 +82,9 @@ export default function TestTentCard() {
   };
 
   const totalBasketTents = getTotalBasketTents();
-  const maxTents = Math.floor(totalBasketTickets / 3) + Math.floor((totalBasketTickets % 3) / 2);
+  const maxTents =
+    Math.floor(totalBasketTickets / 3) +
+    Math.floor((totalBasketTickets % 3) / 2);
   const tents = calculateTents(totalBasketTickets);
   let canAddMoreTents = totalBasketTents + 5 < maxTents;
 
@@ -127,7 +130,9 @@ export default function TestTentCard() {
             onClick={addTwoPersonTent}
             disabled={!canAddMoreTents || !hasTent}
             className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTents && hasTent ? "text-gray-600" : "text-gray-300 cursor-not-allowed"
+              canAddMoreTents && hasTent
+                ? "text-gray-600"
+                : "text-gray-300 cursor-not-allowed"
             }`}
           >
             +
@@ -162,7 +167,9 @@ export default function TestTentCard() {
             onClick={addThreePersonTent}
             disabled={!canAddMoreTents || !hasTent}
             className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTents && hasTent ? "text-gray-600" : "text-gray-300 cursor-not-allowed"
+              canAddMoreTents && hasTent
+                ? "text-gray-600"
+                : "text-gray-300 cursor-not-allowed"
             }`}
           >
             +

@@ -7,12 +7,20 @@ import Anchor from "@/components/Anchor";
 import { useContext } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
 import Timer from "@/components/Timer"
-import CalculateTents from "@/components/calculateTents";
+import CalculateTents from "@/components/CalculateTents";
+import { v4 as uuidv4 } from "uuid";
 
 
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
+  function getTotalBasketTickets() {
+    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
+  }
+  const totalBasketTickets = getTotalBasketTickets();
+  // const { num2PersonTents } = CalculateTents(totalBasketTickets);
+  // const { num3PersonTents } = CalculateTents(totalBasketTickets);
+
 
   function selectGreenOption(event) {
     const { checked } = event.target;

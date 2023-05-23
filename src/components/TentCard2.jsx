@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
-import { v4 as uuidv4 } from "uuid";
+
 import CalculateTents from "./CalculateTents"
 
 export default function TentCardNoOption() {

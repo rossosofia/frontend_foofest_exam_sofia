@@ -21,8 +21,9 @@ export default function GuestAccordion({
   const [isFormChanged, setIsFormChanged] = useState(false);
   const isExpanded = index === expandedIndex;
 
-  // const submittedFirstName = state.guestInfo[index];
-  // console.log("submitted", submittedFirstName);
+  const submittedFirstName = state.guestInfo[index]?.firstName;
+  const submittedLastName = state.guestInfo[index]?.lastName;
+  const submittedEmail = state.guestInfo[index]?.email;
 
   function submitted(e) {
     e.preventDefault();
@@ -81,7 +82,7 @@ export default function GuestAccordion({
               helperText="Please enter the guest's first name"
               name="firstName"
               onChange={formHasChanged}
-              // value={submittedFirstName}
+              defaultValue={submittedFirstName ? submittedFirstName : ""}
               required
             />
             <TextField
@@ -90,6 +91,7 @@ export default function GuestAccordion({
               helperText="Please enter the guest's last name"
               name="lastName"
               onChange={formHasChanged}
+              defaultValue={submittedLastName ? submittedLastName : ""}
               required
             />
             <TextField
@@ -99,6 +101,7 @@ export default function GuestAccordion({
               name="email"
               type="email"
               onChange={formHasChanged}
+              defaultValue={submittedEmail ? submittedEmail : ""}
               required
             />
             <Button

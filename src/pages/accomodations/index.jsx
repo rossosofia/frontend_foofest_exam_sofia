@@ -1,14 +1,13 @@
 import FlowLayout from "@/components/FlowLayout";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import TentCard from "@/components/TentCard";
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import Anchor from "@/components/Anchor";
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
 import { DispatchContext } from "@/context/storeContext";
-import Timer from "@/components/Timer"
-
+import Timer from "@/components/Timer";
 
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
@@ -18,7 +17,6 @@ export default function Accomodations() {
     const timeoutValue = 180; // Example: Set the timeout value to 180 seconds (3 minutes)
     dispatch({ type: "SET_TIMEOUT", payload: { timeout: timeoutValue } });
   }, [dispatch]);
-
 
   function selectGreenOption(event) {
     const { checked } = event.target;
@@ -62,7 +60,7 @@ export default function Accomodations() {
         }
         label="Green Option / 249-"
       />
-  
+
       <RadioGroup>
         <label>
           <div>

@@ -99,7 +99,10 @@ const TicketCard = () => {
     (regularTicket && regularTicket.amount > 0);
 
   function getTotalBasketTickets() {
-    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
+    return state.ticketBasket.reduce(
+      (total, ticket) => total + ticket.amount,
+      0
+    );
   }
 
   const totalBasketTickets = getTotalBasketTickets();
@@ -182,7 +185,11 @@ const TicketCard = () => {
           </button>
         </div>
       </div>
-      <Anchor href="/tickets/" onClick={sendPutRequest} disabled={!isAvailable}>
+      <Anchor
+        href="/accomodations/"
+        onClick={sendPutRequest}
+        disabled={!isAvailable}
+      >
         START RESERVATION
       </Anchor>
     </>

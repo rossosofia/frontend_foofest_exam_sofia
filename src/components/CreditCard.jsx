@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
 import { TextField } from "@mui/material";
-import { useRouter } from "next/router";
 import Anchor from "./Anchor";
 import { StoreContext } from "@/context/storeContext";
 import { createClient } from "@supabase/supabase-js";
 
 // Supabase client
 const supabaseUrl = "https://ihjawproqviyqyssqucs.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function CreditCardForm() {
@@ -18,8 +17,6 @@ export default function CreditCardForm() {
 
   const state = useContext(StoreContext);
   const reservationId = state.reserveSpot[0]?.id;
-
-  const router = useRouter();
 
   const isFormInvalid =
     !cardName ||
@@ -32,14 +29,10 @@ export default function CreditCardForm() {
 
   const postBasketToSupabase = async (state) => {
     const basketData = {
-      area: state.area,
-      ticketBasket: JSON.stringify(state.ticketBasket),
-      tentBasket: JSON.stringify(state.tentBasket),
-      guestInfo: JSON.stringify(state.guestInfo),
-      paymentInfo: JSON.stringify(state.paymentInfo),
-      greenFee: JSON.stringify(state.greenFee),
-      reserveSpot: JSON.stringify(state.reserveSpot),
+      area: state.area[0],
     };
+
+    console.log(basketData);
 
     try {
       const { data, error } = await supabase
@@ -74,7 +67,6 @@ export default function CreditCardForm() {
         if (response.ok) {
           const data = await response.json();
           console.log("Request succeeded with JSON response", data);
-          router.push("/thanks");
         } else {
           console.log("Request failed with status", response.status);
           const errorData = await response.json();

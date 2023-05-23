@@ -9,7 +9,7 @@ const initialState = {
   guestInfo: [],
   paymentInfo: [],
   greenFee: [],
-  timeLeft: 300000,
+  timeout: 0,
 };
 
 function reducer(state, action) {
@@ -84,20 +84,6 @@ function reducer(state, action) {
           tentBasket: state.tentBasket.concat(action.payload),
         };
       }
-
-    // case "REMOVE_TENT":
-    //   // console.log(state, action);
-    //   const tentBasket = state.basket.map((item) => {
-    //     if (item.tentName === action.payload.tentName) {
-    //       const copy = { ...item };
-    //       copy.tentAmount--;
-    //       return copy;
-    //     } else {
-    //       return item;
-    //     }
-    //   });
-    //   const finalBasketTent = tentBasket.filter((item) => item.tentAmount > 0);
-    //   return { ...state, basket: finalBasketTent };
 
     case "REMOVE_TENT":
       const tentNameToRemove = action.payload.tentName;

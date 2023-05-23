@@ -1,6 +1,7 @@
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { useRouter } from "next/router";
 import Basket from "./Basket";
+import Timer from "./Timer";
 
 export default function FlowLayout({ children }) {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function FlowLayout({ children }) {
           </Step>
         ))}
       </Stepper>
+      <Timer />
       {children}
       <Basket />
     </>

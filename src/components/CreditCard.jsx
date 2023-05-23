@@ -29,7 +29,7 @@ export default function CreditCardForm() {
 
   const postBasketToSupabase = async (state) => {
     const basketData = {
-      area: state.area[0],
+      area: state.area,
     };
 
     console.log(basketData);

@@ -5,12 +5,12 @@
 export default function CalculateTents(numPeople) {
   let num3PersonTents = Math.floor(numPeople / 3); // Number of 3-person tents
   let num2PersonTents = 0; // Number of 2-person tents
-  
+
   // If numPeople is 1, assign 1 to num2PersonTents and return the result
   if (numPeople === 1) {
     return { num3PersonTents: 0, num2PersonTents: 1 };
   }
-  
+
   // Loop while there are still possible allocations of 3-person tents
   while (num3PersonTents >= 0) {
     const remainingPeople = numPeople - num3PersonTents * 3; // Calculate remaining people after allocating 3-person tents

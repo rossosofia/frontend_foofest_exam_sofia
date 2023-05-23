@@ -38,7 +38,7 @@ export default function CreditCardForm() {
         const response = await fetch(
           "https://brazen-fortune-fight.glitch.me/fulfill-reservation",
           {
-            method: "post",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },

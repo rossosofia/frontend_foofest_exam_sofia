@@ -85,20 +85,6 @@ function reducer(state, action) {
         };
       }
 
-    // case "REMOVE_TENT":
-    //   // console.log(state, action);
-    //   const tentBasket = state.basket.map((item) => {
-    //     if (item.tentName === action.payload.tentName) {
-    //       const copy = { ...item };
-    //       copy.tentAmount--;
-    //       return copy;
-    //     } else {
-    //       return item;
-    //     }
-    //   });
-    //   const finalBasketTent = tentBasket.filter((item) => item.tentAmount > 0);
-    //   return { ...state, basket: finalBasketTent };
-
     case "REMOVE_TENT":
       const tentNameToRemove = action.payload.tentName;
 
@@ -129,6 +115,8 @@ function reducer(state, action) {
           },
         ],
       };
+
+
 
     case "TENT_OPTION":
       const hasTent = action.payload.isChosentent;

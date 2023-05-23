@@ -18,9 +18,23 @@ export default function Guests() {
 
   const totalTickets = getTotalTickets();
 
-  function handleNextAccordion(index) {
-    setExpandedIndex(index + 1);
+  const [formSubmissionStatus, setFormSubmissionStatus] = useState(
+    Array(totalTickets).fill(false)
+  );
+
+  // Update the submission status of a form when it is submitted
+  function handleFormSubmitted(index, status) {
+    setFormSubmissionStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      console.log(`Form at index ${index} submitted with status ${status}`);
+      console.log(newStatus);
+      return newStatus;
+    });
   }
+
+  const allFormsSubmitted = formSubmissionStatus.every((status) => status);
+  console.log("all form submitted", allFormsSubmitted);
 
   return (
     <FlowLayout>
@@ -32,12 +46,14 @@ export default function Guests() {
           index={i}
           totalAccordions={totalTickets}
           isExpanded={i === expandedIndex}
-          onNextAccordion={handleNextAccordion}
           expandedIndex={expandedIndex}
           setExpandedIndex={setExpandedIndex}
+          onFormSubmitted={handleFormSubmitted}
         />
       ))}
-      <Anchor href="/payment/">GO TO PAYMENT</Anchor>
+      <Anchor href="/payment/" disabled={!allFormsSubmitted}>
+        GO TO PAYMENT
+      </Anchor>
     </FlowLayout>
   );
 }

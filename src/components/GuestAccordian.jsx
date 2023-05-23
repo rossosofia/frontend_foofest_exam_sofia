@@ -9,9 +9,9 @@ import { DispatchContext, StoreContext } from "@/context/storeContext";
 
 export default function GuestAccordion({
   index,
-  onNextAccordion,
   expandedIndex,
   setExpandedIndex,
+  onFormSubmitted,
 }) {
   const dispatch = useContext(DispatchContext);
   const formEl = useRef(null);
@@ -41,10 +41,18 @@ export default function GuestAccordion({
       },
     });
 
-    onNextAccordion();
-    setIsFormChanged(false);
-    setIsSubmitted(true);
+    // Calls handleNextAccordion function from Guests page, to expand next accordion
+    setIsFormChanged(false); // The form has been submitted and no changes have been made.
+    setIsSubmitted(true); // Notify that the form has been submitted
     setExpandedIndex(index + 1);
+    // Expand the
+    onFormSubmitted(index, true); // Notify the parent component that the form has been submitted
+  }
+
+  function formHasChanged() {
+    setIsFormChanged(true);
+    setIsSubmitted(false);
+    onFormSubmitted(index, false);
   }
 
   function toggleAccordion() {
@@ -60,7 +68,9 @@ export default function GuestAccordion({
           aria-controls={`panel${index + 1}-content`}
           id={`panel${index + 1}-header`}
         >
-          <p>Guest {index + 1}</p>
+          <p style={{ color: isSubmitted ? "green" : "black" }}>
+            Guest {index + 1}
+          </p>
         </AccordionSummary>
         <AccordionDetails>
           <form ref={formEl} onSubmit={submitted}>
@@ -69,7 +79,7 @@ export default function GuestAccordion({
               variant="outlined"
               helperText="Please enter the guest's first name"
               name="firstName"
-              onChange={() => setIsFormChanged(true)}
+              onChange={formHasChanged}
               // value={submittedFirstName}
               required
             />
@@ -78,7 +88,7 @@ export default function GuestAccordion({
               variant="outlined"
               helperText="Please enter the guest's last name"
               name="lastName"
-              onChange={() => setIsFormChanged(true)}
+              onChange={formHasChanged}
               required
             />
             <TextField
@@ -87,7 +97,7 @@ export default function GuestAccordion({
               helperText="Please enter the guest's email name"
               name="email"
               type="email"
-              onChange={() => setIsFormChanged(true)}
+              onChange={formHasChanged}
               required
             />
             <Button

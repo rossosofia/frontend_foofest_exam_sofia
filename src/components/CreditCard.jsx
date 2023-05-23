@@ -5,11 +5,12 @@ import Anchor from "./Anchor";
 import { StoreContext } from "@/context/storeContext";
 import { createClient } from "@supabase/supabase-js";
 
-export default function CreditCardForm() {
-  // const supabaseUrl = "https://ihjawproqviyqyssqucs.supabase.co";
-  // const supabaseKey = process.env.SUPABASE_KEY;
-  // const supabase = createClient(supabaseUrl, supabaseKey);
+// Supabase client
+const supabaseUrl = "https://ihjawproqviyqyssqucs.supabase.co";
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
+export default function CreditCardForm() {
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -17,7 +18,6 @@ export default function CreditCardForm() {
 
   const state = useContext(StoreContext);
   const reservationId = state.reserveSpot[0]?.id;
-  console.log(reservationId);
 
   const router = useRouter();
 
@@ -29,6 +29,29 @@ export default function CreditCardForm() {
     cardNumber.replace(/\s/g, "").length !== 16 ||
     cvc.length !== 3 ||
     !expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/);
+
+  const postBasketToSupabase = async (state) => {
+    const basketData = {
+      area: state.area,
+      ticketBasket: JSON.stringify(state.ticketBasket),
+      tentBasket: JSON.stringify(state.tentBasket),
+      guestInfo: JSON.stringify(state.guestInfo),
+      paymentInfo: JSON.stringify(state.paymentInfo),
+      greenFee: JSON.stringify(state.greenFee),
+      reserveSpot: JSON.stringify(state.reserveSpot),
+    };
+
+    try {
+      const { data, error } = await supabase
+        .from("foofest-extravaganza")
+        .insert([basketData]);
+
+      if (error) throw error;
+      console.log("Posted basket data to Supabase: ", data);
+    } catch (error) {
+      console.error("Error posting basket data to Supabase: ", error);
+    }
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -54,9 +77,12 @@ export default function CreditCardForm() {
           router.push("/thanks");
         } else {
           console.log("Request failed with status", response.status);
-          const errorData = await response.json(); // If the API provides error details in JSON format
+          const errorData = await response.json();
           console.log("Error details:", errorData);
         }
+
+        // Post basket data to Supabase
+        await postBasketToSupabase(state);
       } catch (error) {
         console.error("Fetch failed:", error);
       }

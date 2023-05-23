@@ -61,30 +61,35 @@ function reducer(state, action) {
       return { ...state, ticketBasket: finalBasket };
     //---------------------TENT--------------------------------------
     case "ADD_TENT":
-      // console.log(state, action);
       const existTent = state.tentBasket.find(
         (item) => item.tentName === action.payload.tentName
       );
+    
       if (existTent) {
         const tentBasket = state.tentBasket.map((item) => {
           if (item.tentName === action.payload.tentName) {
-            const copy = { ...item };
-            copy.tentAmount++;
-            return copy;
+            return {
+              ...item,
+              tentAmount: action.payload.tentAmount,
+            };
           } else {
             return item;
           }
         });
+    
         return { ...state, tentBasket: tentBasket };
       } else {
-        const newItem = action.payload;
-        newItem.tentAmount = 1;
+        const newItem = {
+          ...action.payload,
+          tentAmount: action.payload.tentAmount,
+        };
+    
         return {
           ...state,
-          tentBasket: state.tentBasket.concat(action.payload),
+          tentBasket: [...state.tentBasket, newItem],
         };
       }
-
+    
     case "REMOVE_TENT":
       const tentNameToRemove = action.payload.tentName;
 

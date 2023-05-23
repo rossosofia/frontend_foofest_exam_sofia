@@ -1,24 +1,18 @@
 import FlowLayout from "@/components/FlowLayout";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import TentCard from "@/components/TentCard";
+import TentCard from "@/components/TentCard2";
 import  { useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import Anchor from "@/components/Anchor";
 import { useContext } from "react";
-import { StoreContext } from "@/context/storeContext";
-import { DispatchContext } from "@/context/storeContext";
+import { StoreContext, DispatchContext } from "@/context/storeContext";
 import Timer from "@/components/Timer"
+import CalculateTents from "@/components/calculateTents";
 
 
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
-
-  useEffect(() => {
-    const timeoutValue = 180; // Example: Set the timeout value to 180 seconds (3 minutes)
-    dispatch({ type: "SET_TIMEOUT", payload: { timeout: timeoutValue } });
-  }, [dispatch]);
-
 
   function selectGreenOption(event) {
     const { checked } = event.target;
@@ -38,7 +32,11 @@ export default function Accomodations() {
         isChosentent: true,
       },
     });
+  
+    addTwoPersonTent();
+    addThreePersonTent();
   }
+  
 
   function notChooseTentOption() {
     dispatch({
@@ -48,6 +46,37 @@ export default function Accomodations() {
       },
     });
   }
+    
+  function addTwoPersonTent() {
+    const { num2PersonTents } = CalculateTents(totalBasketTickets);
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "2PERSON",
+        tentID: uuidv4(),
+        tentAmount: num2PersonTents,
+        tentAmountPeople: 2,
+        price: 299 * num2PersonTents,
+      },
+    });
+  }
+
+
+function addThreePersonTent() {
+  const { num3PersonTents } = CalculateTents(totalBasketTickets);
+    dispatch({
+      action: "ADD_TENT",
+      payload: {
+        tentName: "3PERSON",
+        tentID: uuidv4(),
+        tentAmount: num3PersonTents,
+        tentAmountPeople: 3,
+        price: 399 * num3PersonTents,
+      },
+    });
+  
+}
+
 
   function emptyTentBasket() {
     dispatch({ action: "EMPTY_TENT_BASKET" });

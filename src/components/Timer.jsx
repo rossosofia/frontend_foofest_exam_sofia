@@ -4,32 +4,41 @@ import { StoreContext } from "@/context/storeContext";
 function Timer() {
   const state = useContext(StoreContext);
   const timeout = state.timeout;
-  console.log("Timeout from store:", timeout); 
   const [timeRemaining, setTimeRemaining] = useState(timeout);
+
+  useEffect(() => {
+    setTimeRemaining(timeout); // Update timeRemaining when timeout changes
+  }, [timeout]);
 
   useEffect(() => {
     if (timeRemaining > 0) {
       const interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
-      }, 1000);
+      }, 1); // Update every millisecond
 
       return () => {
         clearInterval(interval);
       };
     }
   }, [timeRemaining]);
+  
 
-  const formatTime = (timeout) => {
-    const minutes = Math.floor(timeout / 60);
-    const seconds = timeout % 60;
+  const isLessThanMinute = timeRemaining < 60000; // Check if timeRemaining is less than a minute
+
+  const timeClass = isLessThanMinute ? "text-2xl text-red-500" : "text-2xl";
+
+  const formatTime = (timeInMilliseconds) => {
+    const seconds = Math.floor(timeInMilliseconds / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
 
     const formattedMinutes = String(minutes).padStart(2, "0");
-    const formattedSeconds = String(seconds).padStart(2, "0");
+    const formattedSeconds = String(remainingSeconds).padStart(2, "0");
 
     return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  return <div>Timer: {formatTime(timeRemaining)}</div>;
+  return <div className={timeClass}>{formatTime(timeRemaining)}</div>;
 }
 
 export default Timer;

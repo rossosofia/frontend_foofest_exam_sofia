@@ -10,6 +10,7 @@ const initialState = {
   paymentInfo: [],
   greenFee: [],
   timeout: 0,
+  
 };
 
 function reducer(state, action) {
@@ -108,6 +109,13 @@ function reducer(state, action) {
         ...state,
         timeout: action.payload.timeout,
       };
+
+      case "SET_REMAINING_TIME":
+      return {
+        ...state,
+        remainingTime: action.payload,
+      };
+
 
     case "TENT_OPTION":
       const hasTent = action.payload.isChosentent;

@@ -7,6 +7,7 @@ import Anchor from "@/components/Anchor";
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
 import { DispatchContext } from "@/context/storeContext";
+import Timer from "@/components/Timer";
 
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
@@ -60,7 +61,7 @@ export default function Accomodations() {
         }
         label="Green Option / 249-"
       />
-
+     <Timer></Timer>
       <RadioGroup>
         <label>
           <div>

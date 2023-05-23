@@ -4,6 +4,7 @@ import GuestAccordion from "@/components/GuestAccordian";
 import { useContext, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
 
+
 export default function Guests() {
   const state = useContext(StoreContext);
   const [expandedIndex, setExpandedIndex] = useState(0);

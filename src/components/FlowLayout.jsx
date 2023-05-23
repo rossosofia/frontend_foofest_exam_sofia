@@ -28,7 +28,7 @@ export default function FlowLayout({ children }) {
           </Step>
         ))}
       </Stepper>
-      <Timer />
+      {/* <Timer /> */}
       {children}
       <Basket />
     </>

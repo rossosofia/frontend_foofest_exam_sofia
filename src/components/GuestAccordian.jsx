@@ -41,21 +41,24 @@ export default function GuestAccordion({
       },
     });
 
-    setIsSubmitted(true); // State setter. Manages the local state of the form submission status within the GuestAccordion. isSubmitted is used to determine the color of the "Guest {index + 1}" text and the state of "save" button
+    setIsSubmitted(true); // State setter. Sets form submission status to true (locally)
     setIsFormChanged(false); // The form has been submitted and no changes have been made.
-    onFormSubmitted(index, true); // Callback function thet notify the parent component that the form at a specific index has been submitted successfully. It is used to update the formSubmissionStatus state in the Guests, calling the function handleFormSubmitted in Guests.
+    onFormSubmitted(index, true); // Callback function thet notify the parent component that the form at a specific index has been submitted successfully. It is used to update the formSubmissionStatus state in the Guests, calling the function handleFormSubmitted in Guests page.
     setExpandedIndex(index + 1); // Expand the next accordion
   }
 
-  function formHasChanged() {
-    setIsFormChanged(true);
-    setIsSubmitted(false);
-    onFormSubmitted(index, false);
+  function toggleAccordion() {
+    // Toggles the expansion state of the accordion
+    // If the accordion is currently expanded, collapse it; otherwise, expand it
+    // This function is INDIPENDENT from submitted status, is triggered but user's click
+    const newExpandedIndex = expandedIndex === index ? null : index;
+    setExpandedIndex(newExpandedIndex); // Update the expandedIndex state with the new value
   }
 
-  function toggleAccordion() {
-    const newExpandedIndex = expandedIndex === index ? null : index;
-    setExpandedIndex(newExpandedIndex);
+  function formHasChanged() {
+    setIsFormChanged(true); // Notify that changes have been made
+    setIsSubmitted(false); // Resets the form submission status to false
+    onFormSubmitted(index, false); // Notifies the parent component that the form has changed but not yet submitted.
   }
 
   return (

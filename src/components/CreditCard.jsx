@@ -2,12 +2,6 @@ import React, { useState, useContext } from "react";
 import { TextField } from "@mui/material";
 import Anchor from "./Anchor";
 import { StoreContext } from "@/context/storeContext";
-import { createClient } from "@supabase/supabase-js";
-
-// Supabase client
-const supabaseUrl = "https://ihjawproqviyqyssqucs.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function CreditCardForm() {
   const [cardName, setCardName] = useState("");
@@ -35,12 +29,21 @@ export default function CreditCardForm() {
     console.log(basketData);
 
     try {
-      const { data, error } = await supabase
-        .from("foofest-extravaganza")
-        .insert([basketData]);
+      const res = await fetch("/api/POST", {
+        // send POST request to your API route
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(basketData), // send basketData in request body
+      });
 
-      if (error) throw error;
-      console.log("Posted basket data to Supabase: ", data);
+      if (!res.ok) {
+        throw new Error(res.status);
+      }
+
+      const { response } = await res.json(); // get response data
+      console.log("Posted basket data to Supabase: ", response);
     } catch (error) {
       console.error("Error posting basket data to Supabase: ", error);
     }

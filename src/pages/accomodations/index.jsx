@@ -1,7 +1,6 @@
 import FlowLayout from "@/components/FlowLayout";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import TentCard from "@/components/TentCard2";
-import  { useEffect } from "react";
+import TentCard from "@/components/TentCard";
 import Checkbox from "@mui/material/Checkbox";
 import Anchor from "@/components/Anchor";
 import { useContext } from "react";
@@ -14,14 +13,12 @@ import { v4 as uuidv4 } from "uuid";
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
+
   function getTotalBasketTickets() {
     return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
   }
   const totalBasketTickets = getTotalBasketTickets();
-  // const { num2PersonTents } = CalculateTents(totalBasketTickets);
-  // const { num3PersonTents } = CalculateTents(totalBasketTickets);
-
-
+  
   function selectGreenOption(event) {
     const { checked } = event.target;
     dispatch({

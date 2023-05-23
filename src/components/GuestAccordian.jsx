@@ -103,7 +103,7 @@ export default function GuestAccordion({
             />
             <Button
               variant="contained"
-              color="success"
+              color={isSubmitted ? "secondary" : "primary"}
               type="submit"
               disabled={isSubmitted && !isFormChanged}
             >

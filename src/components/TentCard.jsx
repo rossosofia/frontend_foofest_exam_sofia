@@ -85,7 +85,7 @@ export default function TestTentCard() {
   const maxTents =
     Math.floor(totalBasketTickets / 3) +
     Math.floor((totalBasketTickets % 3) / 2);
-  const tents = calculateTents(totalBasketTickets);
+  const tents = CalculateTents(totalBasketTickets);
   let canAddMoreTents = totalBasketTents + 5 < maxTents;
 
   if (hasTent && tents !== null) {

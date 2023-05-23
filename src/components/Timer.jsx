@@ -1,25 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { TimerContext } from "@/context/TimerContext";
-
 
 function Timer() {
   const { timeRemaining, setTimeRemaining } = useContext(TimerContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (timeRemaining > 0) {
       const interval = setInterval(() => {
-        setTimeRemaining((prevTime) => prevTime - 1000); // Decrease by 1 second (1000 milliseconds)
-      }, 1000); // Update every second (1000 milliseconds)
+        setTimeRemaining((prevTime) => prevTime - 1000);
+      }, 1000);
 
       return () => {
         clearInterval(interval);
       };
+    } else {
+      // Timer has run out, navigate back to "/"
+      router.push("/");
     }
-  }, [timeRemaining, setTimeRemaining]);
-  
+  }, [timeRemaining, setTimeRemaining, router]);
 
-  const isLessThanMinute = timeRemaining < 60000; // Check if timeRemaining is less than a minute
-
+  const isLessThanMinute = timeRemaining < 60000;
   const timeClass = isLessThanMinute ? "text-2xl text-red-500" : "text-2xl";
 
   const formatTime = (timeInMilliseconds) => {
@@ -33,17 +35,7 @@ function Timer() {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  return (
-   
-  <div className={timeClass}>{formatTime(timeRemaining)}</div>
-
-  )
+  return <div className={timeClass}>{formatTime(timeRemaining)}</div>;
 }
 
 export default Timer;
-
-
-
-
-  
-

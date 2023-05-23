@@ -1,6 +1,7 @@
 // This function prioritizes the use of 3-person tents. It divides the number of people
 // by 3 to allocate the maximum number of 3-person tents, and then assigns the remaining
 // people to 2-person tents. If numPeople is 1, one 2-person tent will be assigned.
+// Hope this works
 
 export default function CalculateTents(numPeople) {
   let num3PersonTents = Math.floor(numPeople / 3); // Number of 3-person tents

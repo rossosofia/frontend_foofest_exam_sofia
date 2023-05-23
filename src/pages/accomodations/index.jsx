@@ -1,42 +1,26 @@
 import FlowLayout from "@/components/FlowLayout";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import TentCard from "@/components/TentCard";
-<<<<<<< HEAD
 import Checkbox from "@mui/material/Checkbox";
 import Anchor from "@/components/Anchor";
 import { useContext } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
-import Timer from "@/components/Timer"
-import CalculateTents from "@/components/CalculateTents";
-import { v4 as uuidv4 } from "uuid";
-
-=======
-import { useEffect } from "react";
-import Checkbox from "@mui/material/Checkbox";
-import Anchor from "@/components/Anchor";
-import { useContext } from "react";
-import { StoreContext } from "@/context/storeContext";
-import { DispatchContext } from "@/context/storeContext";
 import Timer from "@/components/Timer";
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
+import CalculateTents from "@/components/CalculateTentss";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
-<<<<<<< HEAD
   function getTotalBasketTickets() {
-    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0);
+    return state.ticketBasket.reduce(
+      (total, ticket) => total + ticket.amount,
+      0
+    );
   }
   const totalBasketTickets = getTotalBasketTickets();
-  
-=======
-  useEffect(() => {
-    const timeoutValue = 180; // Example: Set the timeout value to 180 seconds (3 minutes)
-    dispatch({ type: "SET_TIMEOUT", payload: { timeout: timeoutValue } });
-  }, [dispatch]);
 
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
   function selectGreenOption(event) {
     const { checked } = event.target;
     dispatch({
@@ -55,11 +39,10 @@ export default function Accomodations() {
         isChosentent: true,
       },
     });
-  
+
     addTwoPersonTent();
     addThreePersonTent();
   }
-  
 
   function notChooseTentOption() {
     dispatch({
@@ -69,7 +52,7 @@ export default function Accomodations() {
       },
     });
   }
-    
+
   function addTwoPersonTent() {
     const { num2PersonTents } = CalculateTents(totalBasketTickets);
     dispatch({
@@ -84,9 +67,8 @@ export default function Accomodations() {
     });
   }
 
-
-function addThreePersonTent() {
-  const { num3PersonTents } = CalculateTents(totalBasketTickets);
+  function addThreePersonTent() {
+    const { num3PersonTents } = CalculateTents(totalBasketTickets);
     dispatch({
       action: "ADD_TENT",
       payload: {
@@ -97,9 +79,7 @@ function addThreePersonTent() {
         price: 399 * num3PersonTents,
       },
     });
-  
-}
-
+  }
 
   function emptyTentBasket() {
     dispatch({ action: "EMPTY_TENT_BASKET" });

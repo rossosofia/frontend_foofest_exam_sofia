@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
 <<<<<<< HEAD
 
-import CalculateTents from "./CalculateTents"
+import CalculateTents from "./CalculateTentss"
 
 export default function TentCardNoOption() {
 =======

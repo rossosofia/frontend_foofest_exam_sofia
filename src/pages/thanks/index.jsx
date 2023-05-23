@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import confetti from "canvas-confetti";
+import { useRouter } from "next/router";
 
 export default function Thanks() {
+  const router = useRouter();
+
   useEffect(() => {
     let duration = 7 * 1000;
     let animationEnd = Date.now() + duration;
@@ -33,11 +36,15 @@ export default function Thanks() {
       );
     }, 250);
 
+    setTimeout(() => {
+      router.push("/");
+    }, duration);
+
     // Make sure to clear the interval when the component is unmounted
     return () => {
       clearInterval(interval);
     };
-  }, []); // The empty array ensures this runs on mount and unmount only
+  }, [router]);
 
   return <></>;
 }

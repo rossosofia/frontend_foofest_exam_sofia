@@ -6,7 +6,7 @@ export default function Campingsite({ data }) {
     <Layout>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 p-4">
         {data.map((areas) => (
-          <CampingCard key={data.area} {...areas} />
+          <CampingCard key={areas.area} {...areas} />
         ))}
       </div>
 

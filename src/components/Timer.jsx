@@ -16,6 +16,7 @@ function Timer() {
       };
     }
   }, [timeRemaining, setTimeRemaining]);
+  
 
   const isLessThanMinute = timeRemaining < 60000; // Check if timeRemaining is less than a minute
 
@@ -44,32 +45,5 @@ export default Timer;
 
 
 
-
-
-// function Timer() {
-//   const state = useContext(StoreContext);
-//   const timeout = state.timeout;
-//   const [timeRemaining, setTimeRemaining] = useState(timeout);
-//   const dispatch = useContext(DispatchContext);
-
-//   useEffect(() => {
-//     setTimeRemaining(timeout); // Update timeRemaining when timeout changes
-//   }, [timeout]);
-
-//   useEffect(() => {
-//     if (timeRemaining > 0) {
-//       const interval = setInterval(() => {
-//         setTimeRemaining((prevTime) => {
-//           const updatedTime = prevTime - 1;
-//           dispatch({ action: "UPDATE_TIME_REMAINING", payload: updatedTime });
-//           return updatedTime;
-//         });
-//       }, 1); // Update every millisecond
-  
-//       return () => {
-//         clearInterval(interval);
-//       };
-//     }
-//   }, [timeRemaining, dispatch]);
   
 

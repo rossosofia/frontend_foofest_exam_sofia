@@ -4,7 +4,8 @@ import { StoreContext } from "@/context/storeContext";
 const TimerContext = createContext();
 
 function TimerProvider({ children }) {
-  const { timeout } = useContext(StoreContext);
+  const { reserveSpot } = useContext(StoreContext);
+  const timeout = reserveSpot[0]?.timeout || 0;
   const [timeRemaining, setTimeRemaining] = useState(timeout);
 
 

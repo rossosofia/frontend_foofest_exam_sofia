@@ -4,11 +4,9 @@ import { useContext } from "react";
 import { DispatchContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
 import { StoreContext } from "@/context/storeContext";
-import { useRouter } from "next/router";
 import Anchor from "./Anchor";
 
 const TicketCard = () => {
-  const router = useRouter();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
   const vipTicket = state.ticketBasket.find((ticket) => ticket.name === "VIP");
@@ -67,7 +65,7 @@ const TicketCard = () => {
 
     // Send PUT request
     const response = await fetch(
-      "http://brazen-fortune-fight.glitch.me/reserve-spot",
+      "https://brazen-fortune-fight.glitch.me/reserve-spot",
       {
         method: "PUT",
         headers: {
@@ -92,8 +90,6 @@ const TicketCard = () => {
 
     // Dispatch all the response data
     dispatch({ action: "SET_RESERVATION_DATA", payload: data });
-
-    router.push("/accomodations");
   }
 
   const isAvailable =

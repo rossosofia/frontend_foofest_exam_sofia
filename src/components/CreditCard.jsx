@@ -36,7 +36,7 @@ export default function CreditCardForm() {
     if (!isFormInvalid && reservationId) {
       try {
         const response = await fetch(
-          "http://brazen-fortune-fight.glitch.me/fulfill-reservation",
+          "https://brazen-fortune-fight.glitch.me/fulfill-reservation",
           {
             method: "post",
             headers: {

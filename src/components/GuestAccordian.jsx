@@ -41,12 +41,10 @@ export default function GuestAccordion({
       },
     });
 
-    // Calls handleNextAccordion function from Guests page, to expand next accordion
+    setIsSubmitted(true); // State setter. Manages the local state of the form submission status within the GuestAccordion. isSubmitted is used to determine the color of the "Guest {index + 1}" text and the state of "save" button
     setIsFormChanged(false); // The form has been submitted and no changes have been made.
-    setIsSubmitted(true); // Notify that the form has been submitted
-    setExpandedIndex(index + 1);
-    // Expand the
-    onFormSubmitted(index, true); // Notify the parent component that the form has been submitted
+    onFormSubmitted(index, true); // Callback function thet notify the parent component that the form at a specific index has been submitted successfully. It is used to update the formSubmissionStatus state in the Guests, calling the function handleFormSubmitted in Guests.
+    setExpandedIndex(index + 1); // Expand the next accordion
   }
 
   function formHasChanged() {

@@ -85,12 +85,14 @@ const TicketCard = () => {
       // Note: this will only catch network / connection errors
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     // If successful, get the response data
     const data = await response.json();
 
-    // console.log(data); // Or handle the data as needed
-    dispatch({ action: "SET_TIMEOUT", payload: { timeout: data.timeout } });
+    console.log("PUT response data:", data); // Console log the response data
+
+    // Dispatch all the response data
+    dispatch({ action: "SET_RESERVATION_DATA", payload: data });
+
     router.push("/accomodations");
   }
 

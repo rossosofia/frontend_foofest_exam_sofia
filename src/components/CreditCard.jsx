@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import Anchor from "./Anchor";
+import { StoreContext } from "@/context/storeContext";
+import { createClient } from "@supabase/supabase-js";
 
 export default function CreditCardForm() {
+  // const supabaseUrl = "https://ihjawproqviyqyssqucs.supabase.co";
+  // const supabaseKey = process.env.SUPABASE_KEY;
+  // const supabase = createClient(supabaseUrl, supabaseKey);
+
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvc, setCvc] = useState("");
+
+  const state = useContext(StoreContext);
+  const reservationId = state.reserveSpot[0]?.id;
+  console.log(reservationId);
+
+  const router = useRouter();
 
   const isFormInvalid =
     !cardName ||
@@ -17,12 +30,36 @@ export default function CreditCardForm() {
     cvc.length !== 3 ||
     !expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
-    if (!isFormInvalid) {
-      // Handle form submission here.
-      console.log(cardName, cardNumber, expiryDate, cvc);
+    if (!isFormInvalid && reservationId) {
+      try {
+        const response = await fetch(
+          "http://brazen-fortune-fight.glitch.me/fulfill-reservation",
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: reservationId,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Request succeeded with JSON response", data);
+          router.push("/thanks");
+        } else {
+          console.log("Request failed with status", response.status);
+          const errorData = await response.json(); // If the API provides error details in JSON format
+          console.log("Error details:", errorData);
+        }
+      } catch (error) {
+        console.error("Fetch failed:", error);
+      }
     }
   };
 

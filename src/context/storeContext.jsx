@@ -9,7 +9,7 @@ const initialState = {
   guestInfo: [],
   paymentInfo: [],
   greenFee: [],
-  timeLeft: 300000,
+  reserveSpot: [],
 };
 
 function reducer(state, action) {
@@ -117,10 +117,17 @@ function reducer(state, action) {
 
       return { ...state, tentBasket: finalTentBasket };
 
-    case "SET_TIMEOUT":
+    case "SET_RESERVATION_DATA":
       return {
         ...state,
-        timeout: action.payload.timeout,
+        reserveSpot: [
+          ...state.reserveSpot,
+          {
+            id: action.payload.id,
+            message: action.payload.message,
+            timeout: action.payload.timeout,
+          },
+        ],
       };
 
     case "TENT_OPTION":

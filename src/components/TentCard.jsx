@@ -1,16 +1,9 @@
 import { useContext, useEffect } from "react";
 import { StoreContext, DispatchContext } from "@/context/storeContext";
-<<<<<<< HEAD
 
-import CalculateTents from "./CalculateTentss"
+import CalculateTents from "./CalculateTentss";
 
 export default function TentCardNoOption() {
-=======
-import { v4 as uuidv4 } from "uuid";
-import CalculateTents from "./CalculateTents";
-
-export default function TentCard() {
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
@@ -20,10 +13,7 @@ export default function TentCard() {
   );
   const hasTent = state.tentBasket.some((tent) => tent.hasTent);
 
-<<<<<<< HEAD
   //im getting all the amount of tickets from the basket
-=======
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
   function getTotalBasketTickets() {
     return state.ticketBasket.reduce(
       (total, ticket) => total + ticket.amount,
@@ -35,84 +25,16 @@ export default function TentCard() {
   const { num2PersonTents } = CalculateTents(totalBasketTickets);
   const { num3PersonTents } = CalculateTents(totalBasketTickets);
 
-<<<<<<< HEAD
-
-=======
-  //this function prioritize the 3tent people. so it first divide the tickets with
-  //3tents and after the remaining with two
-
-  function addTwoPersonTent() {
-    if (canAddMoreTents && num2PersonTents < tents.num2PersonTents) {
-      dispatch({
-        action: "ADD_TENT",
-        payload: {
-          tentName: "2PERSON",
-          tentID: uuidv4(),
-          tentAmount: 1,
-          tentAmountPeople: 2,
-          price: 299,
-        },
-      });
-    }
-  }
-
-  function addThreePersonTent() {
-    if (canAddMoreTents && num3PersonTents < tents.num3PersonTents) {
-      dispatch({
-        action: "ADD_TENT",
-        payload: {
-          tentName: "3PERSON",
-          tentID: uuidv4(),
-          tentAmount: 1,
-          tentAmountPeople: 3,
-          price: 399,
-        },
-      });
-    }
-  }
-
-  function removeOneTwoPersonTent() {
-    if (twoTent && twoTent.tentAmount > 0) {
-      dispatch({
-        action: "REMOVE_TENT",
-        payload: {
-          tentName: "2PERSON",
-        },
-      });
-    }
-  }
-
-  function removeOneThreePersonTent() {
-    if (threeTent && threeTent.tentAmount > 0) {
-      dispatch({
-        action: "REMOVE_TENT",
-        payload: {
-          tentName: "3PERSON",
-        },
-      });
-    }
-  }
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
-
   const getTotalBasketTents = () => {
     return state.tentBasket.reduce((total, tent) => total + tent.tentAmount, 0);
   };
 
   const totalBasketTents = getTotalBasketTents();
-<<<<<<< HEAD
-//   const maxTents = Math.floor(totalBasketTickets / 3) + Math.floor((totalBasketTickets % 3) / 2);
+  //   const maxTents = Math.floor(totalBasketTickets / 3) + Math.floor((totalBasketTickets % 3) / 2);
   const tents = CalculateTents(totalBasketTickets);
-=======
-  const maxTents =
-    Math.floor(totalBasketTickets / 3) +
-    Math.floor((totalBasketTickets % 3) / 2);
-  const tents = CalculateTents(totalBasketTickets);
-  let canAddMoreTents = totalBasketTents + 5 < maxTents;
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
-
 
   return (
-  <section className={`flex gap-4 flex-wrap `}>
+    <section className={`flex gap-4 flex-wrap `}>
       <article
         className="relative flex items-start justify-between border-2 border-black bg-white p-4 shadow-xl sm:p-6 lg:p-8"
         href="#"
@@ -157,23 +79,7 @@ export default function TentCard() {
 
           <p className="mt-2 hidden text-sm sm:block">299-</p>
 
-<<<<<<< HEAD
           {num2PersonTents}
-          
-=======
-          <button
-            type="button"
-            onClick={addTwoPersonTent}
-            disabled={!canAddMoreTents || !hasTent}
-            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTents && hasTent
-                ? "text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            }`}
-          >
-            +
-          </button>
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
         </div>
       </article>
 
@@ -229,36 +135,11 @@ export default function TentCard() {
             3 people tent
           </h3>
 
-<<<<<<< HEAD
           <p className="mt-2 hidden text-sm sm:block">399,-</p>
-          
-          {num3PersonTents}
-          
-=======
-          <input
-            type="number"
-            id="Quantity"
-            value={num3PersonTents}
-            className="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-          />
 
-          <button
-            type="button"
-            onClick={addThreePersonTent}
-            disabled={!canAddMoreTents || !hasTent}
-            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTents && hasTent
-                ? "text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            }`}
-          >
-            +
-          </button>
->>>>>>> 3315ff16c31b0ed26cba5a5aa2395f669eed46c8
+          {num3PersonTents}
         </div>
       </article>
     </section>
   );
 }
-
-

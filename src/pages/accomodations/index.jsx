@@ -67,7 +67,7 @@ export default function Accomodations() {
         tentID: uuidv4(),
         tentAmount: num2PersonTents,
         tentAmountPeople: 2,
-        price: 299 * num2PersonTents,
+        price: 299 ,
       },
     });
   }
@@ -81,7 +81,7 @@ export default function Accomodations() {
         tentID: uuidv4(),
         tentAmount: num3PersonTents,
         tentAmountPeople: 3,
-        price: 399 * num3PersonTents,
+        price: 399,
       },
     });
   }

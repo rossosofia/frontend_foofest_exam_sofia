@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
   // We did this so the timer is only counting down in these pages
   const router = useRouter();
-  const activePages = ["/accomodations", "/guests", "/payment"];
-  const isTimerActive = activePages.includes(router.pathname);
-
+  const timerPages = ["/accomodations", "/guests", "/payment"];
+  const isTimerActive = timerPages.includes(router.pathname);
+  
   return (
     <StoreProvider>
       {isTimerActive && (

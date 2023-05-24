@@ -90,6 +90,7 @@ export default function Accomodations() {
     <FlowLayout>
       <h1>Step 2</h1>
       <p>This is the content for Step 2.</p>
+      <Timer />
       <FormControlLabel
         control={
           <Checkbox checked={state.checked} onChange={selectGreenOption} />
@@ -123,7 +124,6 @@ export default function Accomodations() {
         />
       </RadioGroup>
       <Anchor href="/guests/">GO TO GUESTS</Anchor>
-      <Timer />
     </FlowLayout>
   );
 }

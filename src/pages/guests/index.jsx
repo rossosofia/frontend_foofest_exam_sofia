@@ -5,8 +5,6 @@ import { useContext, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
 import Timer from "@/components/Timer";
 
-
-
 export default function Guests() {
   const state = useContext(StoreContext);
   const [expandedIndex, setExpandedIndex] = useState(0);
@@ -48,6 +46,7 @@ export default function Guests() {
     <FlowLayout>
       <h1>Step 3</h1>
       <p>This is the content for Step 3.</p>
+      <Timer />
       {[...Array(totalTickets)].map((_, i) => (
         <GuestAccordion
           key={i}
@@ -62,7 +61,6 @@ export default function Guests() {
       <Anchor href="/payment/" disabled={!allFormsSubmitted}>
         GO TO PAYMENT
       </Anchor>
-      <Timer />
     </FlowLayout>
   );
 }

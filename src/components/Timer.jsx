@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { TimerContext } from "@/context/TimerContext";
+import { DispatchContext } from "@/context/storeContext";
 
 function Timer() {
   const { timeRemaining, setTimeRemaining } = useContext(TimerContext);
+  const dispatch = useContext(DispatchContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,9 +19,16 @@ function Timer() {
       };
     } else {
       // Timer has run out, navigate back to "/"
-      router.push("/");
+      //  router.push("/");
     }
   }, [timeRemaining, setTimeRemaining, router]);
+
+  const lastSec = timeRemaining == 1000;
+
+  if (lastSec) {
+    dispatch({ action: "EMPTY_BASKET" });
+    router.push("/");
+  }
 
   const isLessThanMinute = timeRemaining < 60000;
   const timeClass = isLessThanMinute ? "text-2xl text-red-500" : "text-2xl";

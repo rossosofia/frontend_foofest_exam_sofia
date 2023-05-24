@@ -14,6 +14,19 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.action) {
+    case "EMPTY_BASKET":
+      console.log("Basket before emptying:", state);
+      const emptiedState = {
+        area: [],
+        ticketBasket: [],
+        tentBasket: [],
+        guestInfo: [],
+        paymentInfo: [],
+        greenFee: [],
+        reserveSpot: [],
+      };
+      console.log("Basket after emptying:", emptiedState);
+      return emptiedState;
     case "CHOOSE_AREA":
       return {
         ...state,
@@ -64,7 +77,7 @@ function reducer(state, action) {
       const existTent = state.tentBasket.find(
         (item) => item.tentName === action.payload.tentName
       );
-    
+
       if (existTent) {
         const tentBasket = state.tentBasket.map((item) => {
           if (item.tentName === action.payload.tentName) {
@@ -76,20 +89,20 @@ function reducer(state, action) {
             return item;
           }
         });
-    
+
         return { ...state, tentBasket: tentBasket };
       } else {
         const newItem = {
           ...action.payload,
           tentAmount: action.payload.tentAmount,
         };
-    
+
         return {
           ...state,
           tentBasket: [...state.tentBasket, newItem],
         };
       }
-    
+
     case "REMOVE_TENT":
       const tentNameToRemove = action.payload.tentName;
 
@@ -120,8 +133,6 @@ function reducer(state, action) {
           },
         ],
       };
-
-
 
     case "TENT_OPTION":
       const hasTent = action.payload.isChosentent;

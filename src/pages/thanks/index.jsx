@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import confetti from "canvas-confetti";
 import { useRouter } from "next/router";
+import { DispatchContext } from "@/context/storeContext";
 
 export default function Thanks() {
   const router = useRouter();
+  const dispatch = useContext(DispatchContext);
 
   useEffect(() => {
     let duration = 7 * 1000;
@@ -37,14 +39,14 @@ export default function Thanks() {
     }, 250);
 
     setTimeout(() => {
+      dispatch({ action: "EMPTY_BASKET" });
       router.push("/");
     }, duration);
 
-    // Make sure to clear the interval when the component is unmounted
     return () => {
       clearInterval(interval);
     };
-  }, [router]);
+  }, [dispatch, router]);
 
   return <></>;
 }

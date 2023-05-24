@@ -102,25 +102,7 @@ function reducer(state, action) {
           tentBasket: [...state.tentBasket, newItem],
         };
       }
-
-    case "REMOVE_TENT":
-      const tentNameToRemove = action.payload.tentName;
-
-      const updatedBasket = state.tentBasket.map((item) => {
-        if (item.tentName === tentNameToRemove) {
-          const updatedItem = { ...item };
-          updatedItem.tentAmount--;
-          return updatedItem;
-        }
-        return item;
-      });
-
-      const finalTentBasket = updatedBasket.filter((item) => {
-        return item.tentAmount > 0 || !item.hasOwnProperty("tentName");
-      });
-
-      return { ...state, tentBasket: finalTentBasket };
-
+      
     case "SET_RESERVATION_DATA":
       return {
         ...state,

@@ -15,6 +15,7 @@ export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
+  //i do that to disable the button
   const tentNotChecked = state.tentBasket.length === 0;
 
   function getTotalBasketTickets() {
@@ -43,7 +44,7 @@ export default function Accomodations() {
         isChosentent: true,
       },
     });
-
+    //i decided to put them here instead of the tent component so they are called once when chooseTentOption is called
     addTwoPersonTent();
     addThreePersonTent();
   }

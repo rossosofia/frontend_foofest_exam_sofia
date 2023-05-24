@@ -1,37 +1,21 @@
-import { useContext, useEffect } from "react";
-import { StoreContext, DispatchContext } from "@/context/storeContext";
-
+import { useContext} from "react";
+import { StoreContext } from "@/context/storeContext";
 import CalculateTents from "./CalculateTentss";
 
-export default function TentCardNoOption() {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(StoreContext);
+//this component is to display the number of tents that we get from calculateTents function
 
-  const twoTent = state.tentBasket.find((tent) => tent.tentName === "2PERSON");
-  const threeTent = state.tentBasket.find(
-    (tent) => tent.tentName === "3PERSON"
-  );
-  const hasTent = state.tentBasket.some((tent) => tent.hasTent);
+export default function TentCardNoOption() {
+ 
+  const state = useContext(StoreContext);
 
   //im getting all the amount of tickets from the basket
   function getTotalBasketTickets() {
-    return state.ticketBasket.reduce(
-      (total, ticket) => total + ticket.amount,
-      0
-    );
+    return state.ticketBasket.reduce((total, ticket) => total + ticket.amount, 0 );
   }
 
   const totalBasketTickets = getTotalBasketTickets();
-  const { num2PersonTents } = CalculateTents(totalBasketTickets);
-  const { num3PersonTents } = CalculateTents(totalBasketTickets);
-
-  const getTotalBasketTents = () => {
-    return state.tentBasket.reduce((total, tent) => total + tent.tentAmount, 0);
-  };
-
-  const totalBasketTents = getTotalBasketTents();
-  //   const maxTents = Math.floor(totalBasketTickets / 3) + Math.floor((totalBasketTickets % 3) / 2);
-  const tents = CalculateTents(totalBasketTickets);
+  const { num2PersonTents , num3PersonTents } = CalculateTents(totalBasketTickets);
+  
 
   return (
     <section className={`flex gap-4 flex-wrap `}>
@@ -74,7 +58,7 @@ export default function TentCardNoOption() {
           </div>
 
           <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-            2 people tent
+            2-People Tent
           </h3>
 
           <p className="mt-2 hidden text-sm sm:block">299-</p>
@@ -132,7 +116,7 @@ export default function TentCardNoOption() {
           </div>
 
           <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-            3 people tent
+            3-People Tent
           </h3>
 
           <p className="mt-2 hidden text-sm sm:block">399,-</p>

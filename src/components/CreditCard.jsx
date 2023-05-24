@@ -24,6 +24,11 @@ export default function CreditCardForm() {
   const postBasketToSupabase = async (state) => {
     const basketData = {
       area: state.area,
+      greenFee: state.greenFee,
+      guestInfo: state.guestInfo,
+      reserveSpot: state.reserveSpot,
+      tentBasket: state.tentBasket,
+      ticketBasket: state.ticketBasket,
     };
 
     console.log(basketData);

@@ -15,6 +15,8 @@ export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
+  const tentNotChecked = state.tentBasket.length === 0;
+
   function getTotalBasketTickets() {
     return state.ticketBasket.reduce(
       (total, ticket) => total + ticket.amount,
@@ -123,7 +125,7 @@ export default function Accomodations() {
           }}
         />
       </RadioGroup>
-      <Anchor href="/guests/">GO TO GUESTS</Anchor>
+      <Anchor href="/guests/" disabled={tentNotChecked}>GO TO GUESTS</Anchor>
     </FlowLayout>
   );
 }

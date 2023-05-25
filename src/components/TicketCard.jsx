@@ -106,21 +106,48 @@ const TicketCard = () => {
 
   return (
     <>
-      <h2>VIP</h2>
-      <QuantityInput
-        value={vipTicket ? vipTicket.amount : 0}
-        onClickAdd={addVIPTicket}
-        onClickRemove={removeOneVIP}
-        canAddMoreTickets={canAddMoreTickets}
-      />
+      <div className=" bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4 mt-4">
+        <div className="md:flex">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-black font-semibold">
+              VIP Tickets
+            </div>
+            <p className="mt-2 text-gray-500">
+              Experience the festival with extra perks as a VIP.
+            </p>
+            <div className="w-32">
+              <QuantityInput
+                value={vipTicket ? vipTicket.amount : 0}
+                onClickAdd={addVIPTicket}
+                onClickRemove={removeOneVIP}
+                canAddMoreTickets={canAddMoreTickets}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h2>REGULAR</h2>
-      <QuantityInput
-        value={regularTicket ? regularTicket.amount : 0}
-        onClickAdd={addRegularTicket}
-        onClickRemove={removeOneREGULAR}
-        canAddMoreTickets={canAddMoreTickets}
-      />
+      <div className=" bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4">
+        <div className="md:flex">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-black font-semibold">
+              Regular Tickets
+            </div>
+            <p className="mt-2 text-gray-500">
+              Enjoy the festival with our standard ticket.
+            </p>
+            <div className="w-32">
+              <QuantityInput
+                value={regularTicket ? regularTicket.amount : 0}
+                onClickAdd={addRegularTicket}
+                onClickRemove={removeOneREGULAR}
+                canAddMoreTickets={canAddMoreTickets}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Anchor
         href="/accomodations/"
         onClick={sendPutRequest}

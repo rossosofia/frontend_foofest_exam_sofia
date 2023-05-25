@@ -1,10 +1,9 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { useContext } from "react";
-import { DispatchContext } from "@/context/storeContext";
+import { DispatchContext, StoreContext } from "@/context/storeContext";
 import { v4 as uuidv4 } from "uuid";
-import { StoreContext } from "@/context/storeContext";
 import Anchor from "./Anchor";
+import QuantityInput from "./QuantityInput";
 
 const TicketCard = () => {
   const dispatch = useContext(DispatchContext);
@@ -61,7 +60,6 @@ const TicketCard = () => {
       (acc, ticket) => acc + ticket.amount,
       0
     );
-    // console.log(`Area: ${state.area}, Amount: ${totalAmount}`);
 
     // Send PUT request
     const response = await fetch(
@@ -109,80 +107,20 @@ const TicketCard = () => {
   return (
     <>
       <h2>VIP</h2>
-      <div>
-        <label htmlFor="Quantity" className="sr-only">
-          {" "}
-          Quantity{" "}
-        </label>
-
-        <div className="flex items-center border border-gray-200 rounded">
-          <button
-            onClick={removeOneVIP}
-            type="button"
-            className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
-          >
-            -
-          </button>
-
-          <input
-            type="number"
-            id="Quantity"
-            value={vipTicket ? vipTicket.amount : 0}
-            className="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-          />
-
-          <button
-            type="button"
-            onClick={addVIPTicket}
-            disabled={!canAddMoreTickets}
-            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTickets
-                ? "text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            }`}
-          >
-            +
-          </button>
-        </div>
-      </div>
+      <QuantityInput
+        value={vipTicket ? vipTicket.amount : 0}
+        onClickAdd={addVIPTicket}
+        onClickRemove={removeOneVIP}
+        canAddMoreTickets={canAddMoreTickets}
+      />
 
       <h2>REGULAR</h2>
-      <div>
-        <label htmlFor="Quantity" className="sr-only">
-          {" "}
-          Quantity{" "}
-        </label>
-
-        <div className="flex items-center border border-gray-200 rounded">
-          <button
-            onClick={removeOneREGULAR}
-            type="button"
-            className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75"
-          >
-            -
-          </button>
-
-          <input
-            type="number"
-            id="Quantity"
-            value={regularTicket ? regularTicket.amount : 0}
-            className="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-          />
-
-          <button
-            type="button"
-            onClick={addRegularTicket}
-            disabled={!canAddMoreTickets}
-            className={`w-10 h-10 leading-10 transition hover:opacity-75 ${
-              canAddMoreTickets
-                ? "text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            }`}
-          >
-            +
-          </button>
-        </div>
-      </div>
+      <QuantityInput
+        value={regularTicket ? regularTicket.amount : 0}
+        onClickAdd={addRegularTicket}
+        onClickRemove={removeOneREGULAR}
+        canAddMoreTickets={canAddMoreTickets}
+      />
       <Anchor
         href="/accomodations/"
         onClick={sendPutRequest}

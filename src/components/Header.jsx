@@ -37,7 +37,7 @@ export default function Header() {
       </header>
 
       {(isOpen || isMenuOpen) && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center backdrop-blur-md z-40">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center backdrop-blur-md z-40 px-10">
           <div className="text-white z-50">
             <ul className="space-y-10">
               <li className="group">

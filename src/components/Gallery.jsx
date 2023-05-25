@@ -24,7 +24,7 @@ export default function Gallery() {
     let scrollLeft = 0;
 
     const scrollGallery = () => {
-      scrollLeft += 0.5;
+      scrollLeft += 0.8;
       if (
         scrollLeft >=
         scrollContainer.scrollWidth - scrollContainer.clientWidth

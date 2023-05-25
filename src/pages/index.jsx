@@ -46,7 +46,7 @@ export default function Home() {
             Stay in tune with the latest updates, exclusive offers, and
             thrilling announcements from the heart of FooFest festival.
           </p>
-          <div className="inline-block bg-custom-beige hover:bg-custom-beige border-2 border-black transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black my-4 py-6 px-6 rounded w-5/6 ">
+          <div className="inline-block bg-custom-beige hover:bg-custom-beige border-2 border-custom-purple transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black my-4 py-6 px-6 rounded w-5/6 ">
             <h3 className="text-2xl font-semibold">
               Subscribe to our newsletter
             </h3>

@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import { useRouter } from "next/router";
 import { DispatchContext, StoreContext } from "@/context/storeContext";
 import Barcode from "react-barcode";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Thanks() {
   const router = useRouter();
@@ -60,11 +61,11 @@ export default function Thanks() {
       <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 p-8">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-6">Your Festival Tickets</h1>
-          <div className="uppercase tracking-wide text-sm text-black font-semibold">
+          <div className="uppercase tracking-wide text-b text-black font-semibold">
             Festival Ticket
           </div>
           <h2 className="block mt-1 text-lg leading-tight font-medium text-black">
-            Congratulations, you are going to the Foofest!
+            Congratulations, see you at Foofest Extravaganza!
           </h2>
           <p className="mt-2 text-gray-500">Here are your ticket details:</p>
           {state.ticketBasket.map((item, index) => (
@@ -72,8 +73,8 @@ export default function Thanks() {
               <h3 className="font-semibold">
                 {item.name}: {item.amount}
               </h3>
-              <div className="text-center">
-                <Barcode value="1234567890" />
+              <div className="grid place-items-center align-middle mt-2 max-w-10">
+                <Barcode value={uuidv4()} width={1} height={80} margin={0} />
               </div>
             </div>
           ))}

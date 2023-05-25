@@ -106,7 +106,7 @@ const TicketCard = () => {
 
   return (
     <>
-      <div className=" bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4 mt-4">
+      <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4">
         <div className="md:flex">
           <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-black font-semibold">
@@ -127,7 +127,7 @@ const TicketCard = () => {
         </div>
       </div>
 
-      <div className=" bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4">
+      <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4">
         <div className="md:flex">
           <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-black font-semibold">

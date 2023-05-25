@@ -57,27 +57,26 @@ export default function Thanks() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4">
-        <div className="md:flex">
-          <div className="p-8">
-            <div className="uppercase tracking-wide text-sm text-black font-semibold">
-              Festival Ticket
-            </div>
-            <h2 className="block mt-1 text-lg leading-tight font-medium text-black">
-              Congratulations, you are going to the Foofest!
-            </h2>
-            <p className="mt-2 text-gray-500">Here are your ticket details:</p>
-            {state.ticketBasket.map((item, index) => (
-              <div key={index}>
-                <h3>Ticket type: {item.name}</h3>
-                <p>Price: {item.price}</p>
-                <p>Amount: {item.amount}</p>
-                <p>Total: {item.price * item.amount}</p>
+      <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 p-8">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-6">Your Festival Tickets</h1>
+          <div className="uppercase tracking-wide text-sm text-black font-semibold">
+            Festival Ticket
+          </div>
+          <h2 className="block mt-1 text-lg leading-tight font-medium text-black">
+            Congratulations, you are going to the Foofest!
+          </h2>
+          <p className="mt-2 text-gray-500">Here are your ticket details:</p>
+          {state.ticketBasket.map((item, index) => (
+            <div key={index} className="mb-4">
+              <h3 className="font-semibold">
+                {item.name}: {item.amount}
+              </h3>
+              <div className="text-center">
                 <Barcode value="1234567890" />
               </div>
-            ))}
-            {/* Rest of your code */}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

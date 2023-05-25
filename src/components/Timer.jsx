@@ -9,7 +9,6 @@ function Timer() {
   const router = useRouter();
 
   useEffect(() => {
-    
     if (timeRemaining > 0) {
       const interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1000);
@@ -32,7 +31,9 @@ function Timer() {
   }
 
   const isLessThanMinute = timeRemaining > 1000 && timeRemaining <= 60000;
-  const timeClass = isLessThanMinute ? "text-2xl text-red-500" : "text-2xl";
+  const timeClass = isLessThanMinute
+    ? "text-2xl text-red-500 ml-2"
+    : "text-2xl ml-2";
 
   const formatTime = (timeInMilliseconds) => {
     if (timeInMilliseconds <= 0) {

@@ -22,13 +22,16 @@ function Basket() {
     return total + item.price;
   }, 0);
 
-  const totalPrice = tentTotalPrice + ticketTotalPrice + greenFeeTotalPrice  + bookingFee;
+  const totalPrice =
+    tentTotalPrice + ticketTotalPrice + greenFeeTotalPrice + bookingFee;
 
   return (
-    <>
-      <h2>Basket</h2>
+    <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4 p-8">
+      <h2 className="uppercase tracking-wide text-sm text-black font-semibold">
+        Basket
+      </h2>
       <div>
-        <h2>Tickets</h2>
+        <h2 className="mt-2 text-gray-500">Tickets</h2>
         <ul>
           {state.ticketBasket.map((item) => (
             <li key={item.id}>
@@ -38,9 +41,8 @@ function Basket() {
         </ul>
         <p>Total Ticket Price: {ticketTotalPrice} DKK</p>
 
-        <h2>Tents</h2>
+        <h2 className="mt-2 text-gray-500">Tents</h2>
         <ul>
-          {/* {i did this because tentBasket[0]= hasTent} */}
           {[...state.tentBasket.slice(1)].map((item, index) => {
             const totalTentPrice =
               item.tentAmount !== 0 ? item.price * item.tentAmount : 0;
@@ -59,16 +61,12 @@ function Basket() {
             <li key={item.id || index}>Green Fee: {item.price} DKK</li>
           ))}
         </ul>
+        <h2 className="mt-2 text-gray-500">Booking Fee</h2>
         <p>Booking Fee {bookingFee} DKK</p>
+        <h2 className="mt-2 text-gray-500">Total</h2>
         <p>Total: {totalPrice} DKK</p>
-
-        {/* <ul>
-          {state.guestInfo.map((item, index) => (
-            <li key={item.id || index}>Gest {index +1}: {item.firstName} {item.lastName}</li>
-          ))}
-        </ul> */}
       </div>
-    </>
+    </div>
   );
 }
 

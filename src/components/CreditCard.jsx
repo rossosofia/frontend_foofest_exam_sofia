@@ -129,65 +129,67 @@ export default function CreditCardForm() {
   };
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <h2 className="text-2xl mb-6 text-center font-bold">
-        Credit Card Information
-      </h2>
-      <div className="w-full flex flex-col gap-2 md:flex-row md:flex-wrap">
-        <TextField
-          className="mb-4 w-full"
-          variant="outlined"
-          label="Cardholder Name"
-          value={cardName}
-          onChange={(e) => setCardName(e.target.value)}
-          autoComplete="name"
-        />
-        <TextField
-          className="mb-4 w-full"
-          variant="outlined"
-          label="Card Number"
-          value={cardNumber}
-          onChange={handleCardNumberChange}
-          inputProps={{
-            maxLength: 19,
-            autoComplete: "cc-number",
-          }}
-        />
-
-        <div className="flex flex-col gap-2 md:flex-row md:w-full">
-          <TextField
-            className="flex-1 md:w-1/2"
-            variant="outlined"
-            label="MM/YY"
-            value={expiryDate}
-            onChange={handleExpiryChange}
-            inputProps={{
-              maxLength: 5,
-              autoComplete: "cc-exp",
-            }}
-          />
-          <TextField
-            className="flex-1 md:w-1/2"
-            variant="outlined"
-            label="CVC"
-            value={cvc}
-            onChange={(e) => setCvc(e.target.value.replace(/\D/g, ""))}
-            inputProps={{
-              maxLength: 3,
-              autoComplete: "cc-csc",
-            }}
-          />
+    <>
+      <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4 p-8 mx-auto">
+        <div className="w-full flex flex-col gap-2 md:flex-row md:flex-wrap">
+          <div className="mb-4 w-full">
+            <TextField
+              className="w-full"
+              variant="outlined"
+              label="Cardholder Name"
+              value={cardName}
+              onChange={(e) => setCardName(e.target.value)}
+              autoComplete="name"
+            />
+          </div>
+          <div className="mb-4 w-full">
+            <TextField
+              className="w-full"
+              variant="outlined"
+              label="Card Number"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              inputProps={{
+                maxLength: 19,
+                autoComplete: "cc-number",
+              }}
+            />
+          </div>
+          <div className="flex flex-col gap-2 md:flex-row md:w-full">
+            <TextField
+              className="flex-1 md:w-1/2"
+              variant="outlined"
+              label="MM/YY"
+              value={expiryDate}
+              onChange={handleExpiryChange}
+              inputProps={{
+                maxLength: 5,
+                autoComplete: "cc-exp",
+              }}
+            />
+            <TextField
+              className="flex-1 md:w-1/2"
+              variant="outlined"
+              label="CVC"
+              value={cvc}
+              onChange={(e) => setCvc(e.target.value.replace(/\D/g, ""))}
+              inputProps={{
+                maxLength: 3,
+                autoComplete: "cc-csc",
+              }}
+            />
+          </div>
         </div>
-
-        <Anchor
-          href="/thanks"
-          disabled={isFormInvalid}
-          onClick={submitForm}
-          className="w-full mt-2 text-center"
-        >
-          PAY {totalPrice} DKK
-        </Anchor>
       </div>
-    </div>
+
+      <Anchor
+        href="/thanks"
+        disabled={isFormInvalid}
+        onClick={submitForm}
+        className="w-full mt-2 text-center"
+      >
+        PAY {totalPrice} DKK
+      </Anchor>
+    </>
   );
 }

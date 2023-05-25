@@ -152,6 +152,7 @@ const TicketCard = () => {
         href="/accomodations/"
         onClick={sendPutRequest}
         disabled={!isAvailable}
+        className="w-full text-center"
       >
         START RESERVATION
       </Anchor>

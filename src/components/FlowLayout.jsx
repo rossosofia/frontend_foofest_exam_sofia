@@ -5,7 +5,7 @@ export default function FlowLayout({ children }) {
   const router = useRouter();
   const steps = [
     { label: "Tickets", path: "/tickets" },
-    { label: "Accomodations", path: "/accomodations" },
+    { label: "Accommodations", path: "/accommodations" },
     { label: "Guests Info", path: "/guests" },
     { label: "Payment", path: "/payment" },
   ];
@@ -14,8 +14,8 @@ export default function FlowLayout({ children }) {
   const currentStep = steps.findIndex((step) => router.pathname === step.path);
 
   return (
-    <div className="m-5 p-5">
-      <div>
+    <div className="m-5 p-5 flex flex-col h-screen ">
+      <div className="flex-grow">
         <h2 className="sr-only">Steps</h2>
         <div className="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-gray-100">
           <ol className="relative z-10 flex justify-between text-sm font-medium text-gray-500">
@@ -37,8 +37,13 @@ export default function FlowLayout({ children }) {
           </ol>
         </div>
       </div>
-      <div className="mt-5">{children}</div>
-      <Basket />
+
+      <div className="flex-grow flex flex-col sm:flex-row gap-10">
+        <div className="sm:w-1/2">{children}</div>
+        <div className="sm:w-1/2">
+          <Basket />
+        </div>
+      </div>
     </div>
   );
 }

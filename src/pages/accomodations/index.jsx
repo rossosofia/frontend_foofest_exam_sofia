@@ -91,42 +91,52 @@ export default function Accomodations() {
   }
   return (
     <FlowLayout>
-      <h1>Step 2</h1>
-      <p>This is the content for Step 2.</p>
       <Timer />
-      <FormControlLabel
-        control={
-          <Checkbox checked={state.checked} onChange={selectGreenOption} />
-        }
-        label="Green Option / 249-"
-      />
-
-      <RadioGroup>
-        <label>
-          <div>
-            {/* we need to create a style to use istead of the "bg-pink-100", so that everything looks "deactivated" */}
+      <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4">
+        <div className="md:flex">
+          <div className="p-8">
             <FormControlLabel
-              value="set-up-tent"
-              control={<Radio />}
-              label="Rent a tent"
-              onClick={chooseTentOption}
+              control={
+                <Checkbox
+                  checked={state.checked}
+                  onChange={selectGreenOption}
+                />
+              }
+              label="Green Option / 249-"
             />
-            <TentCard></TentCard>
-            {/* {selectedValue === "set-up-tent" && <TentCard />} */}
-          </div>
-        </label>
 
-        <FormControlLabel
-          value="own-tent"
-          control={<Radio />}
-          label="No, I'm bringing my own tent"
-          onClick={() => {
-            notChooseTentOption();
-            emptyTentBasket();
-          }}
-        />
-      </RadioGroup>
-      <Anchor href="/guests/" disabled={tentNotChecked}>
+            <RadioGroup>
+              <label>
+                <div>
+                  <FormControlLabel
+                    value="set-up-tent"
+                    control={<Radio />}
+                    label="Rent a tent"
+                    onClick={chooseTentOption}
+                  />
+                  <TentCard />
+                </div>
+              </label>
+
+              <FormControlLabel
+                value="own-tent"
+                control={<Radio />}
+                label="No, I'm bringing my own tent"
+                onClick={() => {
+                  notChooseTentOption();
+                  emptyTentBasket();
+                }}
+              />
+            </RadioGroup>
+          </div>
+        </div>
+      </div>
+
+      <Anchor
+        href="/guests/"
+        disabled={tentNotChecked}
+        className="w-full text-center"
+      >
         GO TO GUESTS
       </Anchor>
     </FlowLayout>

@@ -12,14 +12,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="p-5 border-b-2 border-black">
+      <header className="py-5 px-10 sticky top-0 backdrop-filter backdrop-blur-md z-50 ">
         <nav className="flex justify-between items-center">
-          <Link className="text-xl font-bold" href={"/"}>
+          <Link className="text-xl text-white font-bold" href={"/"}>
             FOOEXTRA
           </Link>
           {isOpen || isMenuOpen ? (
             <p
-              className="text-xl font-bold cursor-pointer z-50"
+              className="text-xl text-white font-bold cursor-pointer relative z-50"
               onClick={closeMenu}
               href="/"
             >
@@ -27,7 +27,7 @@ export default function Header() {
             </p>
           ) : (
             <p
-              className="text-xl font-bold cursor-pointer"
+              className="text-xl text-white font-bold cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
               MENU
@@ -37,26 +37,42 @@ export default function Header() {
       </header>
 
       {(isOpen || isMenuOpen) && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center backdrop-blur-md z-10">
-          <div className="text-black text-5xl z-20">
-            <ul className="space-y-4 ">
-              <li>
-                <Link href="/schedule" onClick={closeMenu}>
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center backdrop-blur-md z-40 px-10">
+          <div className="text-white z-50">
+            <ul className="space-y-10">
+              <li className="group">
+                <Link
+                  href="/schedule"
+                  onClick={closeMenu}
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                >
                   LINE UP 2023
                 </Link>
               </li>
-              <li>
-                <Link href="/campingsite" onClick={closeMenu}>
+              <li className="group">
+                <Link
+                  href="/campingsite"
+                  onClick={closeMenu}
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                >
                   HOW TO REACH US
                 </Link>
               </li>
-              <li>
-                <Link href="/campingsite" onClick={closeMenu}>
+              <li className="group">
+                <Link
+                  href="/campingsite"
+                  onClick={closeMenu}
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                >
                   CAMPING SITE
                 </Link>
               </li>
-              <li>
-                <Link href="/campingsite" onClick={closeMenu}>
+              <li className="group">
+                <Link
+                  href="/campingsite"
+                  onClick={closeMenu}
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                >
                   CONTACT US
                 </Link>
               </li>

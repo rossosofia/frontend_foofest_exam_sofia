@@ -5,7 +5,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
+      <div className="mt-[-5rem] bg-gradient-to-r from-custom-purple via-custom-yellow to-custom-red">
         <main>{children}</main>
+      </div>
       <Footer />
     </>
   );

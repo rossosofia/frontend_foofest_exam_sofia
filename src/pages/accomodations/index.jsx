@@ -67,7 +67,7 @@ export default function Accomodations() {
         tentID: uuidv4(),
         tentAmount: num2PersonTents,
         tentAmountPeople: 2,
-        price: 299 ,
+        price: 299,
       },
     });
   }
@@ -126,7 +126,9 @@ export default function Accomodations() {
           }}
         />
       </RadioGroup>
-      <Anchor href="/guests/" disabled={tentNotChecked}>GO TO GUESTS</Anchor>
+      <Anchor href="/guests/" disabled={tentNotChecked}>
+        GO TO GUESTS
+      </Anchor>
     </FlowLayout>
   );
 }

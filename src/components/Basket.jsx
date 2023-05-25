@@ -38,11 +38,11 @@ function Basket() {
         <h2>Tents</h2>
         <ul>
           {/* {i did this because tentBasket[0]= hasTent} */}
-          {[...state.tentBasket.slice(1)].map((item) => {
+          {[...state.tentBasket.slice(1)].map((item, index) => {
             const totalTentPrice =
               item.tentAmount !== 0 ? item.price * item.tentAmount : 0;
             return (
-              <li key={item.id}>
+              <li key={item.id || index}>
                 {item.tentName} tent: {item.price} x {item.tentAmount} ={" "}
                 {totalTentPrice}
               </li>
@@ -52,8 +52,8 @@ function Basket() {
         <p>Total Tent Price: {tentTotalPrice}</p>
 
         <ul>
-          {state.greenFee.map((item) => (
-            <li key={item.id}>Green Fee: {item.price}</li>
+          {state.greenFee.map((item, index) => (
+            <li key={item.id || index}>Green Fee: {item.price}</li>
           ))}
         </ul>
 

@@ -3,7 +3,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { useContext, useRef, useState } from "react";
 import { DispatchContext, StoreContext } from "@/context/storeContext";
 
@@ -64,7 +63,11 @@ export default function GuestAccordion({
 
   return (
     <>
-      <Accordion expanded={isExpanded} onChange={toggleAccordion}>
+      <Accordion
+        className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4 mt-4 p-8"
+        expanded={isExpanded}
+        onChange={toggleAccordion}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`panel${index + 1}-content`}
@@ -74,44 +77,56 @@ export default function GuestAccordion({
             Guest {index + 1}
           </p>
         </AccordionSummary>
-        <AccordionDetails>
-          <form ref={formEl} onSubmit={submitted}>
-            <TextField
-              label="First Name"
-              variant="outlined"
-              helperText="Please enter the guest's first name"
-              name="firstName"
-              onChange={formHasChanged}
-              defaultValue={submittedFirstName ? submittedFirstName : ""}
-              required
-            />
-            <TextField
-              label="Last Name"
-              variant="outlined"
-              helperText="Please enter the guest's last name"
-              name="lastName"
-              onChange={formHasChanged}
-              defaultValue={submittedLastName ? submittedLastName : ""}
-              required
-            />
-            <TextField
-              label="Email"
-              variant="outlined"
-              helperText="Please enter the guest's email name"
-              name="email"
-              type="email"
-              onChange={formHasChanged}
-              defaultValue={submittedEmail ? submittedEmail : ""}
-              required
-            />
-            <Button
-              variant="contained"
-              color={isSubmitted ? "secondary" : "primary"}
-              type="submit"
-              disabled={isSubmitted && !isFormChanged}
-            >
-              {isSubmitted ? "SAVED" : "SAVE"}
-            </Button>
+        <AccordionDetails className="flex flex-col justify-between items-center md:flex-row md:flex-wrap">
+          <form
+            ref={formEl}
+            onSubmit={submitted}
+            className="w-full flex flex-col gap-2 md:flex-row md:flex-wrap md:justify-between"
+          >
+            <div className="flex flex-col gap-2 md:flex-row md:w-full">
+              <TextField
+                label="First Name"
+                variant="outlined"
+                name="firstName"
+                onChange={formHasChanged}
+                defaultValue={submittedFirstName ? submittedFirstName : ""}
+                required
+                className="md:w-full"
+              />
+              <TextField
+                label="Last Name"
+                variant="outlined"
+                name="lastName"
+                onChange={formHasChanged}
+                defaultValue={submittedLastName ? submittedLastName : ""}
+                required
+                className="md:w-full"
+              />
+            </div>
+            <div className="flex flex-col gap-2 md:w-full">
+              <TextField
+                label="Email"
+                variant="outlined"
+                name="email"
+                type="email"
+                onChange={formHasChanged}
+                defaultValue={submittedEmail ? submittedEmail : ""}
+                required
+                className="md:w-full"
+              />
+              <button
+                variant="contained"
+                type="submit"
+                disabled={isSubmitted && !isFormChanged}
+                className={`inline-block bg-white hover:bg-gray-100 border-2 border-black transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black font-bold py-2 px-4 rounded w-full ${
+                  isSubmitted && !isFormChanged
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                {isSubmitted ? "SAVED" : "SAVE"}
+              </button>
+            </div>
           </form>
         </AccordionDetails>
       </Accordion>

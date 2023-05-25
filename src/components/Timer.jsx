@@ -24,9 +24,9 @@ function Timer() {
     }
   }, [timeRemaining, setTimeRemaining, router]);
 
-   // when is 1 second left , navigate back to "/"
+  // when is 1 second left , navigate back to "/"
   const lastSec = timeRemaining == 1000;
- 
+
   if (lastSec) {
     dispatch({ action: "EMPTY_BASKET" });
     router.push("/");
@@ -50,16 +50,10 @@ function Timer() {
 
   return (
     <div className={timeClass}>
-       {/* placeholder for the timer  */}
+      {/* placeholder for the timer  */}
       {showTimer ? formatTime(timeRemaining) : "05:00"}
     </div>
   );
 }
 
 export default Timer;
-
-
-
-
-
-  

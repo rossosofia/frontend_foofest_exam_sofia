@@ -8,6 +8,7 @@ function Timer() {
   const dispatch = useContext(DispatchContext);
   const router = useRouter();
   const [showTimer, setShowTimer] = useState(true);
+  
 
   useEffect(() => {
     if (timeRemaining > 0) {

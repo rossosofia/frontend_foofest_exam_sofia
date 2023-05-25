@@ -16,7 +16,7 @@ export default function FlowLayout({ children }) {
   const currentStep = steps.findIndex((step) => router.pathname === step.path);
 
   return (
-    <>
+    <div className="m-10 p-5">
       <Stepper activeStep={currentStep} alternativeLabel>
         {steps.map((step) => (
           <Step key={step.label}>
@@ -25,8 +25,8 @@ export default function FlowLayout({ children }) {
         ))}
       </Stepper>
 
-      {children}
+      <div className="mt-5">{children}</div>
       <Basket />
-    </>
+    </div>
   );
 }

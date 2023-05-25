@@ -8,6 +8,7 @@ export default function Thanks() {
   const dispatch = useContext(DispatchContext);
 
   useEffect(() => {
+    let isMounted = true;
     let duration = 7 * 1000;
     let animationEnd = Date.now() + duration;
     let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -40,10 +41,14 @@ export default function Thanks() {
 
     setTimeout(() => {
       dispatch({ action: "EMPTY_BASKET" });
-      router.push("/");
+      if (isMounted) {
+        // Only push to router if component is still mounted
+        router.push("/");
+      }
     }, duration);
 
     return () => {
+      isMounted = false; // Update the variable when the component unmounts
       clearInterval(interval);
     };
   }, [dispatch, router]);

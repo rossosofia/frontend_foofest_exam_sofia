@@ -13,7 +13,6 @@ const CampingCard = (props) => {
       action: "CHOOSE_AREA",
       payload: {
         area: props.area,
-        description: props.description,
         spots: props.spots,
         available: props.available,
       },
@@ -32,7 +31,7 @@ const CampingCard = (props) => {
 
         <div className="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className=" transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
-            <h2 className="mt-4 text-xl font-medium sm:text-2xl">
+            <h2 className="m-2 text-xl font-medium sm:text-2xl">
               {props.area}
             </h2>
           </div>
@@ -47,8 +46,9 @@ const CampingCard = (props) => {
             </p>
 
             <p className="mt-4 mb-4 text-sm sm:text-base">
-              A Nordic-themed camping area, transporting guests to the days of
-              the Vikings with longhouses and rune-carved totems.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Doloremque exercitationem eveniet a dolorem? Quia, aspernatur
+              culpa mollitia dicta tempore inventore?
             </p>
 
             <Anchor

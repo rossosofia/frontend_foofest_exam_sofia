@@ -4,12 +4,15 @@ import { StoreContext } from "@/context/storeContext";
 function Basket() {
   const state = useContext(StoreContext);
 
-  const tentTotalPrice = [...state.tentBasket.slice(1)].reduce((total, item) => {
-    return total + (item.price * item.tentAmount);
-  }, 0);
+  const tentTotalPrice = [...state.tentBasket.slice(1)].reduce(
+    (total, item) => {
+      return total + item.price * item.tentAmount;
+    },
+    0
+  );
 
   const ticketTotalPrice = state.ticketBasket.reduce((total, item) => {
-    return total + (item.price * item.amount);
+    return total + item.price * item.amount;
   }, 0);
 
   const greenFeeTotalPrice = state.greenFee.reduce((total, item) => {
@@ -36,17 +39,18 @@ function Basket() {
         <ul>
           {/* {i did this because tentBasket[0]= hasTent} */}
           {[...state.tentBasket.slice(1)].map((item) => {
-            const totalTentPrice = item.tentAmount !== 0 ? item.price * item.tentAmount : 0;
+            const totalTentPrice =
+              item.tentAmount !== 0 ? item.price * item.tentAmount : 0;
             return (
               <li key={item.id}>
-                {item.tentName} tent: {item.price} x {item.tentAmount} = {totalTentPrice}
+                {item.tentName} tent: {item.price} x {item.tentAmount} ={" "}
+                {totalTentPrice}
               </li>
             );
           })}
         </ul>
         <p>Total Tent Price: {tentTotalPrice}</p>
 
-       
         <ul>
           {state.greenFee.map((item) => (
             <li key={item.id}>Green Fee: {item.price}</li>

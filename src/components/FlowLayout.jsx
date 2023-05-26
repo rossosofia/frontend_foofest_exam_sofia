@@ -5,7 +5,7 @@ export default function FlowLayout({ children }) {
   const router = useRouter();
   const steps = [
     { label: "Tickets", path: "/tickets" },
-    { label: "Accommodations", path: "/accommodations" },
+    { label: "Accommodations", path: "/accomodations" },
     { label: "Guests Info", path: "/guests" },
     { label: "Payment", path: "/payment" },
   ];

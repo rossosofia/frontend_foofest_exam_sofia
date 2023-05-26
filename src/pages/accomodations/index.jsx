@@ -15,6 +15,10 @@ export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
 
+  // store radio button data
+  const hasTent = state.tentBasket[0]?.hasTent;
+  const hasGreen = state.greenFee[0]?.hasGreen;
+
   //i do that to disable the button
   const tentNotChecked = state.tentBasket.length === 0;
 
@@ -89,6 +93,7 @@ export default function Accomodations() {
   function emptyTentBasket() {
     dispatch({ action: "EMPTY_TENT_BASKET" });
   }
+
   return (
     <FlowLayout>
       <Timer />
@@ -97,10 +102,7 @@ export default function Accomodations() {
           <div className="p-8">
             <FormControlLabel
               control={
-                <Checkbox
-                  checked={state.checked}
-                  onChange={selectGreenOption}
-                />
+                <Checkbox checked={hasGreen} onChange={selectGreenOption} />
               }
               label="Green Option / 249-"
             />
@@ -113,6 +115,7 @@ export default function Accomodations() {
                     control={<Radio />}
                     label="Rent a tent"
                     onClick={chooseTentOption}
+                    checked={hasTent}
                   />
                   <TentCard />
                 </div>
@@ -126,6 +129,11 @@ export default function Accomodations() {
                   notChooseTentOption();
                   emptyTentBasket();
                 }}
+                checked={
+                  typeof hasTent === "undefined" || hasTent === true
+                    ? false
+                    : true
+                }
               />
             </RadioGroup>
           </div>

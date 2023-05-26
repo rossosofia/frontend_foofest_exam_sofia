@@ -9,6 +9,14 @@ export default function Thanks() {
   const router = useRouter();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);
+  let totalTickets = state.ticketBasket.reduce(
+    (acc, item) => acc + item.amount,
+    0
+  );
+  let totalPrice = state.ticketBasket.reduce(
+    (acc, item) => acc + item.amount * item.price,
+    0
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -68,16 +76,13 @@ export default function Thanks() {
             Congratulations, see you at Foofest Extravaganza!
           </h2>
           <p className="mt-2 text-gray-500">Here are your ticket details:</p>
-          {state.ticketBasket.map((item, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="font-semibold">
-                {item.name}: {item.amount}
-              </h3>
-              <div className="grid place-items-center align-middle mt-2 max-w-10">
-                <Barcode value={uuidv4()} width={1} height={80} margin={0} />
-              </div>
+          <div className="mb-4">
+            <h3 className="font-semibold">Total Tickets: {totalTickets}</h3>
+            <h3 className="font-semibold">Total Price: {totalPrice} DKK</h3>
+            <div className="grid place-items-center align-middle mt-2 max-w-10 sm:block hidden">
+              <Barcode value={uuidv4()} width={1} height={80} margin={0} />
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

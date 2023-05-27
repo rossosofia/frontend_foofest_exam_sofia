@@ -1,8 +1,3 @@
-/**
- * @param req {import('next').NextApiRequest}
- * @param res {import('next').NextApiResponse}
- */
-
 //////------POST------///////
 
 export default async function handler(req, res) {

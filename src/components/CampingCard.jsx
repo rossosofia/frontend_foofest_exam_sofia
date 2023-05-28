@@ -76,7 +76,9 @@ const CampingCard = (props) => {
               Spots available {props.available} / {props.spots}
             </p>
 
-            <p className="mt-4 mb-4 text-sm sm:text-base">{description}</p>
+            <p className="mt-4 mb-4 text-sm sm:text-base pb-10">
+              {description}
+            </p>
 
             <Anchor
               href="/tickets/"

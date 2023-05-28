@@ -9,7 +9,7 @@ export default function Campingsite({ data }) {
   useEffect(() => {
     dispatch({ action: "EMPTY_BASKET" });
   }, [dispatch]);
-  // pt-10 px-10 mt-[5rem]
+
   return (
     <Layout>
       <section className="flex flex-col justify-between px-10 h-full">

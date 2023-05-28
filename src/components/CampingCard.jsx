@@ -72,8 +72,11 @@ const CampingCard = (props) => {
               {props.area}
             </h3>
 
-            <p className="mt-4 mb-4 text-sm sm:text-base">
-              Spots available {props.available} / {props.spots}
+            <p className="mt-4 mb-4 text-sm sm:text-base italic">
+              Spots available{" "}
+              <span className="not-italic">
+                {props.available} / {props.spots}
+              </span>
             </p>
 
             <p className="mt-4 mb-4 text-sm sm:text-base pb-10">
@@ -85,7 +88,11 @@ const CampingCard = (props) => {
               onClick={chooseArea}
               disabled={!isAvailable}
             >
-              Find Tickets
+              {isAvailable ? (
+                "Find Tickets"
+              ) : (
+                <span className="text-red">Sold Out</span>
+              )}
             </Anchor>
           </div>
         </div>

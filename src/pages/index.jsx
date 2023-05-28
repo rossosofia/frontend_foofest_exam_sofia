@@ -8,7 +8,7 @@ export default function Home() {
     <Layout>
       <Anchor
         href="/campingsite/"
-        className="fixed bottom-5 right-5 ml-2 mb-4  text-3xl md:text-4x1 z-50 "
+        className="fixed bottom-5 right-5 text-2xl md:text-3xl z-50 "
       >
         <p className="font-normal text-sm">FooFest Extravaganza 2023</p>
         BUY TICKETS <span className="ml-2">→</span>

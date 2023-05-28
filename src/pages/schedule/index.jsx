@@ -53,11 +53,11 @@ export default function Schedule() {
               key={stage}
               className="bg-white rounded shadow p-4 text-center"
             >
-              <h2 className="text-2xl font-bold mb-4">{stage}</h2>
+              <h2 className="text-5xl font-bold mb-4">{stage}</h2>
               {Object.entries(days).map(([day, events], index) => (
                 <div key={day}>
                   {index > 0 && <hr className="my-4" />} {/* Add a separator */}
-                  <h3 className="text-xl mb-2">{formatDay(day)}</h3>{" "}
+                  <h3 className="text-3xl mb-2">{formatDay(day)}</h3>{" "}
                   {/* Format the day name */}
                   <div role="list" className="mb-4">
                     {events.map((event, index) => {
@@ -68,7 +68,7 @@ export default function Schedule() {
 
                       return (
                         <div role="listitem" key={index} className="mb-3 p-3 ">
-                          <p className="text-gray-600 text-bg font-medium text-center">
+                          <p className="text-xl font-medium text-center">
                             {event.start} - {event.end}
                           </p>
                           <Anchor

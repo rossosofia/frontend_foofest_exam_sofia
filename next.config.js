@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       "brazen-fortune-fight.glitch.me",
       "images.unsplash.com",
+      "source.unsplash.com",
       "placeimg.com",
     ],
   },

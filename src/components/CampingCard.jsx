@@ -57,7 +57,7 @@ const CampingCard = (props) => {
 
   return (
     <>
-      <div className="group relative block h-[40vh] md:h-[65vh] ">
+      <div className="group relative block h-[55vh] md:h-[65vh] ">
         <span className="absolute inset-0 border-2 border-dashed border-blue"></span>
 
         <div className="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">

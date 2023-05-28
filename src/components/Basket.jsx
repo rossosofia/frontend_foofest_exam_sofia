@@ -27,7 +27,7 @@ function Basket() {
     tentTotalPrice + ticketTotalPrice + greenFeeTotalPrice + bookingFee;
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-8xl p-8">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-8xl p-8 mb-4">
       <h2 className="uppercase tracking-wide text-sm text-black font-semibold">
         Basket
       </h2>

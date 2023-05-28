@@ -14,7 +14,7 @@ export default function Gallery() {
   // displaying random images in the gallery
   const galleryImages = Array.from({ length: 10 }, (_, index) => ({
     id: index,
-    randomImageUrl: `https://placeimg.com/720/480/nightlife?${index + 1}`,
+    randomImageUrl: `https://source.unsplash.com/720x480/?concert?${index + 1}`,
     bandName: getRandomBandName(),
   }));
 

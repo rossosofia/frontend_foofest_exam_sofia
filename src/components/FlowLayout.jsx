@@ -14,10 +14,10 @@ export default function FlowLayout({ children }) {
   const currentStep = steps.findIndex((step) => router.pathname === step.path);
 
   return (
-    <div className="m-5 p-5 flex flex-col h-screen ">
-      <div className="flex-grow">
+    <div className="m-10 pt-5 pr-5 pl-5 pb-10 flex flex-col h-screen max-w-7xl mx-auto">
+      <div>
         <h2 className="sr-only">Steps</h2>
-        <div className="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-gray-100">
+        <div className="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-gray-100 mb-10">
           <ol className="relative z-10 flex justify-between text-sm font-medium text-gray-500">
             {steps.map((step, index) => (
               <li
@@ -38,12 +38,7 @@ export default function FlowLayout({ children }) {
         </div>
       </div>
 
-      <div className="flex-grow flex flex-col sm:flex-row gap-10">
-        <div className="sm:w-1/2">{children}</div>
-        <div className="sm:w-1/2">
-          <Basket />
-        </div>
-      </div>
+      {children}
     </div>
   );
 }

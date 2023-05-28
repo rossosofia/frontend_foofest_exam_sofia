@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
+import Timer from "./Timer";
 
 function Basket() {
   const state = useContext(StoreContext);
@@ -26,10 +27,11 @@ function Basket() {
     tentTotalPrice + ticketTotalPrice + greenFeeTotalPrice + bookingFee;
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4 p-8">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-8xl p-8">
       <h2 className="uppercase tracking-wide text-sm text-black font-semibold">
         Basket
       </h2>
+
       <div>
         <h2 className="mt-2 text-gray-500">Tickets</h2>
         <ul>

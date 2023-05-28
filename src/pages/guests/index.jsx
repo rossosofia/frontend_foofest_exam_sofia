@@ -4,6 +4,7 @@ import GuestAccordion from "@/components/GuestAccordian";
 import { useContext, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
 import Timer from "@/components/Timer";
+import Basket from "@/components/Basket";
 
 export default function Guests() {
   const state = useContext(StoreContext);
@@ -44,25 +45,49 @@ export default function Guests() {
 
   return (
     <FlowLayout>
-      <Timer />
-      {[...Array(totalTickets)].map((_, i) => (
-        <GuestAccordion
-          key={i}
-          index={i}
-          totalAccordions={totalTickets}
-          isExpanded={i === expandedIndex}
-          expandedIndex={expandedIndex}
-          setExpandedIndex={setExpandedIndex}
-          onFormSubmitted={handleFormSubmitted}
-        />
-      ))}
-      <Anchor
-        className="mt-4 w-full text-center"
-        href="/payment/"
-        disabled={!allFormsSubmitted}
-      >
-        GO TO PAYMENT
-      </Anchor>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+        <section>
+          <h1 className="mb-6 text-2xl">Guest Information</h1>
+          <p className="mb-6">
+            To make your FooFest Extravaganza experience as smooth as possible,
+            we gather essential details about each guest.
+          </p>
+          <p className="mb-6">
+            We have organized this information into handy accordion-style
+            sections. Each section requests only the most critical information,
+            ensuring your registration is efficient and straightforward.
+          </p>
+          <p className="mb-6">
+            We value your privacy and assure that all personal information is
+            kept secure and used only for the purpose of enhancing your festival
+            experience.
+          </p>
+
+          <Timer />
+          {[...Array(totalTickets)].map((_, i) => (
+            <GuestAccordion
+              key={i}
+              index={i}
+              totalAccordions={totalTickets}
+              isExpanded={i === expandedIndex}
+              expandedIndex={expandedIndex}
+              setExpandedIndex={setExpandedIndex}
+              onFormSubmitted={handleFormSubmitted}
+            />
+          ))}
+          <Anchor
+            className="mt-4 w-full text-center"
+            href="/payment/"
+            disabled={!allFormsSubmitted}
+          >
+            GO TO PAYMENT
+          </Anchor>
+        </section>
+
+        <section>
+          <Basket />
+        </section>
+      </div>
     </FlowLayout>
   );
 }

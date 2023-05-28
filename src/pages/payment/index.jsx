@@ -1,14 +1,20 @@
 import FlowLayout from "@/components/FlowLayout";
-import { useRouter } from "next/router";
-import Anchor from "@/components/Anchor";
 import CreditCardForm from "@/components/CreditCard";
 import Timer from "@/components/Timer";
+import Basket from "@/components/Basket";
 
 export default function Payments() {
   return (
     <FlowLayout>
-      <Timer />
-      <CreditCardForm />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+        <section>
+          <Timer />
+          <CreditCardForm />
+        </section>
+        <section>
+          <Basket />
+        </section>
+      </div>
     </FlowLayout>
   );
 }

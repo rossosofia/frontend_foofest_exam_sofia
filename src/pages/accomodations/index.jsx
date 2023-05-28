@@ -8,6 +8,7 @@ import { StoreContext, DispatchContext } from "@/context/storeContext";
 import Timer from "@/components/Timer";
 import CalculateTents from "@/components/CalculateTentss";
 import { v4 as uuidv4 } from "uuid";
+import Basket from "@/components/Basket";
 
 //TEST
 
@@ -17,7 +18,7 @@ export default function Accomodations() {
 
   // store radio button data
   const hasTent = state.tentBasket[0]?.hasTent;
-  const hasGreen = state.greenFee[0]?.hasGreen;
+  const hasGreen = state.greenFee[0]?.hasGreen || false;
 
   //i do that to disable the button
   const tentNotChecked = state.tentBasket.length === 0;
@@ -96,57 +97,81 @@ export default function Accomodations() {
 
   return (
     <FlowLayout>
-      <Timer />
-      <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4">
-        <div className="md:flex">
-          <div className="p-8">
-            <FormControlLabel
-              control={
-                <Checkbox checked={hasGreen} onChange={selectGreenOption} />
-              }
-              label="Green Option / 249-"
-            />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+        <section>
+          <h1 className="mb-6 text-2xl">Choose your accommodation!</h1>
+          <p className="mb-6">
+            At FooFest Extravaganza, we offer flexible accommodation options to
+            enhance your festival experience.
+          </p>
+          <p className="mb-6">
+            You are welcome to bring your own tent and become part of our
+            vibrant camping community. If you are looking for convenience,
+            consider our pre-setup tents, ready for your arrival.
+          </p>
+          <p className="mb-6">
+            Additionally, we offer an optional Green Fee to offset the
+            environmental impact of the festival. It is all about making choices
+            that suit you best!
+          </p>
 
-            <RadioGroup>
-              <label>
-                <div>
+          <Timer />
+          <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-xl mb-4 mt-4">
+            <div className="md:flex">
+              <div className="p-8">
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={hasGreen} onChange={selectGreenOption} />
+                  }
+                  label="Green Option / 249-"
+                />
+
+                <RadioGroup>
+                  <label>
+                    <div>
+                      <FormControlLabel
+                        value="set-up-tent"
+                        control={<Radio />}
+                        label="Rent a tent"
+                        onClick={chooseTentOption}
+                        checked={hasTent}
+                      />
+                      <TentCard />
+                    </div>
+                  </label>
+
                   <FormControlLabel
-                    value="set-up-tent"
+                    value="own-tent"
                     control={<Radio />}
-                    label="Rent a tent"
-                    onClick={chooseTentOption}
-                    checked={hasTent}
+                    label="No, I'm bringing my own tent"
+                    onClick={() => {
+                      notChooseTentOption();
+                      emptyTentBasket();
+                    }}
+                    checked={
+                      typeof hasTent === "undefined" || hasTent === true
+                        ? false
+                        : true
+                    }
                   />
-                  <TentCard />
-                </div>
-              </label>
-
-              <FormControlLabel
-                value="own-tent"
-                control={<Radio />}
-                label="No, I'm bringing my own tent"
-                onClick={() => {
-                  notChooseTentOption();
-                  emptyTentBasket();
-                }}
-                checked={
-                  typeof hasTent === "undefined" || hasTent === true
-                    ? false
-                    : true
-                }
-              />
-            </RadioGroup>
+                </RadioGroup>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <Anchor
-        href="/guests/"
-        disabled={tentNotChecked}
-        className="w-full text-center"
-      >
-        GO TO GUESTS
-      </Anchor>
+          <Anchor
+            href="/guests/"
+            disabled={tentNotChecked}
+            className="w-full text-center"
+          >
+            GO TO GUESTS
+          </Anchor>
+        </section>
+
+        <section>
+          <Basket />
+        </section>
+      </div>
     </FlowLayout>
   );
 }

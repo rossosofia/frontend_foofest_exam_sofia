@@ -13,7 +13,7 @@ export default function Home() {
         <p className="font-normal text-sm">FooFest Extravaganza 2023</p>
         BUY TICKETS <span className="ml-2">→</span>
       </Anchor>
-      <section className="h-screen flex flex-col justify-center items-center px-10">
+      <section className="h-screen w-screen flex flex-col justify-center items-center ">
         <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white text-center py-4">
           FOOFEST <br /> EXTRAVAGANZA
         </h1>

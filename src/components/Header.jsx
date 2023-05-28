@@ -44,7 +44,7 @@ export default function Header() {
                 <Link
                   href="/schedule"
                   onClick={closeMenu}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                  className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
                   LINE UP 2023
                 </Link>
@@ -53,7 +53,7 @@ export default function Header() {
                 <Link
                   href="/campingsite"
                   onClick={closeMenu}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                  className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
                   HOW TO REACH US
                 </Link>
@@ -62,7 +62,7 @@ export default function Header() {
                 <Link
                   href="/campingsite"
                   onClick={closeMenu}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                  className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
                   CAMPING SITE
                 </Link>
@@ -71,7 +71,7 @@ export default function Header() {
                 <Link
                   href="/campingsite"
                   onClick={closeMenu}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
+                  className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
                   CONTACT US
                 </Link>

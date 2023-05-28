@@ -14,7 +14,7 @@ export default function Home() {
         BUY TICKETS <span className="ml-2">→</span>
       </Anchor>
       <section className="h-screen w-screen flex flex-col justify-center items-center ">
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white text-center py-4">
+        <h1 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-white text-center py-4">
           FOOFEST <br /> EXTRAVAGANZA
         </h1>
         <p className="font-bold text-custom-purple text-center text-2xl md:text-4xl pb-2">
@@ -25,8 +25,8 @@ export default function Home() {
         </p>
       </section>
 
-      <section>
-        <div className="flex justify-between items-center my-10 py-10 px-10 pb-5">
+      <section className="pb-10">
+        <div className="flex flex-wrap gap-4 justify-between items-center my-10 py-10 px-10 pb-5">
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-custom-beige font-medium">
             FEATURED ARTISTS
           </h2>

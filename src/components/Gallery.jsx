@@ -53,7 +53,7 @@ export default function Gallery() {
   return (
     <div
       id="galleryContainer"
-      className="flex flex-nowrap overflow-x-auto overflow-y-hidden my-4 hide-scroll-bar"
+      className="flex flex-nowrap overflow-x-auto overflow-y-scroll my-4 hide-scroll-bar"
     >
       {galleryImages.map((image) => (
         <div key={image.id} className="flex-shrink-0 w-96 md:w-120 relative">

@@ -79,7 +79,7 @@ export default function Thanks() {
           <div className="mb-4">
             <h3 className="font-semibold">Total Tickets: {totalTickets}</h3>
             <h3 className="font-semibold">Total Price: {totalPrice} DKK</h3>
-            <div className="grid place-items-center align-middle mt-2 max-w-10 sm:block ">
+            <div className=" place-items-center align-middle mt-2 max-w-10 sm:block hidden">
               <Barcode value={uuidv4()} width={1} height={80} margin={0} />
             </div>
           </div>

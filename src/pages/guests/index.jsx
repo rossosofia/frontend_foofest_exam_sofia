@@ -56,7 +56,11 @@ export default function Guests() {
           onFormSubmitted={handleFormSubmitted}
         />
       ))}
-      <Anchor href="/payment/" disabled={!allFormsSubmitted}>
+      <Anchor
+        className="mt-4 w-full text-center"
+        href="/payment/"
+        disabled={!allFormsSubmitted}
+      >
         GO TO PAYMENT
       </Anchor>
     </FlowLayout>

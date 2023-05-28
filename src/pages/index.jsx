@@ -8,7 +8,7 @@ export default function Home() {
     <Layout>
       <Anchor
         href="/campingsite/"
-        className="fixed bottom-5 right-5 text-4xl z-50"
+        className="fixed bottom-5 right-5 text-3xl md:text-4x1 z-50 "
       >
         <p className="font-normal text-sm">FooFest Extravaganza 2023</p>
         BUY TICKETS <span className="ml-2">→</span>
@@ -37,17 +37,17 @@ export default function Home() {
         <Gallery></Gallery>
       </section>
 
-      <section className="mx-auto h-[70vh] flex flex-col md:flex-row items-center justify-center py-10 px-10">
+      <section className="mx-auto h-[70vh] flex flex-col md:flex-row items-center justify-center py-10 px-10 mb-10">
         <div className="flex flex-col justify-between  mb-4 md:mb-0 md:mr-4 md:flex-1">
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-custom-beige font-medium pb-5">
             JOIN THE COMMUNITY
           </h2>
-          <p className="text-custom-beige w-5/6 pb-8">
+          <p className="text-custom-beige w-full md:w-5/6 pb-8">
             Stay in tune with the latest updates, exclusive offers, and
             thrilling announcements from the heart of FooFest festival.
           </p>
-          <div className="inline-block bg-custom-beige hover:bg-custom-beige border-2 border-custom-purple transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black my-4 py-6 px-6 rounded w-5/6 ">
-            <h3 className="text-2xl font-semibold">
+          <div className="inline-block bg-custom-beige hover:bg-custom-beige border-2 border-custom-purple transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black my-4 py-6 px-6 rounded w-full md:w-5/6 ">
+            <h3 className="text-1xl md:text-2xl font-semibold">
               Subscribe to our newsletter
             </h3>
             <form>

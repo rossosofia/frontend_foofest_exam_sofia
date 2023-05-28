@@ -12,7 +12,7 @@ export default function Campingsite({ data }) {
   // pt-10 px-10 mt-[5rem]
   return (
     <Layout>
-      <section className="flex flex-col justify-between px-10 h-screen">
+      <section className="flex flex-col justify-between px-10 h-full">
         <div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white py-4 pt-10 mt-[5rem]">
             Discover our camping areas

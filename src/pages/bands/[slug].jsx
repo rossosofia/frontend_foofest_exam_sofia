@@ -5,6 +5,9 @@ import Layout from "@/components/Layout";
 
 const baseUrl = "https://brazen-fortune-fight.glitch.me";
 
+// The default Unsplash image URL to use if the band's logo URL is not valid
+const defaultImageUrl = "https://placeimg.com/720/480/nightlife?12881";
+
 export default function BandPage() {
   const router = useRouter();
   const { slug } = router.query;
@@ -23,6 +26,10 @@ export default function BandPage() {
         return response.json();
       })
       .then((bandData) => {
+        const logoUrl = bandData.logo.startsWith("http")
+          ? bandData.logo
+          : defaultImageUrl;
+        bandData.logo = logoUrl;
         setBand(bandData);
       })
       .catch(setError);
@@ -36,9 +43,6 @@ export default function BandPage() {
     return "Loading...";
   }
 
-  // Generate a random Unsplash URL
-  const randomImageUrl = `https://source.unsplash.com/500x300/?music?${Math.random()}`;
-
   return (
     <Layout>
       <section className="flex flex-col justify-between px-10 h-full">
@@ -48,10 +52,10 @@ export default function BandPage() {
           </h1>
         </div>
       </section>
-      <section className="flex flex-col justify-between px-10 h-full mb-8">
+      <div className="mx-auto container p-4">
         <Image
-          src={randomImageUrl}
-          alt="Random Band Image"
+          src={band.logo}
+          alt={band.logoCredits ? band.logoCredits : band.name}
           className="object-cover rounded mb-4"
           width={500}
           height={300}
@@ -80,7 +84,7 @@ export default function BandPage() {
           Bio
         </h2>
         <p className="text-white">{band.bio}</p>
-      </section>
+      </div>
     </Layout>
   );
 }

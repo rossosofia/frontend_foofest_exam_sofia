@@ -1,22 +1,29 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Gallery() {
   const [bands, setBands] = useState(null);
 
   // Helper function to generate a random band name index
-  const getRandomBandName = () => {
-    const bandNames = bands ? bands.map((band) => band.name) : [];
-    const randomIndex = Math.floor(Math.random() * bandNames.length);
-    return bandNames[randomIndex];
+  const getRandomBand = () => {
+    if (bands) {
+      const randomIndex = Math.floor(Math.random() * bands.length);
+      return bands[randomIndex];
+    }
+    return null;
   };
 
   // displaying random images in the gallery
-  const galleryImages = Array.from({ length: 10 }, (_, index) => ({
-    id: index,
-    randomImageUrl: `https://source.unsplash.com/720x480/?concert?${index + 1}`,
-    bandName: getRandomBandName(),
-  }));
+  const galleryImages = Array.from({ length: 10 }, (_, index) => {
+    const randomBand = getRandomBand();
+    return {
+      id: index,
+      randomImageUrl: `https://source.unsplash.com/400x400/?music?${index + 1}`,
+      bandName: randomBand ? randomBand.name : "",
+      bandSlug: randomBand ? randomBand.slug : "",
+    };
+  });
 
   // animate the gallery
   useEffect(() => {
@@ -58,12 +65,14 @@ export default function Gallery() {
       {galleryImages.map((image) => (
         <div key={image.id} className="flex-shrink-0 w-96 md:w-120 relative">
           <div className="relative w-full h-96 md:h-120">
-            <Image
-              src={image.randomImageUrl}
-              alt="Gallery Image"
-              layout="fill"
-              objectFit="cover"
-            />
+            <Link href={`/bands/${image.bandSlug}`}>
+              <Image
+                src={image.randomImageUrl}
+                alt="Random images from Unsplash.com"
+                layout="fill"
+                objectFit="cover"
+              />
+            </Link>
           </div>
           <div className="text-white text-center mt-2 pt-4 text-2xl">
             {image.bandName}

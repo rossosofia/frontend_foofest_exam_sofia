@@ -17,6 +17,7 @@ export default function Gallery() {
   // displaying random images in the gallery
   const galleryImages = Array.from({ length: 10 }, (_, index) => {
     const randomBand = getRandomBand();
+    const imageNumber = Math.floor(Math.random() * 6) + 1;
     return {
       id: index,
       randomImageUrl: `https://source.unsplash.com/random/?music,performance,concert,festival,bands?grayscale?${
@@ -24,6 +25,7 @@ export default function Gallery() {
       }`,
       bandName: randomBand ? randomBand.name : "",
       bandSlug: randomBand ? randomBand.slug : "",
+      imageNumber,
     };
   });
 
@@ -69,7 +71,7 @@ export default function Gallery() {
           <div className="relative w-full h-96 md:h-120">
             <Link href={`/bands/${image.bandSlug}`}>
               <Image
-                src="/band1.jpg"
+                src={`/band${image.imageNumber}.jpg`}
                 alt="Random images from Unsplash.com"
                 layout="fill"
                 objectFit="cover"

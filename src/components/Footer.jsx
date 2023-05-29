@@ -22,11 +22,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <Typography variant="h6">Web and Design</Typography>
+          <Typography variant="h6">Design</Typography>
           <Typography variant="body1">Function Agency</Typography>
         </div>
 
-        <div>
+        <div className=" col-span-2">
           <Typography variant="h6">Production partner</Typography>
           <Typography variant="body1">Jonas Holbeck</Typography>
         </div>

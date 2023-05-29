@@ -42,7 +42,7 @@ export default function Header() {
             <ul className="space-y-10">
               <li className="group">
                 <Link
-                  href="/schedule"
+                  href="/all-bands"
                   onClick={closeMenu}
                   className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
@@ -51,11 +51,11 @@ export default function Header() {
               </li>
               <li className="group">
                 <Link
-                  href="/all-bands"
+                  href="/schedule"
                   onClick={closeMenu}
                   className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
-                  ALL BANDS
+                  SCHEDULE
                 </Link>
               </li>
               <li className="group">

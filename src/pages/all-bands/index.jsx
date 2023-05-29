@@ -38,32 +38,51 @@ export default function AllBands() {
       <section className="flex flex-col justify-between px-10 h-full">
         <div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white py-4 pt-10 mt-[5rem]">
-            Discover all bands
+            Discover our Line-up
           </h1>
           <h2 className="text-2xl md:text-2xl text-white font-light pb-10 w-full lg:w-1/2">
             FooFest Extravaganza offers distinct music, each band with its own
-            unique atmosphere.
+            unique atmosphere. Here you can see our full line-up for 2023.
           </h2>
         </div>
       </section>
-      <div className="container mx-auto p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {bands.map((band) => (
-            <div key={band.name} className="text-white p-4">
-              <h2 className="text-3xl text-center font-bold mb-2">
-                {band.name}
-              </h2>
-              <p className=" text-center pb-2">Genre: {band.genre}</p>
-              <Anchor
-                className="flex justify-center"
+      <section className="container mx-auto p-4 text-center">
+        <div className="grid grid-cols-12 gap-4 text-center items-center">
+          {bands.map((band, index) => {
+            let textStyle;
+            let gridColumn;
+
+            // Check the index and set the textStyle accordingly
+            if (index < 1) {
+              textStyle = "text-5xl font-bold text-center"; // large
+              gridColumn = "span 12";
+            } else if (index < 16) {
+              textStyle = "text-4xl font-medium"; // medium
+              gridColumn = "span 4";
+            } else if (index < 28) {
+              textStyle = "text-3xl"; // smaller
+              gridColumn = "span 3"; // spans 1 column
+            } else if (index < 50) {
+              textStyle = "text-1xl"; // normal
+              gridColumn = "span 2"; // spans 1 column
+            } else {
+              textStyle = "text-1xl"; // normal
+              gridColumn = "span 1"; // spans 1 column
+            }
+
+            return (
+              <a
                 href={`/bands/${band.slug}`}
+                key={band.name}
+                className={`text-white p-4 ${textStyle}`}
+                style={{ gridColumn }} // apply gridColumn value here
               >
-                View Details
-              </Anchor>
-            </div>
-          ))}
+                <h2 className="text-center">{band.name}</h2>
+              </a>
+            );
+          })}
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

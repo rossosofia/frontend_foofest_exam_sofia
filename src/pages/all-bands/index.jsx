@@ -50,9 +50,18 @@ export default function AllBands() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {bands.map((band) => (
             <div key={band.name} className="bg-white rounded shadow p-4">
-              <h2 className="text-xl font-bold mb-2">{band.name}</h2>
-              <p className="text-gray-600 pb-2">Genre: {band.genre}</p>
-              <Anchor href={`/bands/${band.slug}`}>View Details</Anchor>
+              <h2 className="text-3xl text-center font-bold mb-2">
+                {band.name}
+              </h2>
+              <p className="text-gray-600 text-center pb-2">
+                Genre: {band.genre}
+              </p>
+              <Anchor
+                className="flex justify-center"
+                href={`/bands/${band.slug}`}
+              >
+                View Details
+              </Anchor>
             </div>
           ))}
         </div>

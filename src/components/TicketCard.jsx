@@ -136,6 +136,9 @@ const TicketCard = () => {
             <div className="uppercase tracking-wide text-sm text-black font-semibold">
               Regular Tickets
             </div>
+            <div className="uppercase tracking-wide text-sm text-black">
+              799,-
+            </div>
             <p className="mt-2 text-gray-500">
               Enjoy the festival with our standard ticket.
             </p>

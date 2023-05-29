@@ -49,13 +49,11 @@ export default function AllBands() {
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {bands.map((band) => (
-            <div key={band.name} className="bg-white rounded shadow p-4">
+            <div key={band.name} className="text-white p-4">
               <h2 className="text-3xl text-center font-bold mb-2">
                 {band.name}
               </h2>
-              <p className="text-gray-600 text-center pb-2">
-                Genre: {band.genre}
-              </p>
+              <p className=" text-center pb-2">Genre: {band.genre}</p>
               <Anchor
                 className="flex justify-center"
                 href={`/bands/${band.slug}`}

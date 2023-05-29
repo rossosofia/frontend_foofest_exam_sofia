@@ -61,14 +61,11 @@ export default function Schedule() {
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(schedule).map(([stage, days]) => (
-            <div
-              key={stage}
-              className="bg-white rounded shadow p-4 text-center"
-            >
+            <div key={stage} className="text-white p-4 text-center">
               <h2 className="text-5xl font-bold mb-4">{stage}</h2>
               {Object.entries(days).map(([day, events], index) => (
                 <div key={day}>
-                  {index > 0 && <hr className="my-4" />} {/* Add a separator */}
+                  {index > 0 && <hr className="my-4" />}
                   <h3 className="text-3xl mb-2">{formatDay(day)}</h3>{" "}
                   {/* Format the day name */}
                   <div role="list" className="mb-4">

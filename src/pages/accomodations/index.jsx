@@ -95,7 +95,7 @@ export default function Accomodations() {
 
   return (
     <FlowLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 max-w-7xl mx-auto items-start">
         <section>
           <h1 className="mb-6 text-2xl">Choose your accommodation!</h1>
           <p className="mb-6">

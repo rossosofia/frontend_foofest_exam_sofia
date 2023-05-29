@@ -5,11 +5,11 @@ import { StoreContext } from "@/context/storeContext";
 import Basket from "@/components/Basket";
 
 export default function Tickets() {
-  const state = useContext(StoreContext); // use the StoreContext to access the state
+  const state = useContext(StoreContext);
 
   return (
     <FlowLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 max-w-7xl mx-auto items-start">
         <section>
           <h1 className="mb-6 text-2xl">
             You are buying tickets for: {state.area}

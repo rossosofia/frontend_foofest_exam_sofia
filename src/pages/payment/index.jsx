@@ -6,7 +6,7 @@ import Basket from "@/components/Basket";
 export default function Payments() {
   return (
     <FlowLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl mx-auto items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 max-w-7xl mx-auto items-start">
         <section>
           <Timer />
           <CreditCardForm />

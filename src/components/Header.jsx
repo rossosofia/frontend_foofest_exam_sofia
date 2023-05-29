@@ -51,11 +51,11 @@ export default function Header() {
               </li>
               <li className="group">
                 <Link
-                  href="/campingsite"
+                  href="/all-bands"
                   onClick={closeMenu}
                   className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold group-hover:opacity-50"
                 >
-                  HOW TO REACH US
+                  ALL BANDS
                 </Link>
               </li>
               <li className="group">

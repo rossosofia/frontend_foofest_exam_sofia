@@ -68,10 +68,10 @@ export default function Home() {
         </div>
         <div className="md:flex-1">
           <Image
-            src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Photo by Jeremy Bishop on Unsplash"
-            width={800}
-            height={800}
+            src="https://images.unsplash.com/photo-1542813813-1f873f401e9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Tonight Alive Dynamo eindhoven"
+            width={1000}
+            height={1000}
           />
         </div>
       </section>

@@ -10,8 +10,6 @@ import CalculateTents from "@/components/CalculateTentss";
 import { v4 as uuidv4 } from "uuid";
 import Basket from "@/components/Basket";
 
-//TEST
-
 export default function Accomodations() {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StoreContext);

@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full text-custom-beige bg-gray-900 h-100 pb-[8rem] md:pb-5">
-      <Container className="py-10 px-10 mx-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+      <Container className="py-10 px-10 mx-0 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         <div>
           <Typography variant="h6">Ideation</Typography>
           <Typography variant="body1">ChatGPT</Typography>

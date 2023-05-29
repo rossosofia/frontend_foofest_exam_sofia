@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 
 export default function AllBands() {
   const [bands, setBands] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://brazen-fortune-fight.glitch.me/bands")
@@ -13,12 +14,23 @@ export default function AllBands() {
         }
         return response.json();
       })
-      .then(setBands)
+      .then((data) => {
+        setTimeout(() => {
+          setBands(data);
+          setLoading(false);
+        }, 1200);
+      })
       .catch(console.error);
   }, []);
 
   if (bands === null) {
-    return "Loading...";
+    return (
+      <div className="flex justify-center items-center min-h-screen text-white bg-gradient-to-r from-custom-purple via-custom-yellow to-custom-red">
+        <span className="animate-bounce200 text-8xl">.</span>
+        <span className="animate-bounce400 text-8xl">.</span>
+        <span className="animate-bounce600 text-8xl">.</span>
+      </div>
+    );
   }
 
   return (

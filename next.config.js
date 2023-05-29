@@ -7,6 +7,7 @@ const nextConfig = {
       "images.unsplash.com",
       "source.unsplash.com",
       "placeimg.com",
+      "unsplash.com",
     ],
   },
 };

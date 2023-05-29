@@ -9,12 +9,12 @@ export default function BandPage() {
   const router = useRouter();
   const { slug } = router.query;
 
+  const [loading, setLoading] = useState(true);
+
   const [band, setBand] = useState(null);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     if (!slug) return;
-
     fetch(`${baseUrl}/bands/${slug}`)
       .then((response) => {
         if (!response.ok) {
@@ -23,7 +23,10 @@ export default function BandPage() {
         return response.json();
       })
       .then((bandData) => {
-        setBand(bandData);
+        setTimeout(() => {
+          setBand(bandData);
+          setLoading(false);
+        }, 1200);
       })
       .catch(setError);
   }, [slug]);
@@ -33,11 +36,17 @@ export default function BandPage() {
   }
 
   if (band === null) {
-    return "Loading...";
+    return (
+      <div className="flex justify-center items-center min-h-screen text-white text-2xl bg-gradient-to-r from-custom-purple via-custom-yellow to-custom-red">
+        <span className="animate-bounce200 text-8xl">.</span>
+        <span className="animate-bounce400 text-8xl">.</span>
+        <span className="animate-bounce600 text-8xl">.</span>
+      </div>
+    );
   }
 
   // Generate a random Unsplash URL
-  const randomImageUrl = `https://source.unsplash.com/500x300/?music?${Math.random()}`;
+  const randomImageUrl = `https://images.unsplash.com/photo-1620577610365-86c411bad78d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80?${Math.random()}`;
 
   return (
     <Layout>
@@ -53,11 +62,11 @@ export default function BandPage() {
           src={randomImageUrl}
           alt="Random Band Image"
           className="object-cover rounded mb-4"
-          width={500}
-          height={300}
+          width={600}
+          height={400}
+          priority
         />
 
-        {/* Updated styles */}
         <h2 className="text-3xl md:text-3xl lg:text-3xl xl:text-3xl font-semibold text-white mb-2">
           Members
         </h2>
@@ -69,13 +78,11 @@ export default function BandPage() {
           ))}
         </ul>
 
-        {/* Updated styles */}
         <h2 className="text-3xl md:text-3xl lg:text-3xl xl:text-3xl  font-semibold text-white mb-2">
           Genre
         </h2>
         <p className="mb-4 text-white">{band.genre}</p>
 
-        {/* Updated styles */}
         <h2 className="text-3xl md:text-3xl lg:text-3xl xl:text-3xl font-semibold text-white mb-2">
           Bio
         </h2>

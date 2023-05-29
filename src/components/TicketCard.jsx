@@ -112,6 +112,9 @@ const TicketCard = () => {
             <div className="uppercase tracking-wide text-sm text-black font-semibold">
               VIP Tickets
             </div>
+            <div className="uppercase tracking-wide text-sm text-black">
+              1299,-
+            </div>
             <p className="mt-2 text-gray-500">
               Experience the festival with extra perks as a VIP.
             </p>

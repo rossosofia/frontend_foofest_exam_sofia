@@ -66,7 +66,7 @@ export default function Accomodations() {
     dispatch({
       action: "ADD_TENT",
       payload: {
-        tentName: "2-Person",
+        tentName: "Two Person",
         tentID: uuidv4(),
         tentAmount: num2PersonTents,
         tentAmountPeople: 2,
@@ -80,7 +80,7 @@ export default function Accomodations() {
     dispatch({
       action: "ADD_TENT",
       payload: {
-        tentName: "3-Person",
+        tentName: "Three Person",
         tentID: uuidv4(),
         tentAmount: num3PersonTents,
         tentAmountPeople: 3,

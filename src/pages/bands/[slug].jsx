@@ -46,7 +46,7 @@ export default function BandPage() {
   }
 
   // Generate a random Unsplash URL
-  const randomImageUrl = `https://images.unsplash.com/photo-1620577610365-86c411bad78d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80?${Math.random()}`;
+  const randomImageUrl = `https://source.unsplash.com/random/1200x600/?music,performance,concert,festival,bands?grayscale?${Math.random()}`;
 
   return (
     <Layout>

@@ -67,8 +67,8 @@ export default function Gallery() {
       className="flex flex-nowrap overflow-x-auto overflow-y-scroll my-4 hide-scroll-bar"
     >
       {galleryImages.map((image) => (
-        <div key={image.id} className="flex-shrink-0 w-96 md:w-120 relative">
-          <div className="relative w-full h-96 md:h-120">
+        <div key={image.id} className="flex-shrink-0 w-96 md:w-100 relative">
+          <div className="relative w-full h-96 md:h-100">
             <Link href={`/bands/${image.bandSlug}`}>
               <Image
                 src={`/band${image.imageNumber}.jpg`}
@@ -78,7 +78,7 @@ export default function Gallery() {
               />
             </Link>
           </div>
-          <div className="text-white text-center mt-2 pt-4 text-2xl">
+          <div className="text-custom-beige flex justify-center text-center mt-2 pt-4 text-2xl">
             {image.bandName}
           </div>
         </div>

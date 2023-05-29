@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
+import Anchor from "./Anchor";
 
 function Basket() {
   const state = useContext(StoreContext);
@@ -89,17 +90,19 @@ function Basket() {
 
        
          {/* ------------------TOTAL------------------------- */}
-{state.ticketBasket.length > 0 && (
-  <div className="mt-2">
-    <h2 className="inline-block text-xl ">Total</h2>
-    <p className="inline-block ml-2 text-xl font-semibold">{formattedAmount(totalPrice)} DKK</p>
-  </div>
-)}
-
-
-
-         
-
+         {state.ticketBasket.length > 0 && (
+           <div className="mt-2">
+             <h2 className="inline-block text-xl ">Total</h2>
+             <p className="inline-block ml-2 text-xl font-semibold">{formattedAmount(totalPrice)} DKK</p>
+           </div>
+         )}
+        {state.ticketBasket.length > 0 && (
+        <div className="mt-4">
+          <Anchor href="/"  >
+          Cancel Booking 
+          </Anchor>
+        </div>
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,19 @@
 import { useContext } from "react";
 import { StoreContext } from "@/context/storeContext";
-import Timer from "./Timer";
 
 function Basket() {
   const state = useContext(StoreContext);
   console.log(state);
 
   const bookingFee = 99;
+
+  const formattedAmount = (amount) => {
+    const formatted = amount.toLocaleString("en", {
+      minimumFractionDigits: 0,
+      useGrouping: true,
+    });
+    return formatted.replace(/(\.\d*?)0+$/, "$1").replace(",", ".");
+  };
 
   const tentTotalPrice = [...state.tentBasket.slice(1)].reduce(
     (total, item) => {
@@ -28,45 +35,71 @@ function Basket() {
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-8xl p-8 mb-4">
-      <h2 className="uppercase tracking-wide text-sm text-black font-semibold">
-        Basket
+      <h2 className="text-2xl">
+        BASKET
       </h2>
 
       <div>
-        <h2 className="mt-2 text-gray-500">Tickets</h2>
-        <ul>
-          {state.ticketBasket.map((item) => (
-            <li key={item.id}>
-              {item.name} Ticket: {item.price} x {item.amount}
-            </li>
-          ))}
-        </ul>
-        <p>Total Ticket Price: {ticketTotalPrice} DKK</p>
+        {/* ------------------TICKETS------------------------- */}
+        {state.ticketBasket.length > 0 && (
+          <>
+            <h3 className="mt-2 text-gray-500 font-semibold">Tickets</h3>
+            <ul>
+              {state.ticketBasket.map((item) => (
+                <li key={item.id}>
+                  {item.amount} x {item.name}
+                </li>
+              ))}
+            </ul>
+            {/* <p>Total Ticket Price: {formattedAmount(ticketTotalPrice)} DKK</p> */}
+          </>
+        )}
+        {/* ------------------TENTS------------------------- */}
+        {state.tentBasket.length > 0 && (
+          <>
+            <h3 className="mt-2 text-gray-500 font-semibold">Tents</h3>
+            <ul>
+              {state.tentBasket.slice(1).map((item, index) => {
+                if (item.tentAmount === 0) {
+                  return null; // Skip rendering the item
+                }
+                return (
+                  <li key={item.id || index}>
+                    {item.tentAmount} x {item.tentName}
+                  </li>
+                );
+              })}
+            </ul>
+            {/* <p>Total Tent Price: {formattedAmount(tentTotalPrice)} DKK</p> */}
+          </>
+        )}
+        {/* ------------------GREEN FEE------------------------- */}
+        {state.greenFee.length > 0 && state.greenFee[0].hasGreen && (
+          <ul>
+            <li>1 x Green Fee</li>
+          </ul>
+        )}
 
-        <h2 className="mt-2 text-gray-500">Tents</h2>
-        <ul>
-          {[...state.tentBasket.slice(1)].map((item, index) => {
-            const totalTentPrice =
-              item.tentAmount !== 0 ? item.price * item.tentAmount : 0;
-            return (
-              <li key={item.id || index}>
-                {item.tentName} tent: {item.price} x {item.tentAmount} ={" "}
-                {totalTentPrice} DKK
-              </li>
-            );
-          })}
-        </ul>
-        <p>Total Tent Price: {tentTotalPrice} DKK</p>
+        {/* ------------------BOOKING FEE------------------------- */}
+        {state.ticketBasket.length > 0 && (
+          <p className="mt-2 text-gray-500 font-sm">
+          Booking Fee   {bookingFee} DKK
+        </p>
+      )}
 
-        <ul>
-          {state.greenFee.map((item, index) => (
-            <li key={item.id || index}>Green Fee: {item.price} DKK</li>
-          ))}
-        </ul>
-        <h2 className="mt-2 text-gray-500">Booking Fee</h2>
-        <p>Booking Fee {bookingFee} DKK</p>
-        <h2 className="mt-2 text-gray-500">Total</h2>
-        <p>Total: {totalPrice} DKK</p>
+       
+         {/* ------------------TOTAL------------------------- */}
+{state.ticketBasket.length > 0 && (
+  <div className="mt-2">
+    <h2 className="inline-block text-xl ">Total</h2>
+    <p className="inline-block ml-2 text-xl font-semibold">{formattedAmount(totalPrice)} DKK</p>
+  </div>
+)}
+
+
+
+         
+
       </div>
     </div>
   );

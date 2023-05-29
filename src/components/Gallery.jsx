@@ -69,7 +69,7 @@ export default function Gallery() {
           <div className="relative w-full h-96 md:h-120">
             <Link href={`/bands/${image.bandSlug}`}>
               <Image
-                src={image.randomImageUrl}
+                src="/band1.jpg"
                 alt="Random images from Unsplash.com"
                 layout="fill"
                 objectFit="cover"

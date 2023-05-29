@@ -13,6 +13,12 @@ export default function BandPage() {
 
   const [band, setBand] = useState(null);
   const [error, setError] = useState(null);
+
+  // Generate a random Unsplash URL immediately
+  const [randomImageUrl] = useState(
+    `https://source.unsplash.com/random/1200x600/?music,performance,concert,festival,bands?${Math.random()}`
+  );
+
   useEffect(() => {
     if (!slug) return;
     fetch(`${baseUrl}/bands/${slug}`)
@@ -35,7 +41,7 @@ export default function BandPage() {
     return `An error occurred: ${error.message}`;
   }
 
-  if (band === null) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen text-white text-2xl bg-gradient-to-r from-custom-purple via-custom-yellow to-custom-red">
         <span className="animate-bounce200 text-8xl">.</span>
@@ -44,9 +50,6 @@ export default function BandPage() {
       </div>
     );
   }
-
-  // Generate a random Unsplash URL
-  const randomImageUrl = `https://source.unsplash.com/random/1200x600/?music,performance,concert,festival,bands?grayscale?${Math.random()}`;
 
   return (
     <Layout>
@@ -59,7 +62,7 @@ export default function BandPage() {
       </section>
       <section className="flex flex-col justify-between px-10 h-full mb-8">
         <Image
-          src={randomImageUrl}
+          src="/band1.jpg"
           alt="Random Band Image"
           className="object-cover rounded mb-4"
           width={600}

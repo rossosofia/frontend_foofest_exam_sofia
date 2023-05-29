@@ -17,7 +17,7 @@ export default function Home() {
         <h1 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-white text-center py-4">
           FOOFEST <br /> EXTRAVAGANZA
         </h1>
-        <p className="font-bold text-custom-purple text-center text-2xl md:text-4xl pb-2">
+        <p className="font-bold text-custom-purple text-center text-2xl md:text-4xl pb-4">
           1 - 7 July 2023
         </p>
         <p className="text-center text-custom-purple text-2xl md:text-4xl">
@@ -47,7 +47,7 @@ export default function Home() {
             thrilling announcements from the heart of FooFest festival.
           </p>
           <div className="inline-block bg-custom-beige hover:bg-custom-beige border-2 border-custom-purple transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black my-4 py-6 px-6 rounded w-full md:w-5/6 ">
-            <h3 className="text-1xl md:text-2xl font-semibold">
+            <h3 className="text-1xl md:text-2xl font-semibold text-custom-purple">
               Subscribe to our newsletter
             </h3>
             <form>

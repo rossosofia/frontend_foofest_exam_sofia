@@ -51,7 +51,7 @@ export default function AllBands() {
           {bands.map((band) => (
             <div key={band.name} className="bg-white rounded shadow p-4">
               <h2 className="text-xl font-bold mb-2">{band.name}</h2>
-              <p className="text-gray-600">Genre: {band.genre}</p>
+              <p className="text-gray-600 pb-2">Genre: {band.genre}</p>
               <Anchor href={`/bands/${band.slug}`}>View Details</Anchor>
             </div>
           ))}

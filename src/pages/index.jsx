@@ -25,8 +25,8 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="pb-10">
-        <div className="flex flex-wrap gap-4 justify-between items-center my-10 py-10 px-10 pb-5">
+      <section className="py-12">
+        <div className="flex flex-wrap gap-2 justify-between items-center my-10 pb-5 px-10 ">
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-custom-beige font-medium">
             FEATURED ARTISTS
           </h2>
@@ -37,7 +37,7 @@ export default function Home() {
         <Gallery></Gallery>
       </section>
 
-      <section className="mx-auto h-[70vh] flex flex-col md:flex-row items-center justify-center py-10 px-10 mb-10">
+      <section className="mx-auto h-[85vh] flex flex-col md:flex-row items-center justify-center py-4 px-10 mb-10">
         <div className="flex flex-col justify-between  mb-4 md:mb-0 md:mr-4 md:flex-1">
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-custom-beige font-medium pb-5">
             JOIN THE COMMUNITY

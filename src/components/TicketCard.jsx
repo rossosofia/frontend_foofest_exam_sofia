@@ -81,6 +81,9 @@ const TicketCard = () => {
     // Parsing the response data as JSON
     const data = await response.json();
 
+    // We log the data from the PUT request
+    console.log("PUT request send:", data);
+
     // Dispatching the action to update the state with the received data
     dispatch({ action: "SET_RESERVATION_DATA", payload: data });
   }

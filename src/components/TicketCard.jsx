@@ -55,38 +55,33 @@ const TicketCard = () => {
     });
   }
 
+  // Asynchronous function to send a PUT request
   async function sendPutRequest() {
+    // Calculating total amount of tickets
     const totalAmount = state.ticketBasket.reduce(
       (acc, ticket) => acc + ticket.amount,
       0
     );
 
-    // Send PUT request
+    // Fetch API is used to send the PUT request
     const response = await fetch(
       "https://brazen-fortune-fight.glitch.me/reserve-spot",
       {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          area: state.area,
-          amount: totalAmount,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ area: state.area, amount: totalAmount }),
       }
     );
 
-    // Error handling
+    // Throwing an error if the request is not successful
     if (!response.ok) {
-      // Note: this will only catch network / connection errors
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    // If successful, get the response data
+
+    // Parsing the response data as JSON
     const data = await response.json();
 
-    console.log("PUT response data:", data); // Console log the response data
-
-    // Dispatch all the response data
+    // Dispatching the action to update the state with the received data
     dispatch({ action: "SET_RESERVATION_DATA", payload: data });
   }
 

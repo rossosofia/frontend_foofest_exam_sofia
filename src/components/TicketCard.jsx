@@ -57,7 +57,7 @@ const TicketCard = () => {
 
   // Asynchronous function to send a PUT request
   async function sendPutRequest() {
-    // Calculating total amount of tickets
+    // Calculating total amount of tickets - with reduce array method
     const totalAmount = state.ticketBasket.reduce(
       (acc, ticket) => acc + ticket.amount,
       0

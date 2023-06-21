@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 export default function Schedule() {
   const [schedule, setSchedule] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedDay, setSelectedDay] = useState("mon");
 
   useEffect(() => {
     fetch("https://brazen-fortune-fight.glitch.me/schedule")
@@ -30,11 +31,25 @@ export default function Schedule() {
       .toLowerCase();
   }
 
+  // This function takes a day parameter, capitalizes the first letter, and returns a button element representing the formatted day. The button has a dynamic class based on the selectedDay state and triggers the setSelectedDay function when clicked.
   function formatDay(day) {
     const formattedDay = day.charAt(0).toUpperCase() + day.slice(1);
-    return formattedDay;
+    return (
+      <button
+        key={day}
+        className={`text-3xl mb-2 ${
+          selectedDay === day
+            ? "bg-gray-900 text-white"
+            : "text-gray-900 bg-gray-200"
+        }`}
+        onClick={() => setSelectedDay(day)}
+      >
+        {formattedDay}
+      </button>
+    );
   }
 
+  // loader
   if (schedule === null) {
     return (
       <div className="flex justify-center items-center min-h-screen text-white text-2xl bg-gradient-to-r from-custom-purple via-custom-yellow to-custom-red">
@@ -57,41 +72,54 @@ export default function Schedule() {
             unique atmosphere.
           </h2>
         </div>
+        {/* buttons wrapper */}
+        <section className="flex flex-col justify-center items-center px-10 h-full">
+          <div className="flex flex-wrap justify-center gap-4">
+            {Object.keys(schedule[Object.keys(schedule)[0]]).map((day) => (
+              <button
+                key={day}
+                className={`inline-block border-2 border-black transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black font-bold py-4 px-6 rounded ${
+                  selectedDay === day
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-900 bg-gray-200"
+                }`}
+                onClick={() => setSelectedDay(day)}
+              >
+                {formatDay(day)}
+              </button>
+            ))}
+          </div>
+        </section>
       </section>
+      {/* responsive design for stages' columns */}
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* This maps over the schedule object and iterates through its entries, which represent each stage along with its corresponding days
+        For each stage, a div element is created with a unique key attribute set to the stage value.
+        
+        */}
           {Object.entries(schedule).map(([stage, days]) => (
             <div key={stage} className="text-white p-4 text-center">
               <h2 className="text-5xl font-bold mb-4">{stage}</h2>
-              {Object.entries(days).map(([day, events], index) => (
-                <div key={day}>
-                  {index > 0 && <hr className="my-4" />}
-                  <h3 className="text-3xl mb-2">{formatDay(day)}</h3>{" "}
-                  {/* Format the day name */}
-                  <div role="list" className="mb-4">
-                    {events.map((event, index) => {
-                      // Exclude "break" entries
-                      if (event.act === "break") {
-                        return null;
-                      }
-
-                      return (
-                        <div role="listitem" key={index} className="mb-3 p-3 ">
-                          <p className="text-xl font-medium text-center">
-                            {event.start} - {event.end}
-                          </p>
-                          <Anchor
-                            className="flex justify-center"
-                            href={`/bands/${getSlug(event.act)}`}
-                          >
-                            {event.act}
-                          </Anchor>
-                        </div>
-                      );
-                    })}
-                  </div>
+              {/* A conditional rendering check selectedDay && (...). If a selectedDay is present (not null), the code inside the parentheses will be executed. */}
+              {selectedDay && (
+                <div>
+                  {/* The events are accessed using the days[selectedDay] syntax, where days represents the object containing events for each day of the stage. */}
+                  {days[selectedDay].map((event, index) => (
+                    <div role="listitem" key={index} className="mb-3 p-3">
+                      <p className="text-xl font-medium text-center">
+                        {event.start} - {event.end}
+                      </p>
+                      <Anchor
+                        className="flex justify-center"
+                        href={`/bands/${getSlug(event.act)}`}
+                      >
+                        {event.act}
+                      </Anchor>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           ))}
         </div>

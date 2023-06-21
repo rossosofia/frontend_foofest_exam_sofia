@@ -1,19 +1,23 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { StoreContext } from "@/context/storeContext";
 
+// create a new context object
 const TimerContext = createContext();
 
 function TimerProvider({ children }) {
+  // access the store context and extracting the reserveSpot and its values (object destructuring)
   const { reserveSpot } = useContext(StoreContext);
+  // Initializing Time Remaining
   const timeout = reserveSpot[0]?.timeout || 0;
+  // Managing
   const [timeRemaining, setTimeRemaining] = useState(timeout);
 
+  // Updating.
+  // The useEffect hook takes two arguments: a function and a dependency array.
+  //  The effect function will be executed whenever any of the values in the dependency array [timeout] change.
 
-  //If the timeout value in your StoreContext changes dynamically and you want to update the 
-  //timeRemaining value in the TimerProvider accordingly, you can modify the TimerProvider 
-  //component to include a useEffect hook that listens for changes in the timeout value.
   useEffect(() => {
-    setTimeRemaining(timeout); // Update timeRemaining when timeout changes
+    setTimeRemaining(timeout);
   }, [timeout]);
 
   return (

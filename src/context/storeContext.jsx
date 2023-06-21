@@ -102,7 +102,7 @@ function reducer(state, action) {
           tentBasket: [...state.tentBasket, newItem],
         };
       }
-      
+
     case "SET_RESERVATION_DATA":
       return {
         ...state,

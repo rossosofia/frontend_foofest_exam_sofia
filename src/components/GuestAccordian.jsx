@@ -97,6 +97,7 @@ export default function GuestAccordion({
                 label="Last Name"
                 variant="outlined"
                 name="lastName"
+                type="text"
                 onChange={formHasChanged}
                 defaultValue={submittedLastName ? submittedLastName : ""}
                 required

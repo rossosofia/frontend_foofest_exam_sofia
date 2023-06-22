@@ -34,19 +34,7 @@ export default function Schedule() {
   // This function takes a day parameter, capitalizes the first letter, and returns a button element representing the formatted day. The button has a dynamic class based on the selectedDay state and triggers the setSelectedDay function when clicked.
   function formatDay(day) {
     const formattedDay = day.charAt(0).toUpperCase() + day.slice(1);
-    return (
-      <button
-        key={day}
-        className={`text-3xl mb-2 ${
-          selectedDay === day
-            ? "bg-gray-900 text-white"
-            : "text-gray-900 bg-gray-200"
-        }`}
-        onClick={() => setSelectedDay(day)}
-      >
-        {formattedDay}
-      </button>
-    );
+    return <>{formattedDay}</>;
   }
 
   // loader
@@ -78,10 +66,10 @@ export default function Schedule() {
             {Object.keys(schedule[Object.keys(schedule)[0]]).map((day) => (
               <button
                 key={day}
-                className={`inline-block border-2 border-black transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 text-black font-bold py-4 px-6 rounded ${
+                className={`inline-block border-2 border-black transition-transform duration-500 ease-in-out transform hover:-translate-x-1 hover:-translate-y-1 font-bold py-4 px-6 rounded ${
                   selectedDay === day
                     ? "bg-gray-900 text-white"
-                    : "text-gray-900 bg-gray-200"
+                    : "text-black bg-gray-200"
                 }`}
                 onClick={() => setSelectedDay(day)}
               >

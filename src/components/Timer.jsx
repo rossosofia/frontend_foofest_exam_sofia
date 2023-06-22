@@ -9,6 +9,7 @@ function Timer() {
   const router = useRouter();
 
   useEffect(() => {
+    // if the time remaning is more than 0, just keep counting
     if (timeRemaining > 0) {
       const interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1000);

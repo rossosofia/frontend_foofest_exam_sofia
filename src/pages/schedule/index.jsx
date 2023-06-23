@@ -31,7 +31,7 @@ export default function Schedule() {
       .toLowerCase();
   }
 
-  // This function takes a day parameter, capitalizes the first letter, and returns a button element representing the formatted day. The button has a dynamic class based on the selectedDay state and triggers the setSelectedDay function when clicked.
+  // Formatting
   function formatDay(day) {
     const formattedDay = day.charAt(0).toUpperCase() + day.slice(1);
     return <>{formattedDay}</>;
@@ -82,30 +82,34 @@ export default function Schedule() {
       {/* responsive design for stages' columns */}
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* This maps over the schedule object and iterates through its entries, which represent each stage along with its corresponding days
-        For each stage, a div element is created with a unique key attribute set to the stage value.
-        
-        */}
+          {/* This maps over the schedule object and iterates through its entries. For each stage, a div element is created with a unique key attribute set to the stage value.
+           */}
           {Object.entries(schedule).map(([stage, days]) => (
             <div key={stage} className="text-white p-4 text-center">
               <h2 className="text-5xl font-bold mb-4">{stage}</h2>
               {/* A conditional rendering check selectedDay && (...). If a selectedDay is present (not null), the code inside the parentheses will be executed. */}
               {selectedDay && (
                 <div>
-                  {/* The events are accessed using the days[selectedDay] syntax, where days represents the object containing events for each day of the stage. */}
-                  {days[selectedDay].map((event, index) => (
-                    <div role="listitem" key={index} className="mb-3 p-3">
-                      <p className="text-xl font-medium text-center">
-                        {event.start} - {event.end}
-                      </p>
-                      <Anchor
-                        className="flex justify-center"
-                        href={`/bands/${getSlug(event.act)}`}
-                      >
-                        {event.act}
-                      </Anchor>
-                    </div>
-                  ))}
+                  {days[selectedDay].map((event, index) => {
+                    // Exclude "break" entries
+                    if (event.act === "break") {
+                      return null;
+                    }
+
+                    return (
+                      <div role="listitem" key={index} className="mb-3 p-3">
+                        <p className="text-xl font-medium text-center">
+                          {event.start} - {event.end}
+                        </p>
+                        <Anchor
+                          className="flex justify-center"
+                          href={`/bands/${getSlug(event.act)}`}
+                        >
+                          {event.act}
+                        </Anchor>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
